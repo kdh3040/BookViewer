@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BookViewer</string>
+    <string name="book_1">동백꽃</string>
+    <string name="book_2">톰소여의 모험</string>
 </resources>

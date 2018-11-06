@@ -29,10 +29,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 switch (view.getId()) {
                     case R.id.text1:
+                        intent.putExtra("Title", getString(R.string.book_1));
                         intent.putExtra("Path", BookFiles[0]);
                         startActivity(intent);
                         break;
                     case R.id.text2:
+                        intent.putExtra("Title", getString(R.string.book_2));
                         intent.putExtra("Path", BookFiles[1]);
                         startActivity(intent);
                         break;
