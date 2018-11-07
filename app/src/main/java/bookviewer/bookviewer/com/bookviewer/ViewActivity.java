@@ -1,23 +1,18 @@
 package bookviewer.bookviewer.com.bookviewer;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
-import android.view.MotionEvent;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.bq.markerseekbar.MarkerSeekBar;
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
 import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
-import com.github.barteksc.pdfviewer.listener.OnPageScrollListener;
-import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
-import com.github.barteksc.pdfviewer.scroll.ScrollHandle;
 import com.github.barteksc.pdfviewer.util.FitPolicy;
 
 public class ViewActivity extends AppCompatActivity implements OnPageChangeListener, OnLoadCompleteListener {
@@ -28,7 +23,7 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
     private Button Title_Button;
 
     MarkerSeekBar bar1;
-
+    ProgressDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +71,7 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
             }
         });
 
+        CommonFunc.getInstance().ShowProgressDialog(this);
 
     }
 
@@ -95,5 +91,6 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
     @Override
     public void loadComplete(int nbPages) {
         bar1.setMax(nbPages);
+        CommonFunc.getInstance().HideProgressDialog();
     }
 }
