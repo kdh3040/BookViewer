@@ -2,11 +2,13 @@ package bookviewer.bookviewer.com.bookviewer;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Display;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,10 +33,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BookListViewAdapter = new BookListAdapter(getApplicationContext());
+        final Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+
+        CommonFunc.getInstance().SetDisplayWidth(size.x);
+        CommonFunc.getInstance().SetDisplayHeight(size.y);
+
         BookRecyclerView = (RecyclerView)findViewById(R.id.recyclerview_booklist);
-        BookRecyclerView.setAdapter(BookListViewAdapter);
+        BookRecyclerView.setHasFixedSize(true);
         BookRecyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
+
+        BookListViewAdapter = new BookListAdapter(getApplicationContext());
+        BookRecyclerView.setAdapter(BookListViewAdapter);
+
         //BookRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
 
 
