@@ -39,6 +39,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder>
                     final Intent intent = new Intent(AppContext, ViewActivity.class);
                     intent.putExtra("Title", "톰소여의 모험");
                     intent.putExtra("Path", AppContext.getAssets().list("Data")[1]);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     AppContext.startActivity(intent);
                 } catch (IOException e1) {
                     // TODO Auto-generated catch block
