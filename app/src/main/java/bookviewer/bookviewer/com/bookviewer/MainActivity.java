@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         BookRecyclerView.setHasFixedSize(true);
         BookRecyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
 
-        BookListViewAdapter = new BookListAdapter(getApplicationContext());
+        BookListViewAdapter = new BookListAdapter(MainActivity.this);
         BookRecyclerView.setAdapter(BookListViewAdapter);
 
         //BookRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
