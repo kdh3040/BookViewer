@@ -2,4 +2,5 @@
     <string name="app_name">BookViewer</string>
     <string name="book_1">동백꽃</string>
     <string name="book_2">톰소여의 모험</string>
+    <string name="long_text">Kotlin is a great fit for developing Android applications, bringing all of the advantages of a modern language to the Android platform without introducing any new restrictions.</string>
 </resources>

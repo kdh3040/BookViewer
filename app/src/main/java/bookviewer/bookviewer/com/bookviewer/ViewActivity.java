@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,6 +16,11 @@ import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
 import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
 import com.github.barteksc.pdfviewer.util.FitPolicy;
 
+import com.ramotion.fluidslider.FluidSlider;
+
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+
 public class ViewActivity extends AppCompatActivity implements OnPageChangeListener, OnLoadCompleteListener {
     private  String BookPath, BookName;
     private  PDFView pdfView;
@@ -22,8 +28,15 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
     private TextView Title_Text, Title_Page, Menu_scroll;
     private Button Title_Button;
 
-    MarkerSeekBar bar1;
+    //MarkerSeekBar bar1;
     ProgressDialog dialog;
+
+    static FluidSlider slider;
+    int max = 358;
+    int min = 1;
+    int total = max - min;
+
+    @SuppressWarnings("Convert2Lambda")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +68,7 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
                 .load();
 
 
-        bar1 = (MarkerSeekBar) findViewById(R.id.bar1);
+        /*bar1 = (MarkerSeekBar) findViewById(R.id.bar1);
         assert bar1 != null;
         bar1.setProgressAdapter(new MarkerSeekBar.ProgressAdapter() {
             @SuppressLint("DefaultLocale")
@@ -69,16 +82,49 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
             public String onMeasureLongestText(int seekBarMax) {
                 return toText(seekBarMax);
             }
-        });
+        });*/
 
         CommonFunc.getInstance().ShowProgressDialog(this);
 
+        slider = findViewById(R.id.fluidSlider);
+        slider.setPosition(0f);
+        slider.setStartText(String.valueOf(1));
+        slider.setEndText(String.valueOf(358));
+
+
+        slider.setBeginTrackingListener(new Function0<Unit>() {
+            @Override
+            public Unit invoke() {
+                return Unit.INSTANCE;
+            }
+        });
+
+        slider.setEndTrackingListener(new Function0<Unit>() {
+            @Override
+            public Unit invoke() {
+                return Unit.INSTANCE;
+            }
+        });
+
+        // Java 8 lambda
+        slider.setPositionListener(pos -> {
+            Log.d("asdasd", min + "    sasd   " + max + " pos : " + pos );
+            final String value = String.valueOf( (int)(min + total * pos) );
+            slider.setBubbleText(value);
+            return Unit.INSTANCE;
+        });
+
+        
     }
 
     @Override
     public void onPageChanged(int page, int pageCount) {
         Title_Page.setText((String.format("%s / %s", page + 1, pageCount)));
-        bar1.setProgress(page);
+        //bar1.setProgress(page);
+        float start =page;
+        float end = pageCount;
+
+        slider.setPosition((start + 1) /end);
 
         final int CurrPage = page;
         if(page == 4)
@@ -129,7 +175,24 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
 
     @Override
     public void loadComplete(int nbPages) {
-        bar1.setMax(nbPages);
+       // bar1.setMax(nbPages);
         CommonFunc.getInstance().HideProgressDialog();
+
+        max = nbPages;
+        min = 1;
+        total = nbPages;
+
+
+
+        InitSlider(min, max);
+
+
+
+    }
+
+    public void InitSlider(int min, int max)
+    {
+
+
     }
 }

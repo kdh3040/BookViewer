@@ -48,7 +48,7 @@
         android:layout_height="500dp"
         app:layout_constraintTop_toBottomOf="@+id/title"/>
 
-    <com.bq.markerseekbar.MarkerSeekBar
+ <!--   <com.bq.markerseekbar.MarkerSeekBar
         android:id="@+id/bar1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,7 +56,17 @@
         app:markerColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:markerTextAppearance="@style/MarkerCustomTextStyle"
-        app:markerTextColor="#ffffff" />
+        app:markerTextColor="#ffffff" />-->
+
+    <com.ramotion.fluidslider.FluidSlider
+        android:id="@+id/fluidSlider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:size="small"
+        app:duration="@android:integer/config_mediumAnimTime"
+        tools:targetApi="lollipop" />
 
 
 </android.support.constraint.ConstraintLayout>
