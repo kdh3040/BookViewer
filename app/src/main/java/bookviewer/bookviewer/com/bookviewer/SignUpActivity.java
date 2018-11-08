@@ -1,0 +1,61 @@
+package bookviewer.bookviewer.com.bookviewer;
+
+import android.content.Context;
+import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
+
+public class SignUpActivity extends AppCompatActivity {
+
+    private EditText mNickName, mCode;
+    private Button CheckBtn;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sign_up);
+
+        mNickName = (EditText) findViewById(R.id.SignUp_EditText_NickName);
+        final InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        ConstraintLayout ll = (ConstraintLayout) findViewById(R.id.linearLayout);
+        ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //imm.hideSoftInputFromWindow(mMemo.getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(mNickName.getWindowToken(), 0);
+            }
+        });
+
+        mCode = (EditText) findViewById(R.id.SignUp_EditText_NickName);
+        ll = (ConstraintLayout) findViewById(R.id.linearLayout);
+        ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //imm.hideSoftInputFromWindow(mMemo.getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(mCode.getWindowToken(), 0);
+            }
+        });
+
+        CheckBtn = (Button) findViewById(R.id.SignUp_Button);
+        CheckBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String strNickName = mNickName.getText().toString();
+                String strCode = mCode.getText().toString();
+
+               // strNickName = CommonFunc.getInstance().RemoveEmptyString(strNickName);
+
+                    Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                    startActivity(intent);
+
+
+            }
+        });
+    }
+}
