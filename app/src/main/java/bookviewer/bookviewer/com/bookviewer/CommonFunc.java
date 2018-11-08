@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -64,11 +65,22 @@ public class CommonFunc {
         return Height;
     }
 
+    public void ShowToast(Context context, String msg, boolean shortView)
+    {
+        if(shortView)
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+    }
+
     public interface ShowPopup_Listener {
         void Listener();
     }
 
-    public void ShowDefaultPopup(Context context, final ShowPopup_Listener listenerYes, final ShowPopup_Listener listenerNo, String title, String centerDesc, String yesDesc, String noDesc, Boolean btnView) {
+    public void ShowDefaultPopup(Context context, String centerDesc) {
+        ShowDefaultPopup(context, null, null, "알림", centerDesc, "확인", "");
+    }
+    public void ShowDefaultPopup(Context context, final ShowPopup_Listener listenerYes, final ShowPopup_Listener listenerNo, String title, String centerDesc, String yesDesc, String noDesc) {
         TextView Title, CenterDesc;
         Button YesButton, NoButton;
 
@@ -88,39 +100,31 @@ public class CommonFunc {
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
 
-        if (btnView) {
-            YesButton.setVisibility(View.VISIBLE);
-            NoButton.setVisibility(View.VISIBLE);
+        YesButton.setVisibility(View.VISIBLE);
+        NoButton.setVisibility(View.VISIBLE);
 
-            if(noDesc == null || noDesc.equals(""))
-                NoButton.setVisibility(View.GONE);
-
-            YesButton.setText(yesDesc);
-            NoButton.setText(noDesc);
-
-            YesButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (listenerYes != null)
-                        listenerYes.Listener();
-                    dialog.dismiss();
-                }
-            });
-            NoButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (listenerNo != null)
-                        listenerNo.Listener();
-                    dialog.dismiss();
-                }
-            });
-        } else {
-            YesButton.setVisibility(View.GONE);
+        if(noDesc == null || noDesc.equals(""))
             NoButton.setVisibility(View.GONE);
 
-            YesButton.setOnClickListener(null);
-            NoButton.setOnClickListener(null);
-        }
+        YesButton.setText(yesDesc);
+        NoButton.setText(noDesc);
+
+        YesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (listenerYes != null)
+                    listenerYes.Listener();
+                dialog.dismiss();
+            }
+        });
+        NoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (listenerNo != null)
+                    listenerNo.Listener();
+                dialog.dismiss();
+            }
+        });
     }
 
     public interface ShowQuestionPopup_Listener_1 {

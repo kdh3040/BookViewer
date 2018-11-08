@@ -79,6 +79,45 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
     public void onPageChanged(int page, int pageCount) {
         Title_Page.setText((String.format("%s / %s", page + 1, pageCount)));
         bar1.setProgress(page);
+
+        final int CurrPage = page;
+        if(page == 4)
+        {
+            CommonFunc.ShowQuestionPopup_Listener_1 listener = new CommonFunc.ShowQuestionPopup_Listener_1() {
+                @Override
+                public void Listener(String correctStr) {
+                    if(correctStr.equals("1"))
+                    {
+                        CommonFunc.getInstance().ShowToast(ViewActivity.this, "정답입니다.", true);
+                    }
+                    else
+                    {
+                        pdfView.jumpTo(0);
+                        CommonFunc.getInstance().ShowToast(ViewActivity.this, "오답입니다.", true);
+                    }
+                }
+            };
+
+            CommonFunc.getInstance().ShowQuestionPopup_1(ViewActivity.this, listener, "문제 입니다.");
+        }
+        else if(page == 8)
+        {
+            CommonFunc.ShowQuestionPopup_Listener_2 listener = new CommonFunc.ShowQuestionPopup_Listener_2() {
+                @Override
+                public void Listener(int correctValue) {
+                    if(correctValue == 3)
+                    {
+                        CommonFunc.getInstance().ShowToast(ViewActivity.this, "정답입니다.", true);
+                    }
+                    else
+                    {
+                        pdfView.jumpTo(0);
+                        CommonFunc.getInstance().ShowToast(ViewActivity.this, "오답입니다.", true);
+                    }
+                }
+            };
+            CommonFunc.getInstance().ShowQuestionPopup_2(ViewActivity.this, listener, "문제 입니다.");
+        }
     }
 
 
