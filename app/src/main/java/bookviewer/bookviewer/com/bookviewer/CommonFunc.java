@@ -29,7 +29,52 @@ public class CommonFunc {
         return _Instance;
     }
 
-    private CommonFunc() {}
+    private CommonFunc()
+    {
+        BookData data_1 = new BookData();
+        data_1.Buy = true;
+        data_1.ImgIdx = R.drawable.book_1;
+        data_1.NameIdx = R.string.book_1;
+        BookDataList.add(data_1);
+
+        BookData data_2 = new BookData();
+        data_2.Buy = false;
+        data_2.ImgIdx = R.drawable.book_2;
+        data_2.NameIdx = R.string.book_2;
+        BookDataList.add(data_2);
+
+        BookData data_3 = new BookData();
+        data_3.Buy = false;
+        data_3.ImgIdx = R.drawable.book_3;
+        data_3.NameIdx = R.string.book_3;
+        BookDataList.add(data_3);
+
+        BookData data_4 = new BookData();
+        data_4.Buy = false;
+        data_4.ImgIdx = R.drawable.book_4;
+        data_4.NameIdx = R.string.book_4;
+        BookDataList.add(data_4);
+
+        BookData data_5 = new BookData();
+        data_5.Buy = true;
+        data_5.ImgIdx = R.drawable.book_5;
+        data_5.NameIdx = R.string.book_5;
+        BookDataList.add(data_5);
+
+        BookData data_6 = new BookData();
+        data_6.Buy = false;
+        data_6.ImgIdx = R.drawable.book_6;
+        data_6.NameIdx = R.string.book_6;
+        BookDataList.add(data_6);
+
+        BookData data_7 = new BookData();
+        data_7.Buy = true;
+        data_7.ImgIdx = R.drawable.book_7;
+        data_7.NameIdx = R.string.book_7;
+        BookDataList.add(data_7);
+    }
+
+    public List<BookData> BookDataList = new ArrayList<>();
 
     private  ProgressDialog dialog;
 
@@ -43,7 +88,7 @@ public class CommonFunc {
 
     public void HideProgressDialog()
     {
-        dialog.hide();
+        dialog.dismiss();
     }
 
     private int Width, Height;

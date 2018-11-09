@@ -32,10 +32,9 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
     ProgressDialog dialog;
 
     static FluidSlider slider;
-    int max = 358;
-    int min = 1;
-    int total = max - min;
-
+    int CurrPageCount = 0;
+    int AllPageCount = 0;
+    float PagePos = 0;
     @SuppressWarnings("Convert2Lambda")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,48 +83,22 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
             }
         });*/
 
-        CommonFunc.getInstance().ShowProgressDialog(this);
+        CommonFunc.getInstance().ShowProgressDialog(ViewActivity.this);
 
         slider = findViewById(R.id.fluidSlider);
         slider.setPosition(0f);
-        slider.setStartText(String.valueOf(1));
-        slider.setEndText(String.valueOf(358));
-
-
-        slider.setBeginTrackingListener(new Function0<Unit>() {
-            @Override
-            public Unit invoke() {
-                return Unit.INSTANCE;
-            }
-        });
-
-        slider.setEndTrackingListener(new Function0<Unit>() {
-            @Override
-            public Unit invoke() {
-                return Unit.INSTANCE;
-            }
-        });
-
-        // Java 8 lambda
-        slider.setPositionListener(pos -> {
-            Log.d("asdasd", min + "    sasd   " + max + " pos : " + pos );
-            final String value = String.valueOf( (int)(min + total * pos) );
-            slider.setBubbleText(value);
-            return Unit.INSTANCE;
-        });
-
-        
     }
 
     @Override
     public void onPageChanged(int page, int pageCount) {
         Title_Page.setText((String.format("%s / %s", page + 1, pageCount)));
         //bar1.setProgress(page);
-        float start =page;
-        float end = pageCount;
 
-        slider.setPosition((start + 1) /end);
+        CurrPageCount = page;
 
+        slider.getBeginTrackingListener().invoke();
+        slider.setPosition((float)CurrPageCount / (float)AllPageCount);
+        slider.getEndTrackingListener().invoke();
         final int CurrPage = page;
         if(page == 4)
         {
@@ -178,20 +151,43 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
        // bar1.setMax(nbPages);
         CommonFunc.getInstance().HideProgressDialog();
 
-        max = nbPages;
-        min = 1;
-        total = nbPages;
-
-
-
-        InitSlider(min, max);
-
-
-
+        CurrPageCount = 1;
+        AllPageCount = nbPages;
+        InitSlider();
     }
 
-    public void InitSlider(int min, int max)
+    public void InitSlider()
     {
+        slider.setPosition(0f);
+        slider.setStartText(String.valueOf(CurrPageCount));
+        slider.setEndText(String.valueOf(AllPageCount));
+
+        slider.setBeginTrackingListener(new Function0<Unit>() {
+            @Override
+            public Unit invoke() {
+                return Unit.INSTANCE;
+            }
+        });
+
+        slider.setEndTrackingListener(new Function0<Unit>() {
+            @Override
+            public Unit invoke() {
+                final String value = String.valueOf((int)PagePos);
+                slider.setBubbleText(value);
+                return Unit.INSTANCE;
+            }
+        });
+
+        // Java 8 lambda
+        slider.setPositionListener(pos -> {
+            PagePos = AllPageCount * pos;
+            if(PagePos <= 1)
+                PagePos = 1;
+            final String value = String.valueOf((int)PagePos);
+            slider.setBubbleText(value);
+            return Unit.INSTANCE;
+        });
+
 
 
     }

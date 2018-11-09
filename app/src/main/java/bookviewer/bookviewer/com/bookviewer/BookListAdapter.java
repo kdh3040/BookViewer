@@ -2,6 +2,9 @@ package bookviewer.bookviewer.com.bookviewer;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,8 +35,15 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder>
     @Override
     public void onBindViewHolder(BookListViewHolder holder, final int position) {
 
+        BookData data = CommonFunc.getInstance().BookDataList.get(position);
+
         holder.Thumbnail.setLayoutParams(new RelativeLayout.LayoutParams(CommonFunc.getInstance().GetDisplayWidth() /3, (CommonFunc.getInstance().GetDisplayWidth() / 3)));
-        holder.Thumbnail.setImageResource(R.drawable.book_1);
+        holder.Thumbnail.setImageResource(data.ImgIdx);
+
+        if(data.Buy == false)
+            holder.Thumbnail.setColorFilter(Color.parseColor("#555555"), PorterDuff.Mode.MULTIPLY);
+        else
+            holder.Thumbnail.clearColorFilter();
 
         RelativeLayout.LayoutParams lpProgress = new RelativeLayout.LayoutParams((int) (CommonFunc.getInstance().GetDisplayWidth() / 3 * 0.4), (int) (CommonFunc.getInstance().GetDisplayWidth() / 3 * 0.2));
         lpProgress.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
@@ -50,11 +60,28 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder>
             public void onClick(View view) {
                 AssetManager assetManager = AppContext.getAssets();
                 try {
-                    final Intent intent = new Intent(AppContext, ViewActivity.class);
-                    intent.putExtra("Title", "톰소여의 모험");
-                    intent.putExtra("Path", AppContext.getAssets().list("Data")[1]);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    AppContext.startActivity(intent);
+                    BookData data = CommonFunc.getInstance().BookDataList.get(position);
+                    String Name = AppContext.getResources().getString(data.NameIdx);
+                    if(data.Buy == false)
+                    {
+                        CommonFunc.ShowPopup_Listener listener = new CommonFunc.ShowPopup_Listener() {
+                            @Override
+                            public void Listener() {
+                                data.Buy = true;
+                                notifyDataSetChanged();
+                            }
+                        };
+
+                        CommonFunc.getInstance().ShowDefaultPopup(AppContext,listener,null, "구매", Name + "을(를) 구매하시겠습니까?", "확인", "취소");
+                    }
+                    else
+                    {
+                        final Intent intent = new Intent(AppContext, ViewActivity.class);
+                        intent.putExtra("Title", Name);
+                        intent.putExtra("Path", AppContext.getAssets().list("Data")[1]);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        AppContext.startActivity(intent);
+                    }
                 } catch (IOException e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
@@ -65,6 +92,6 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder>
 
     @Override
     public int getItemCount() {
-        return  40;
+        return  CommonFunc.getInstance().BookDataList.size();
     }
 }

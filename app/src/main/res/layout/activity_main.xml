@@ -2,7 +2,8 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"    >
+    android:layout_height="match_parent"
+    android:background="@drawable/book_bg">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/title"
@@ -16,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="asdasdasd"
+            android:text="책 리스트"
             android:textColor="@android:color/white" />
 
     </android.support.constraint.ConstraintLayout>
@@ -25,7 +26,8 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview_booklist"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"/>
 
 </LinearLayout>
 
