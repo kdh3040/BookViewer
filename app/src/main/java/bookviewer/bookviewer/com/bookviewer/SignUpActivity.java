@@ -10,6 +10,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+import bookviewer.bookviewer.com.bookviewer.Data.DataMgr;
+
 public class SignUpActivity extends AppCompatActivity {
 
     private EditText mNickName, mCode;
@@ -19,6 +21,8 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        DataMgr.getInstance().loadMyData();
 
         mNickName = (EditText) findViewById(R.id.SignUp_EditText_NickName);
         final InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
