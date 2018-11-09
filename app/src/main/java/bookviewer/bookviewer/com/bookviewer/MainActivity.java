@@ -33,12 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
 
-        CommonFunc.getInstance().SetDisplayWidth(size.x);
-        CommonFunc.getInstance().SetDisplayHeight(size.y);
 
         BookRecyclerView = (RecyclerView)findViewById(R.id.recyclerview_booklist);
         BookRecyclerView.setHasFixedSize(true);
