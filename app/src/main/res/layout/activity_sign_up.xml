@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/linearLayout"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:gravity="center_horizontal"
+tools:context="bookviewer.bookviewer.com.bookviewer.SignUpActivity">
+
+
+<TextView
+    android:id="@+id/SignUp_TextView_Info"
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:layout_marginTop="10dp"
+    android:text="간단한 기본정보를 입력해주세요 :)"
+    android:textSize="18sp"
+    app:layout_constraintBottom_toTopOf="@+id/SignUp_TextView_NickName"
+    app:layout_constraintHorizontal_bias="0.5"
+     />
+
+<TextView
+    android:id="@+id/SignUp_TextView_NickName"
+    android:layout_width="wrap_content"
+    android:layout_height="40dp"
+    android:layout_marginLeft="16dp"
+    android:gravity="center_vertical"
+    android:text="닉네임"
+    android:textColor="@android:color/holo_blue_dark"
+    android:textSize="18sp"
+    android:textStyle="bold"
+    app:layout_constraintBottom_toBottomOf="@id/SignUp_EditText_NickName"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toTopOf="@id/SignUp_EditText_NickName" />
+
+<EditText
+    android:id="@+id/SignUp_EditText_NickName"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="32dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:background="@android:color/holo_blue_dark"
+    android:ems="10"
+    android:hint="( 최대 8자)"
+    android:inputType="textPersonName"
+    android:maxLength="8"
+    android:paddingLeft="10dp"
+    app:layout_constraintBottom_toTopOf="@+id/SignUp_TextView_Code"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintLeft_toRightOf="@+id/SignUp_TextView_NickName"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/SignUp_TextView_Info" />
+
+
+
+    <TextView
+        android:id="@+id/SignUp_TextView_Code"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:gravity="center_vertical"
+        android:text="코드"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/SignUp_EditText_Code"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/SignUp_EditText_Code" />
+
+
+    <EditText
+        android:id="@+id/SignUp_EditText_Code"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/holo_blue_dark"
+        android:ems="10"
+        android:hint="( 최대 8자)"
+        android:inputType="textPersonName"
+        android:maxLength="8"
+        android:paddingLeft="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/SignUp_Button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toRightOf="@+id/SignUp_TextView_NickName"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SignUp_EditText_NickName" />
+
+
+<Button
+    android:id="@+id/SignUp_Button"
+    android:layout_width="wrap_content"
+    android:layout_height="40dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="16dp"
+    android:background="@android:color/black"
+    android:text="회원 가입"
+    android:textColor="@color/white"
+    android:textSize="18sp"
+    android:textStyle="bold"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toStartOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

@@ -13,6 +13,12 @@
 
     </style>
 
+    <style name="RejectCheckBox" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/baseColor2</item>
+        <item name="colorControlActivated">@color/baseColor2</item>
+    </style>
+
+
     <style name="MarkerCustomTextStyle" parent="android:TextAppearance.Small">
         <item name="android:fontFamily">monospace</item>
     </style>
