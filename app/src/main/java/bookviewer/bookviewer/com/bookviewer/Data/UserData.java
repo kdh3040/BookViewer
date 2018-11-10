@@ -16,6 +16,9 @@ public class UserData {
     public Map<Integer, BookData> bookDataList = new LinkedHashMap<Integer, BookData>();
     public Map<Integer, QuestionData> questionDataList = new LinkedHashMap<Integer, QuestionData>();
 
+    public int viewSchoolCurriculumIndex = 0;
+    public ArrayList<Integer> viewBookIdList = new ArrayList<>();
+
     public void init(String SchoolCode, String NickName)
     {
         if(SchoolCode.isEmpty() || NickName.isEmpty())
@@ -24,6 +27,10 @@ public class UserData {
         nickName = NickName;
         schoolCode = SchoolCode;
         addData();
+
+        // TODO 임시
+        viewSchoolCurriculumIndex = 0;
+        viewBookIdList = schoolCurriculumDataList.get(viewSchoolCurriculumIndex).bookIdList;
     }
 
     public boolean isJoin()
@@ -55,6 +62,11 @@ public class UserData {
         }
     }
 
+    public BookData getBookData(int BookId)
+    {
+        return bookDataList.get(BookId);
+    }
+
     public void addQuestionData()
     {
         for( Integer key : bookDataList.keySet() ){
@@ -64,7 +76,6 @@ public class UserData {
                 QuestionData questionData = DataMgr.getInstance().getQuestionData(bookData.questionIdList.get(index));
                 questionDataList.put(questionData.questionId, questionData);
             }
-
         }
     }
 }

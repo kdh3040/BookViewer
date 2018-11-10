@@ -16,6 +16,10 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.io.IOException;
 
+import bookviewer.bookviewer.com.bookviewer.Data.BookData;
+import bookviewer.bookviewer.com.bookviewer.Data.BookLocalData;
+import bookviewer.bookviewer.com.bookviewer.Data.DataMgr;
+
 public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder>
 {
     Context AppContext;
@@ -35,12 +39,14 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder>
     @Override
     public void onBindViewHolder(BookListViewHolder holder, final int position) {
 
-        BookData data = CommonFunc.getInstance().BookDataList.get(position);
+        int bookId = DataMgr.getInstance().myData.viewBookIdList.get(position);
+        BookData data = DataMgr.getInstance().myData.getBookData(bookId);
+        BookLocalData localData = DataMgr.getInstance().bookLocalDataList.get(bookId);
 
         holder.Thumbnail.setLayoutParams(new RelativeLayout.LayoutParams(CommonFunc.getInstance().GetDisplayWidth() /3, (CommonFunc.getInstance().GetDisplayWidth() / 3)));
-        holder.Thumbnail.setImageResource(data.ImgIdx);
+        //holder.Thumbnail.setImageResource(localData.ImgIdx);
 
-        if(data.Buy == false)
+        if(localData == null)
             holder.Thumbnail.setColorFilter(Color.parseColor("#555555"), PorterDuff.Mode.MULTIPLY);
         else
             holder.Thumbnail.clearColorFilter();
@@ -60,14 +66,20 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder>
             public void onClick(View view) {
                 AssetManager assetManager = AppContext.getAssets();
                 try {
-                    BookData data = CommonFunc.getInstance().BookDataList.get(position);
-                    String Name = AppContext.getResources().getString(data.NameIdx);
-                    if(data.Buy == false)
+                    BookData data = DataMgr.getInstance().myData.getBookData(bookId);
+                    BookLocalData localData = DataMgr.getInstance().bookLocalDataList.get(bookId);
+                    String Name = data.bookName;
+                    if(localData == null)
                     {
                         CommonFunc.ShowPopup_Listener listener = new CommonFunc.ShowPopup_Listener() {
                             @Override
                             public void Listener() {
-                                data.Buy = true;
+                                BookLocalData localData = new BookLocalData();
+                                localData.bookId = data.bookId;
+                                localData.ImgIdx = R.drawable.book_1;
+                                DataMgr.getInstance().bookLocalDataList.put(data.bookId, localData);
+                                DataMgr.getInstance().saveBookLocalData(AppContext);
+
                                 notifyDataSetChanged();
                             }
                         };
@@ -92,6 +104,6 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder>
 
     @Override
     public int getItemCount() {
-        return  CommonFunc.getInstance().BookDataList.size();
+        return  DataMgr.getInstance().myData.viewBookIdList.size();
     }
 }

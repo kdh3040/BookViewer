@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
         CommonFunc.getInstance().SetDisplayWidth(size.x);
         CommonFunc.getInstance().SetDisplayHeight(size.y);
 
-        DataMgr.getInstance().loadMyData(LoginActivity.this);
+        DataMgr.getInstance().loadLocalData(LoginActivity.this);
 
         Intent intent;
         if(DataMgr.getInstance().myData.isJoin())

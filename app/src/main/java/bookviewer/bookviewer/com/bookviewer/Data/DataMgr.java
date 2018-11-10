@@ -4,7 +4,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Map;
+
+import bookviewer.bookviewer.com.bookviewer.R;
 
 public class DataMgr {
 
@@ -19,7 +22,7 @@ public class DataMgr {
 
     public TempFireBaseData TempData;
 
-    public ArrayList<BookLocalData> bookLocalDataList = new ArrayList<>();
+    public Map<Integer, BookLocalData> bookLocalDataList = new LinkedHashMap<>();
     public UserData myData = new UserData();
 
     private DataMgr()
@@ -96,14 +99,43 @@ public class DataMgr {
         return questionData;
     }
 
-    public void loadMyData(Context ViewContext)
+    public void loadLocalData(Context ViewContext)
     {
+        // 책 정보 로드
+        SharedPreferences book_pref = ViewContext.getSharedPreferences("BookData", Context.MODE_PRIVATE);
+        int index = 1;
+        while (true)
+        {
+            String bookIdStr = getSharedPreferences_String(book_pref, "BookId_"+index);
+            if(bookIdStr.isEmpty())
+                break;
+
+            BookLocalData bookLocalData = new BookLocalData();
+            bookLocalData.bookId = Integer.parseInt(bookIdStr);
+            bookLocalData.bookImgURL = getSharedPreferences_String(book_pref, "BookImg_"+index);
+            bookLocalData.bookPDFFileName = getSharedPreferences_String(book_pref, "BookFile_"+index);
+            bookLocalDataList.put(bookLocalData.bookId, bookLocalData);
+        }
+
+        // TODO 임시
+        if(bookLocalDataList.size() <= 0)
+        {
+            // 어플 실행 시 저장된 기본 책 데이터가 없을시 데이터를 채워줘야 할듯
+            for(int temp_index = 1 ; temp_index <= 7 ; ++temp_index)
+            {
+                BookLocalData bookLocalData = new BookLocalData();
+                bookLocalData.bookId = temp_index;
+
+                bookLocalData.ImgIdx = R.drawable.book_1;
+
+                bookLocalDataList.put(temp_index, bookLocalData);
+            }
+        }
+
+
         // 내정보 로드
         SharedPreferences pref = ViewContext.getSharedPreferences("MyData", Context.MODE_PRIVATE);
-        //pref.edit().clear().commit();
         myData.init(getSharedPreferences_String(pref, "SchoolCode"), getSharedPreferences_String(pref, "Nickname"));
-
-        // 책 정보 로드
     }
 
     public void saveMyData(Context ViewContext)
@@ -114,6 +146,23 @@ public class DataMgr {
         editor.putString("SchoolCode", myData.schoolCode);
         editor.putString("Nickname", myData.nickName);
         editor.commit();
+    }
+
+    public void saveBookLocalData(Context ViewContext)
+    {
+        SharedPreferences book_pref = ViewContext.getSharedPreferences("BookData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor book_editor = book_pref.edit();
+
+        int index = 1;
+        for(Integer key : bookLocalDataList.keySet())
+        {
+            BookLocalData bookLocalData = bookLocalDataList.get(key);
+            book_editor.putString("BookId_"+index, String.valueOf(bookLocalData.bookId));
+            book_editor.putString("BookFile_"+index, bookLocalData.bookPDFFileName);
+            book_editor.putString("BookImg_"+index, bookLocalData.bookImgURL);
+        }
+
+        book_editor.commit();
     }
 
     private String getSharedPreferences_String(SharedPreferences Pref, String key)
