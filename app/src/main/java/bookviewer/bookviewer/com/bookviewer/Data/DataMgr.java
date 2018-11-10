@@ -1,5 +1,8 @@
 package bookviewer.bookviewer.com.bookviewer.Data;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -16,18 +19,12 @@ public class DataMgr {
 
     public TempFireBaseData TempData;
 
-    public UserData myData;
+    public ArrayList<BookLocalData> bookLocalDataList = new ArrayList<>();
+    public UserData myData = new UserData();
 
     private DataMgr()
     {
         TempData = new TempFireBaseData();
-    }
-
-    public void loadMyData()
-    {
-        // 저장된 데이터가 없으면 파이어베이스에 요청
-        myData = new UserData("a");
-
     }
 
     public ArrayList<SchoolCurriculumData> getSchoolCurriculumDataList(String SchoolCode)
@@ -98,4 +95,32 @@ public class DataMgr {
 
         return questionData;
     }
+
+    public void loadMyData(Context ViewContext)
+    {
+        // 내정보 로드
+        SharedPreferences pref = ViewContext.getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        //pref.edit().clear().commit();
+        myData.init(getSharedPreferences_String(pref, "SchoolCode"), getSharedPreferences_String(pref, "Nickname"));
+
+        // 책 정보 로드
+    }
+
+    public void saveMyData(Context ViewContext)
+    {
+        // 내정보 저장
+        SharedPreferences pref = ViewContext.getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("SchoolCode", myData.schoolCode);
+        editor.putString("Nickname", myData.nickName);
+        editor.commit();
+    }
+
+    private String getSharedPreferences_String(SharedPreferences Pref, String key)
+    {
+        return Pref.getString(key, "");
+    }
+
+
+
 }

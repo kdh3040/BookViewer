@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
 
+import bookviewer.bookviewer.com.bookviewer.Data.DataMgr;
+
 public class LoginActivity extends AppCompatActivity {
 
     @Override
@@ -20,12 +22,18 @@ public class LoginActivity extends AppCompatActivity {
         CommonFunc.getInstance().SetDisplayWidth(size.x);
         CommonFunc.getInstance().SetDisplayHeight(size.y);
 
+        DataMgr.getInstance().loadMyData(LoginActivity.this);
+
         Intent intent;
+        if(DataMgr.getInstance().myData.isJoin())
+        {
+            intent = new Intent(LoginActivity.this, MainViewActivity.class);
+        }
+        else
+        {
+            intent = new Intent(LoginActivity.this, SignUpActivity.class);
+        }
 
-        //intent = new Intent(LoginActivity.this, SignUpActivity.class);
-        intent = new Intent(LoginActivity.this, MainViewActivity.class);
         startActivity(intent);
-
-
     }
 }

@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class UserData {
     public String nickName;
-    public String schoolCode;
+    public String schoolCode = "";
 
     public String schoolName;
 
@@ -16,11 +16,21 @@ public class UserData {
     public Map<Integer, BookData> bookDataList = new LinkedHashMap<Integer, BookData>();
     public Map<Integer, QuestionData> questionDataList = new LinkedHashMap<Integer, QuestionData>();
 
-    public UserData(String SchoolCode)
+    public void init(String SchoolCode, String NickName)
     {
+        if(SchoolCode.isEmpty() || NickName.isEmpty())
+            return;
+
+        nickName = NickName;
         schoolCode = SchoolCode;
         addData();
     }
+
+    public boolean isJoin()
+    {
+        return schoolCode.isEmpty() == false;
+    }
+
     public void addData()
     {
         addSchoolCurriculumData();

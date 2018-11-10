@@ -22,8 +22,6 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        DataMgr.getInstance().loadMyData();
-
         mNickName = (EditText) findViewById(R.id.SignUp_EditText_NickName);
         final InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         ConstraintLayout ll = (ConstraintLayout) findViewById(R.id.linearLayout);
@@ -35,7 +33,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        mCode = (EditText) findViewById(R.id.SignUp_EditText_NickName);
+        mCode = (EditText) findViewById(R.id.SignUp_EditText_Code);
         ll = (ConstraintLayout) findViewById(R.id.linearLayout);
         ll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +50,10 @@ public class SignUpActivity extends AppCompatActivity {
 
                 String strNickName = mNickName.getText().toString();
                 String strCode = mCode.getText().toString();
+
+                // TODO 임시 현재 학교의 추천코드는 a 뿐임
+                DataMgr.getInstance().myData.init("a", strNickName);
+                DataMgr.getInstance().saveMyData(SignUpActivity.this);
 
                // strNickName = CommonFunc.getInstance().RemoveEmptyString(strNickName);
 
