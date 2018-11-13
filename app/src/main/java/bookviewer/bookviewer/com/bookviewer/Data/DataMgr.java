@@ -2,8 +2,11 @@ package bookviewer.bookviewer.com.bookviewer.Data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Pair;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -34,6 +37,11 @@ public class DataMgr {
     {
         TempFireBaseData.SchoolData userGroupData = TempData.schoolDataList.get(SchoolCode);
         return userGroupData.schoolName;
+    }
+
+    public BookLocalData getBookLocalData(int BookId)
+    {
+        return bookLocalDataList.get(BookId);
     }
 
     public ArrayList<SchoolCurriculumData> getSchoolCurriculumDataList(String SchoolCode)
@@ -82,6 +90,7 @@ public class DataMgr {
             BookData bookData = new BookData();
             bookData.bookId = TempbookData.bookId;
             bookData.bookName = TempbookData.bookName;
+            bookData.bookAuthor = TempbookData.bookAuthor;
             bookData.questionIdList.addAll(TempbookData.questionIdList);
             returnValue.add(bookData);
         }
@@ -105,6 +114,51 @@ public class DataMgr {
         return questionData;
     }
 
+    public ArrayList<Integer> getRecentBookLocalData()
+    {
+        ArrayList<Integer> returnValue = new ArrayList<>();
+        final ArrayList<Pair<Integer, Long>> tempList = new ArrayList<Pair<Integer, Long>>();
+        for(Integer key: bookLocalDataList.keySet())
+        {
+            BookLocalData bookLocalData = bookLocalDataList.get(key);
+            tempList.add(new Pair<>(bookLocalData.bookId, bookLocalData.recentReadTime));
+        }
+
+        Collections.sort(tempList, new Comparator<Pair<Integer, Long>>() {
+
+            public int compare(Pair<Integer, Long> o1, Pair<Integer, Long> o2) {
+                return o1.second > o2.second ? 1 : -1;
+            }
+        });
+
+        for(int index = 0 ; index < tempList.size() ; ++index)
+        {
+            if(tempList.get(index).second <= 0)
+                continue;
+            returnValue.add(tempList.get(index).first);
+        }
+
+        return returnValue;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public void loadLocalData(Context ViewContext)
     {
         // 책 정보 로드
@@ -120,6 +174,9 @@ public class DataMgr {
             bookLocalData.bookId = Integer.parseInt(bookIdStr);
             bookLocalData.bookImgURL = getSharedPreferences_String(book_pref, "BookImg_"+index);
             bookLocalData.bookPDFFileName = getSharedPreferences_String(book_pref, "BookFile_"+index);
+            bookLocalData.bookAllPage = getSharedPreferences_Int(book_pref, "BookAllPage_"+index);
+            bookLocalData.recentPage = getSharedPreferences_Int(book_pref, "BookRecentPage_"+index);
+            bookLocalData.recentReadTime = getSharedPreferences_Long(book_pref, "BookReadTime_"+index);
             bookLocalDataList.put(bookLocalData.bookId, bookLocalData);
         }
 
@@ -176,6 +233,9 @@ public class DataMgr {
             book_editor.putString("BookId_"+index, String.valueOf(bookLocalData.bookId));
             book_editor.putString("BookFile_"+index, bookLocalData.bookPDFFileName);
             book_editor.putString("BookImg_"+index, bookLocalData.bookImgURL);
+            book_editor.putInt("BookAllPage_"+index, bookLocalData.bookAllPage);
+            book_editor.putInt("BookRecentPage_"+index, bookLocalData.recentPage);
+            book_editor.putLong("BookReadTime_"+index, bookLocalData.recentReadTime);
         }
 
         book_editor.commit();
@@ -184,6 +244,16 @@ public class DataMgr {
     private String getSharedPreferences_String(SharedPreferences Pref, String key)
     {
         return Pref.getString(key, "");
+    }
+
+    private int getSharedPreferences_Int(SharedPreferences Pref, String key)
+    {
+        return Pref.getInt(key, 0);
+    }
+
+    private long getSharedPreferences_Long(SharedPreferences Pref, String key)
+    {
+        return Pref.getLong(key, 0);
     }
 
 

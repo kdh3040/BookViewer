@@ -87,7 +87,7 @@
                 android:textColor="@color/black"
                 />
             <TextView
-                android:id="@+id/recent_book_1_artist"
+                android:id="@+id/recent_book_1_author"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginLeft="2dp"
@@ -104,7 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginLeft="2dp"
-                android:layout_below="@id/recent_book_1_artist"
+                android:layout_below="@id/recent_book_1_author"
                 android:layout_toRightOf="@id/recent_book_1_img"
                 android:gravity="center|left"
                 android:textSize="15dp"
@@ -154,7 +154,7 @@
                 android:textColor="@color/black"
                 />
             <TextView
-                android:id="@+id/recent_book_2_artist"
+                android:id="@+id/recent_book_2_author"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginLeft="2dp"
@@ -171,7 +171,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginLeft="2dp"
-                android:layout_below="@id/recent_book_2_artist"
+                android:layout_below="@id/recent_book_2_author"
                 android:layout_toRightOf="@id/recent_book_2_img"
                 android:gravity="center|left"
                 android:textSize="15dp"
@@ -221,7 +221,7 @@
                 android:textColor="@color/black"
                 />
             <TextView
-                android:id="@+id/recent_book_3_artist"
+                android:id="@+id/recent_book_3_author"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginLeft="2dp"
@@ -238,7 +238,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginLeft="2dp"
-                android:layout_below="@id/recent_book_3_artist"
+                android:layout_below="@id/recent_book_3_author"
                 android:layout_toRightOf="@id/recent_book_3_img"
                 android:gravity="center|left"
                 android:textSize="15dp"

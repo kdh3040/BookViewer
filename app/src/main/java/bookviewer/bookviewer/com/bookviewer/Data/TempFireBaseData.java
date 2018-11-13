@@ -21,6 +21,7 @@ public class TempFireBaseData {
     public class BookData{
         public int bookId;
         public String bookName;
+        public String bookAuthor;
         public ArrayList<Integer> questionIdList = new ArrayList<>();
     }
 
@@ -84,6 +85,7 @@ public class TempFireBaseData {
             BookData bookData = new BookData();
             bookData.bookId = index;
             bookData.bookName = "책_" + index;
+            bookData.bookAuthor = "작가_" + index;
             if(index <= 10)
                 schoolCurriculumDataList.get(1).bookIdList.add(index);
             else if(index <= 20)
