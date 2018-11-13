@@ -1,19 +1,11 @@
 package bookviewer.bookviewer.com.bookviewer;
 
-import android.content.Intent;
-import android.content.res.AssetManager;
-import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Display;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import java.io.IOException;
+import bookviewer.bookviewer.com.bookviewer.View.Curriculum.BookListAdapter;
 
 public class MainActivity extends AppCompatActivity {
     RecyclerView BookRecyclerView;
