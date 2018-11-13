@@ -40,6 +40,7 @@ public class UserData {
 
     public void addData()
     {
+        schoolName = DataMgr.getInstance().getSchoolName(schoolCode);
         addSchoolCurriculumData();
         addBookData();
         addQuestionData();

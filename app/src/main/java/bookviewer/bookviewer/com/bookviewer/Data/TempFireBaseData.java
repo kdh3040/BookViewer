@@ -36,10 +36,18 @@ public class TempFireBaseData {
         public ArrayList<String> exampleStr = new ArrayList<String>();
     }
 
+    public class BookReport{
+      public String nickName;
+      public String schoolName;
+      public String report;
+    }
+
     public Map<String, SchoolData> schoolDataList = new LinkedHashMap<String, SchoolData>();
     public Map<Integer, SchoolCurriculumData> schoolCurriculumDataList = new LinkedHashMap<Integer, SchoolCurriculumData>();
     public Map<Integer, BookData> bookDataList = new LinkedHashMap<Integer, BookData>();
     public Map<Integer, QuestionData> questionDataList = new LinkedHashMap<Integer, QuestionData>();
+    public ArrayList<BookReport> bookReportDataList = new ArrayList<>();
+
 
     public TempFireBaseData()
     {
@@ -97,6 +105,12 @@ public class TempFireBaseData {
 
             questionDataList.put(index, questionData);
         }
+
+        BookReport bookReport = new BookReport();
+        bookReport.nickName = "독후감쟁이";
+        bookReport.schoolName = "동네초등학교";
+        bookReport.report = "정말 잼있었다.";
+        bookReportDataList.add(bookReport);
     }
 
 

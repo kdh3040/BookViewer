@@ -30,6 +30,12 @@ public class DataMgr {
         TempData = new TempFireBaseData();
     }
 
+    public String getSchoolName(String SchoolCode)
+    {
+        TempFireBaseData.SchoolData userGroupData = TempData.schoolDataList.get(SchoolCode);
+        return userGroupData.schoolName;
+    }
+
     public ArrayList<SchoolCurriculumData> getSchoolCurriculumDataList(String SchoolCode)
     {
         ArrayList<SchoolCurriculumData> returnValue = new ArrayList<>();
