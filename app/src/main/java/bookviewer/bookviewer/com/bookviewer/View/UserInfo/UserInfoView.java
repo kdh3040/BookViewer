@@ -1,7 +1,6 @@
-package bookviewer.bookviewer.com.bookviewer;
+package bookviewer.bookviewer.com.bookviewer.View.UserInfo;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -21,6 +20,7 @@ import java.util.ArrayList;
 import bookviewer.bookviewer.com.bookviewer.Data.BookData;
 import bookviewer.bookviewer.com.bookviewer.Data.BookLocalData;
 import bookviewer.bookviewer.com.bookviewer.Data.DataMgr;
+import bookviewer.bookviewer.com.bookviewer.R;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 

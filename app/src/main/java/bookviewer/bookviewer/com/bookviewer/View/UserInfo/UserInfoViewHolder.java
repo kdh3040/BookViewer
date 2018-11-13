@@ -1,10 +1,12 @@
-package bookviewer.bookviewer.com.bookviewer;
+package bookviewer.bookviewer.com.bookviewer.View.UserInfo;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import bookviewer.bookviewer.com.bookviewer.R;
 
 public class UserInfoViewHolder extends RecyclerView.ViewHolder {
     public LinearLayout layout;

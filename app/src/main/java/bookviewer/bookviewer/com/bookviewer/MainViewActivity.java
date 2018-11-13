@@ -1,22 +1,22 @@
 package bookviewer.bookviewer.com.bookviewer;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import bookviewer.bookviewer.com.bookviewer.View.BookBoard.BookBoardView;
+import bookviewer.bookviewer.com.bookviewer.View.Curriculum.BookListAdapter;
+import bookviewer.bookviewer.com.bookviewer.View.UserInfo.UserInfoView;
 
 public class MainViewActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
     private  RecyclerView BookRecyclerView;
-    private  BookListAdapter BookListViewAdapter;
+    private BookListAdapter BookListViewAdapter;
 
     public static android.support.v4.app.FragmentManager mFragmentMng;
     private CurriculumView CurriculumFragment = new CurriculumView();

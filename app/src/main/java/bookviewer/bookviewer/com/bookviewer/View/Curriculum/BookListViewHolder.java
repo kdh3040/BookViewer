@@ -1,10 +1,12 @@
-package bookviewer.bookviewer.com.bookviewer;
+package bookviewer.bookviewer.com.bookviewer.View.Curriculum;
 
 import android.view.View;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import bookviewer.bookviewer.com.bookviewer.R;
 
 public class BookListViewHolder extends RecyclerView.ViewHolder{
     public LinearLayout layout;

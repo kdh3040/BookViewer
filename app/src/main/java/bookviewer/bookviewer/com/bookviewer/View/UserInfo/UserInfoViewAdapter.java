@@ -1,8 +1,6 @@
-package bookviewer.bookviewer.com.bookviewer;
+package bookviewer.bookviewer.com.bookviewer.View.UserInfo;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.support.annotation.NonNull;
@@ -15,12 +13,13 @@ import android.widget.LinearLayout;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
+import bookviewer.bookviewer.com.bookviewer.CommonFunc;
 import bookviewer.bookviewer.com.bookviewer.Data.BookData;
 import bookviewer.bookviewer.com.bookviewer.Data.BookLocalData;
 import bookviewer.bookviewer.com.bookviewer.Data.DataMgr;
+import bookviewer.bookviewer.com.bookviewer.R;
 
 public class UserInfoViewAdapter extends RecyclerView.Adapter<UserInfoViewHolder> {
 

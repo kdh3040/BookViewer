@@ -4,7 +4,8 @@
     android:id="@+id/Book_Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_dark"
+    android:background="@android:color/white"
+    android:padding="10dp"
     android:weightSum="5"
     android:orientation="horizontal">
 
@@ -29,7 +30,7 @@
         <TextView
             android:id="@+id/Book_Title"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:textSize="15dp"
             android:text="톰소여의 모험"
             android:textColor="@color/black"
@@ -37,7 +38,7 @@
         <TextView
             android:id="@+id/Book_Author"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:textSize="15dp"
             android:text="작가"
             android:textColor="@color/black"
@@ -46,9 +47,9 @@
         <TextView
             android:id="@+id/Book_Time"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:textSize="15dp"
-            android:text="2018-11-12 읽음"
+            android:text="2018-11-12"
             android:textColor="@color/black"
             />
 

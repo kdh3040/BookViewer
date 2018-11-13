@@ -1,55 +1,45 @@
-package bookviewer.bookviewer.com.bookviewer;
+package bookviewer.bookviewer.com.bookviewer.View.BookBoard;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.content.res.AssetManager;
-import android.support.v7.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import java.io.IOException;
-
+import bookviewer.bookviewer.com.bookviewer.CommonFunc;
 import bookviewer.bookviewer.com.bookviewer.Data.BookData;
 import bookviewer.bookviewer.com.bookviewer.Data.BookLocalData;
 import bookviewer.bookviewer.com.bookviewer.Data.DataMgr;
-import jp.wasabeef.glide.transformations.CropCircleTransformation;
+import bookviewer.bookviewer.com.bookviewer.R;
 
-public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder>
+public class BookBoardViewAdapter  extends RecyclerView.Adapter<BookBoardViewHolder>
 {
     Context AppContext;
 
-    public BookListAdapter(Context context) {
+    public BookBoardViewAdapter(Context context) {
         super();
         AppContext = context;
     }
 
 
     @Override
-    public BookListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BookBoardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(AppContext).inflate(R.layout.holder_booklist,parent,false);
-        return new BookListViewHolder(view);
+        return new BookBoardViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(BookListViewHolder holder, final int position) {
+    public void onBindViewHolder(BookBoardViewHolder holder, final int position) {
 
         int bookId = DataMgr.getInstance().myData.viewBookIdList.get(position);
         BookData data = DataMgr.getInstance().myData.getBookData(bookId);
         BookLocalData localData = DataMgr.getInstance().bookLocalDataList.get(bookId);
-
-        //holder.Thumbnail.setLayoutParams(new RelativeLayout.LayoutParams(CommonFunc.getInstance().GetDisplayWidth() /3, (CommonFunc.getInstance().GetDisplayWidth() / 3)));
-        //holder.Thumbnail.setImageResource(localData.ImgIdx);
 
         holder.layout.setLayoutParams(new LinearLayout.LayoutParams(CommonFunc.getInstance().GetDisplayWidth(), (CommonFunc.getInstance().GetDisplayHeight() / 5)));
 
@@ -76,11 +66,11 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder>
         holder.Progress.setLayoutParams(lpProgress);
 */
 
-       // holder.BackGround.setLayoutParams(new RelativeLayout.LayoutParams(CommonFunc.getInstance().GetDisplayWidth() /3, (CommonFunc.getInstance().GetDisplayWidth() / 3)));
+        // holder.BackGround.setLayoutParams(new RelativeLayout.LayoutParams(CommonFunc.getInstance().GetDisplayWidth() /3, (CommonFunc.getInstance().GetDisplayWidth() / 3)));
 
-       // holder.BackGround.setImageResource(R.drawable.booklist_bottom2);
+        // holder.BackGround.setImageResource(R.drawable.booklist_bottom2);
 
-
+/*
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,11 +109,12 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder>
                     e1.printStackTrace();
                 }
             }
-        });
+        });*/
     }
 
     @Override
     public int getItemCount() {
-        return  DataMgr.getInstance().myData.viewBookIdList.size();
+        //return  DataMgr.getInstance().myData.viewBookIdList.size();
+        return  5;
     }
 }

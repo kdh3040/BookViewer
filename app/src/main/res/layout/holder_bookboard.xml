@@ -7,7 +7,6 @@
     android:background="@android:color/white"
     android:padding="10dp"
     android:weightSum="5"
-
     android:orientation="horizontal">
 
     <ImageView
@@ -41,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15dp"
-            android:text="작가"
+            android:text="독후감 쓴 사람"
             android:textColor="@color/black"
             />
 
@@ -50,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15dp"
-            android:text="완료하세요"
+            android:text="아주 재미있다"
             android:textColor="@color/black"
             />
 
@@ -61,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:background="#1a000000"
-        android:text="안읽음"
+        android:text="추천"
         android:layout_gravity="center_vertical"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="10dp"
