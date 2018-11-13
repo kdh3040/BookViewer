@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".BookViewerView">
 
 
@@ -11,29 +12,30 @@
         android:id="@+id/pdfView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_constraintVertical_weight="4"
+        app:layout_constraintBottom_toTopOf="@+id/fluidSlider"
         android:background="@android:color/white"
         />
 
-    <!--   <com.bq.markerseekbar.MarkerSeekBar
+       <com.bq.markerseekbar.MarkerSeekBar
            android:id="@+id/bar1"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:max="100"
-           app:markerColor="@color/colorPrimary"
+           app:markerColor="@android:color/holo_blue_dark"
            app:layout_constraintBottom_toBottomOf="parent"
            app:markerTextAppearance="@style/MarkerCustomTextStyle"
-           app:markerTextColor="#ffffff" />-->
+           app:markerTextColor="#ffffff" />
 
 <!--
+
     <com.ramotion.fluidslider.FluidSlider
         android:id="@+id/fluidSlider"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:size="small"
-        app:duration="@android:integer/config_mediumAnimTime"
         tools:targetApi="lollipop" />
 -->
 
-</FrameLayout>
+
+</android.support.constraint.ConstraintLayout>
