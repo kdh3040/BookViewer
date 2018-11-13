@@ -1,6 +1,7 @@
 package bookviewer.bookviewer.com.bookviewer;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -33,6 +34,7 @@ public class UserInfoView extends Fragment {
     View fragView;
     Context context;
     public TextView NickName, SchoolName;
+    public TextView ParentsMode;
     public ArrayList<RelativeLayout> RecentBook = new ArrayList<>();
     public ArrayList<ImageView> RecentBookImg = new ArrayList<>();
     public ArrayList<TextView> RecentBookTitle = new ArrayList<>();
@@ -72,6 +74,16 @@ public class UserInfoView extends Fragment {
         RecentBookReadPage.add((TextView)fragView.findViewById(R.id.recent_book_1_page));
         RecentBookReadPage.add((TextView)fragView.findViewById(R.id.recent_book_2_page));
         RecentBookReadPage.add((TextView)fragView.findViewById(R.id.recent_book_3_page));
+
+        ParentsMode = fragView.findViewById(R.id.parents_mode);
+        ParentsMode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent intent = new Intent(fragView.getContext(), ParentsModeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                fragView.getContext().startActivity(intent);
+            }
+        });
 
         refreshUserInfo();
         refreshRecentBook();

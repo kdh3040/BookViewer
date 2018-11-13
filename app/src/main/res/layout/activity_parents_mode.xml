@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/parent_mode_back_bg"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@android:color/holo_blue_light"/>
+
+
+    <ImageView
+        android:id="@+id/parent_mode_back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/back" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="학부모 모드"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"/>
+
+    <RelativeLayout
+        android:id="@+id/child_profile"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/parent_mode_back_bg">
+
+        <ImageView
+            android:id="@+id/child_profile_thumnail"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/user_profile"
+            />
+
+        <TextView
+            android:id="@+id/child_profile_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/child_profile_thumnail"
+            android:textSize="20dp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:text="키아오라"/>
+
+        <TextView
+            android:id="@+id/child_profile_schoolname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@+id/child_profile_nickname"
+            android:layout_toRightOf="@+id/child_profile_thumnail"
+            android:textSize="20dp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:text="동네 초등학교"/>
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_curriculumlist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/child_profile"/>
+    
+    
+    
+    
+
+</RelativeLayout>
