@@ -127,7 +127,7 @@ public class DataMgr {
         Collections.sort(tempList, new Comparator<Pair<Integer, Long>>() {
 
             public int compare(Pair<Integer, Long> o1, Pair<Integer, Long> o2) {
-                return o1.second > o2.second ? 1 : -1;
+                return o1.second > o2.second ? -1 : 1;
             }
         });
 
@@ -188,7 +188,7 @@ public class DataMgr {
             {
                 BookLocalData bookLocalData = new BookLocalData();
                 bookLocalData.bookId = temp_index;
-
+                bookLocalData.recentReadTime = temp_index;
                 switch (temp_index)
                 {
                     case 1: bookLocalData.ImgIdx = R.drawable.book_1; break;
