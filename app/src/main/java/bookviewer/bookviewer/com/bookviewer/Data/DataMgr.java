@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Random;
 
 import bookviewer.bookviewer.com.bookviewer.R;
 
@@ -163,6 +164,7 @@ public class DataMgr {
     {
         // 책 정보 로드
         SharedPreferences book_pref = ViewContext.getSharedPreferences("BookData", Context.MODE_PRIVATE);
+        book_pref.edit().clear().apply();
         int index = 1;
         while (true)
         {
@@ -184,12 +186,13 @@ public class DataMgr {
         if(bookLocalDataList.size() <= 0)
         {
             // 어플 실행 시 저장된 기본 책 데이터가 없을시 데이터를 채워줘야 할듯
-            for(int temp_index = 1 ; temp_index <= 7 ; ++temp_index)
+            for(int temp_index = 1 ; temp_index <= 20 ; ++temp_index)
             {
                 BookLocalData bookLocalData = new BookLocalData();
                 bookLocalData.bookId = temp_index;
                 bookLocalData.recentReadTime = temp_index;
-                switch (temp_index)
+                Random test = new Random();
+                switch (test.nextInt(7) + 1)
                 {
                     case 1: bookLocalData.ImgIdx = R.drawable.book_1; break;
                     case 2: bookLocalData.ImgIdx = R.drawable.book_2; break;

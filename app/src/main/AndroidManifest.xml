@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
         <activity android:name=".ViewActivity" />
-        <activity android:name=".ParentsModeActivity" />
+        <activity android:name=".View.UserInfo.ParentsModeActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

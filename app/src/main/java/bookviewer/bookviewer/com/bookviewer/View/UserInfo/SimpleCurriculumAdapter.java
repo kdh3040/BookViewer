@@ -1,4 +1,4 @@
-package bookviewer.bookviewer.com.bookviewer;
+package bookviewer.bookviewer.com.bookviewer.View.UserInfo;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import bookviewer.bookviewer.com.bookviewer.CommonFunc;
 import bookviewer.bookviewer.com.bookviewer.Data.DataMgr;
 import bookviewer.bookviewer.com.bookviewer.Data.SchoolCurriculumData;
+import bookviewer.bookviewer.com.bookviewer.R;
 
 public class SimpleCurriculumAdapter extends RecyclerView.Adapter<SimpleCurriculumHolder>
 {
@@ -29,7 +31,7 @@ public class SimpleCurriculumAdapter extends RecyclerView.Adapter<SimpleCurricul
 
     @Override
     public void onBindViewHolder(SimpleCurriculumHolder holder, final int position) {
-        holder.layout.setLayoutParams(new LinearLayout.LayoutParams(CommonFunc.getInstance().GetDisplayWidth(), (CommonFunc.getInstance().GetDisplayHeight() / 5)));
+        holder.layout.setLayoutParams(new LinearLayout.LayoutParams(CommonFunc.getInstance().GetDisplayWidth(), (CommonFunc.getInstance().GetDisplayHeight() / 8)));
 
         SchoolCurriculumData curriculumData = DataMgr.getInstance().myData.schoolCurriculumDataList.get(position);
         holder.CurriculumName.setText(curriculumData.schoolCurriculumName);

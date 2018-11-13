@@ -19,14 +19,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="asdfasdf"/>
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:gravity="left"
+            android:text="초등학교 1학년"/>
 
         <TextView
             android:id="@+id/curriculum_wrong_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="asdfasdf"/>
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:gravity="right"
+            android:text="3개틀림"/>
 
     </LinearLayout>
 
@@ -34,6 +42,8 @@
         android:id="@+id/curriculum_progress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_weight="1"
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:progress="25"/>
