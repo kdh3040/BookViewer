@@ -57,7 +57,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                // strNickName = CommonFunc.getInstance().RemoveEmptyString(strNickName);
 
-                    Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                    Intent intent = new Intent(SignUpActivity.this, MainViewActivity.class);
                     startActivity(intent);
 
 

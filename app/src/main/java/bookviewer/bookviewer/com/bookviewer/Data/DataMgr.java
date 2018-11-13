@@ -132,7 +132,17 @@ public class DataMgr {
                 BookLocalData bookLocalData = new BookLocalData();
                 bookLocalData.bookId = temp_index;
 
-                bookLocalData.ImgIdx = R.drawable.book_1;
+                switch (temp_index)
+                {
+                    case 1: bookLocalData.ImgIdx = R.drawable.book_1; break;
+                    case 2: bookLocalData.ImgIdx = R.drawable.book_2; break;
+                    case 3: bookLocalData.ImgIdx = R.drawable.book_3; break;
+                    case 4: bookLocalData.ImgIdx = R.drawable.book_4; break;
+                    case 5: bookLocalData.ImgIdx = R.drawable.book_5; break;
+                    case 6: bookLocalData.ImgIdx = R.drawable.book_6; break;
+                    case 7: bookLocalData.ImgIdx = R.drawable.book_7; break;
+                    default: bookLocalData.ImgIdx = R.drawable.book_1; break;
+                }
 
                 bookLocalDataList.put(temp_index, bookLocalData);
             }
