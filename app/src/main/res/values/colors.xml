@@ -8,5 +8,6 @@
 
     <color name ="baseColor2">#7f75b3</color>
     <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
     <color name ="baseColorDark">#2e2b57</color>
 </resources>

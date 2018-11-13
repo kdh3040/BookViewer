@@ -1,14 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserInfoView">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/user_info_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/user_info_bg"
+                android:layout_width="632dp"
+                android:layout_height="164dp"
+                android:src="@drawable/user_info_bg"
+                android:scaleType="centerCrop"
+                />
+            <ImageView
+                android:id="@+id/user_info_profile"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/user_profile"
+                android:scaleType="centerCrop"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                />
+
+            <TextView
+                android:id="@+id/user_info_nickname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/user_info_profile"
+                android:layout_marginTop="15dp"
+                android:text="키아오라"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/user_info_schoolname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/user_info_nickname"
+                android:layout_marginTop="10dp"
+                android:text="동네초등학교"
+                android:textSize="20dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/recent_book_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/user_info_top"
+            android:background="@android:color/holo_blue_bright"
+            >
+
+            <ImageView
+                android:id="@+id/recent_book_1_img"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_marginLeft="2dp"
+                android:src="@drawable/book_1"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:id="@+id/recent_book_1_title"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="2dp"
+                android:layout_toRightOf="@id/recent_book_1_img"
+                android:layout_toLeftOf="@id/recent_book_1_page"
+                android:gravity="center|left"
+                android:textSize="15dp"
+                android:text="톰소여의 모험"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:id="@+id/recent_book_1_artist"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="2dp"
+                android:layout_below="@id/recent_book_1_title"
+                android:layout_toRightOf="@id/recent_book_1_img"
+                android:gravity="center|left"
+                android:textSize="15dp"
+                android:text="작가"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/recent_book_1_time"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="2dp"
+                android:layout_below="@id/recent_book_1_artist"
+                android:layout_toRightOf="@id/recent_book_1_img"
+                android:gravity="center|left"
+                android:textSize="15dp"
+                android:text="완료하세요"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/recent_book_1_page"
+                android:layout_width="60dp"
+                android:layout_height="90dp"
+                android:layout_alignParentRight="true"
+                android:text="30Page"
+                android:gravity="center"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/recent_book_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/recent_book_1"
+            android:background="@android:color/holo_blue_bright"
+            >
+
+            <ImageView
+                android:id="@+id/recent_book_2_img"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_marginLeft="2dp"
+                android:src="@drawable/book_1"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:id="@+id/recent_book_2_title"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="2dp"
+                android:layout_toRightOf="@id/recent_book_2_img"
+                android:layout_toLeftOf="@id/recent_book_2_page"
+                android:gravity="center|left"
+                android:textSize="15dp"
+                android:text="톰소여의 모험"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:id="@+id/recent_book_2_artist"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="2dp"
+                android:layout_below="@id/recent_book_2_title"
+                android:layout_toRightOf="@id/recent_book_2_img"
+                android:gravity="center|left"
+                android:textSize="15dp"
+                android:text="작가"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/recent_book_2_time"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="2dp"
+                android:layout_below="@id/recent_book_2_artist"
+                android:layout_toRightOf="@id/recent_book_2_img"
+                android:gravity="center|left"
+                android:textSize="15dp"
+                android:text="완료하세요"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/recent_book_2_page"
+                android:layout_width="60dp"
+                android:layout_height="90dp"
+                android:layout_alignParentRight="true"
+                android:text="30Page"
+                android:gravity="center"
+                />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
 
 </FrameLayout>
