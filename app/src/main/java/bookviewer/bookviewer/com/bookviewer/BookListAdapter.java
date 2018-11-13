@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.content.res.AssetManager;
@@ -47,11 +48,13 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder>
         BookData data = DataMgr.getInstance().myData.getBookData(bookId);
         BookLocalData localData = DataMgr.getInstance().bookLocalDataList.get(bookId);
 
-        holder.Thumbnail.setLayoutParams(new RelativeLayout.LayoutParams(CommonFunc.getInstance().GetDisplayWidth() /3, (CommonFunc.getInstance().GetDisplayWidth() / 3)));
+        //holder.Thumbnail.setLayoutParams(new RelativeLayout.LayoutParams(CommonFunc.getInstance().GetDisplayWidth() /3, (CommonFunc.getInstance().GetDisplayWidth() / 3)));
         //holder.Thumbnail.setImageResource(localData.ImgIdx);
 
+        holder.layout.setLayoutParams(new LinearLayout.LayoutParams(CommonFunc.getInstance().GetDisplayWidth(), (CommonFunc.getInstance().GetDisplayHeight() / 5)));
+
         Glide.with(AppContext)
-                .load(R.drawable.book_1)
+                .load(localData.ImgIdx)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 //.bitmapTransform(new CropCircleTransformation(AppContext))
                 .into(holder.Thumbnail);
@@ -60,19 +63,25 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder>
         if(localData == null)
             holder.Thumbnail.setColorFilter(Color.parseColor("#555555"), PorterDuff.Mode.MULTIPLY);
         else
+        {
             holder.Thumbnail.clearColorFilter();
+            holder.Title.setText(data.bookName);
+        }
 
+
+/*
         RelativeLayout.LayoutParams lpProgress = new RelativeLayout.LayoutParams((int) (CommonFunc.getInstance().GetDisplayWidth() / 3 * 0.4), (int) (CommonFunc.getInstance().GetDisplayWidth() / 3 * 0.2));
         lpProgress.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
         lpProgress.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         holder.Progress.setLayoutParams(lpProgress);
+*/
 
        // holder.BackGround.setLayoutParams(new RelativeLayout.LayoutParams(CommonFunc.getInstance().GetDisplayWidth() /3, (CommonFunc.getInstance().GetDisplayWidth() / 3)));
 
        // holder.BackGround.setImageResource(R.drawable.booklist_bottom2);
 
 
-        holder.Thumbnail.setOnClickListener(new View.OnClickListener() {
+        holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AssetManager assetManager = AppContext.getAssets();

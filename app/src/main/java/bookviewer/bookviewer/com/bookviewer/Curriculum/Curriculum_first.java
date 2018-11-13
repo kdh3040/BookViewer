@@ -37,7 +37,7 @@ public class Curriculum_first extends Fragment {
 
         BookRecyclerView = (RecyclerView)fragView.findViewById(R.id.recyclerview_booklist);
         BookRecyclerView.setHasFixedSize(true);
-        BookRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        BookRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
 
         BookListViewAdapter = new BookListAdapter(getContext());
         BookRecyclerView.setAdapter(BookListViewAdapter);
