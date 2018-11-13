@@ -6,12 +6,12 @@
     android:background="@android:color/transparent"
     android:paddingTop="6dp">
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/Book_Back"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitEnd"
-        app:srcCompat="@drawable/booklist_bottom2" />
+        app:srcCompat="@drawable/booklist_bottom2" />-->
 
     <ImageView
         android:id="@+id/Book_Thumbnail"

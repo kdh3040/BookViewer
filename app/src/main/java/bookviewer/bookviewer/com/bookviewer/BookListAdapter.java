@@ -14,11 +14,15 @@ import android.widget.TextView;
 import android.content.res.AssetManager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import java.io.IOException;
 
 import bookviewer.bookviewer.com.bookviewer.Data.BookData;
 import bookviewer.bookviewer.com.bookviewer.Data.BookLocalData;
 import bookviewer.bookviewer.com.bookviewer.Data.DataMgr;
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder>
 {
@@ -46,6 +50,13 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder>
         holder.Thumbnail.setLayoutParams(new RelativeLayout.LayoutParams(CommonFunc.getInstance().GetDisplayWidth() /3, (CommonFunc.getInstance().GetDisplayWidth() / 3)));
         //holder.Thumbnail.setImageResource(localData.ImgIdx);
 
+        Glide.with(AppContext)
+                .load(R.drawable.book_1)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                //.bitmapTransform(new CropCircleTransformation(AppContext))
+                .into(holder.Thumbnail);
+
+
         if(localData == null)
             holder.Thumbnail.setColorFilter(Color.parseColor("#555555"), PorterDuff.Mode.MULTIPLY);
         else
@@ -56,9 +67,9 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder>
         lpProgress.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         holder.Progress.setLayoutParams(lpProgress);
 
-        holder.BackGround.setLayoutParams(new RelativeLayout.LayoutParams(CommonFunc.getInstance().GetDisplayWidth() /3, (CommonFunc.getInstance().GetDisplayWidth() / 3)));
+       // holder.BackGround.setLayoutParams(new RelativeLayout.LayoutParams(CommonFunc.getInstance().GetDisplayWidth() /3, (CommonFunc.getInstance().GetDisplayWidth() / 3)));
 
-        holder.BackGround.setImageResource(R.drawable.booklist_bottom2);
+       // holder.BackGround.setImageResource(R.drawable.booklist_bottom2);
 
 
         holder.Thumbnail.setOnClickListener(new View.OnClickListener() {

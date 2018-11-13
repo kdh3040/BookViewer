@@ -11,7 +11,7 @@ public class BookListViewHolder extends RecyclerView.ViewHolder{
     public BookListViewHolder(View itemView) {
         super(itemView);
         Thumbnail = itemView.findViewById(R.id.Book_Thumbnail);
-        BackGround = itemView.findViewById(R.id.Book_Back);
+        //BackGround = itemView.findViewById(R.id.Book_Back);
         Progress = itemView.findViewById(R.id.Book_Progress);
 
     }

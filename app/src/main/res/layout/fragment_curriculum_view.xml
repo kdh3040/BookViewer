@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CurriculumView">
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="457dddd" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
 
-</FrameLayout>
+        android:background="@android:color/holo_blue_dark"
+        app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+
+        android:elevation="5dp"
+        android:translationZ="5dp"
+        app:tabIndicatorColor="@android:color/white"
+        app:tabSelectedTextColor="@android:color/black"
+        app:tabTextColor="@android:color/white" />
+    <!--app:tabBackground="@color/tabBackground"-->
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"></android.support.v4.view.ViewPager>
+
+</LinearLayout>
