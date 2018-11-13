@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +13,22 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import java.util.ArrayList;
 
 import bookviewer.bookviewer.com.bookviewer.Data.BookData;
 import bookviewer.bookviewer.com.bookviewer.Data.BookLocalData;
 import bookviewer.bookviewer.com.bookviewer.Data.DataMgr;
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 
 public class UserInfoView extends Fragment {
+
+    RecyclerView UserReadBookRecyclerView;
+    UserInfoViewAdapter UserReadBookListViewAdapter;
+    View fragView;
 
     public UserInfoView() {
         // Required empty public constructor
@@ -30,9 +40,9 @@ public class UserInfoView extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    View fragView;
     Context context;
     public TextView NickName, SchoolName;
+    public ImageView ThumbNail;
     public ArrayList<RelativeLayout> RecentBook = new ArrayList<>();
     public ArrayList<ImageView> RecentBookImg = new ArrayList<>();
     public ArrayList<TextView> RecentBookTitle = new ArrayList<>();
@@ -46,7 +56,19 @@ public class UserInfoView extends Fragment {
         // Inflate the layout for this fragment
         context = getActivity();
         fragView = inflater.inflate(R.layout.fragment_user_info_view,container,false);
+
+        UserReadBookRecyclerView = (RecyclerView)fragView.findViewById(R.id.recyclerview_User_readBookList);
+        UserReadBookRecyclerView.setHasFixedSize(true);
+        UserReadBookRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
+
+        UserReadBookListViewAdapter = new UserInfoViewAdapter(getContext());
+        UserReadBookRecyclerView.setAdapter(UserReadBookListViewAdapter);
+
         NickName = (TextView)fragView.findViewById(R.id.user_info_nickname);
+        SchoolName = (TextView)fragView.findViewById(R.id.user_info_schoolname);
+        ThumbNail = (ImageView)fragView.findViewById(R.id.user_info_profile);
+
+       /* NickName = (TextView)fragView.findViewById(R.id.user_info_nickname);
         SchoolName = (TextView)fragView.findViewById(R.id.user_info_schoolname);
 
         RecentBook.add((RelativeLayout)fragView.findViewById(R.id.recent_book_1));
@@ -74,7 +96,9 @@ public class UserInfoView extends Fragment {
         RecentBookReadPage.add((TextView)fragView.findViewById(R.id.recent_book_3_page));
 
         refreshUserInfo();
-        refreshRecentBook();
+        refreshRecentBook();*/
+
+        refreshUserInfo();
 
         return fragView;
     }
@@ -83,6 +107,12 @@ public class UserInfoView extends Fragment {
     {
         NickName.setText(DataMgr.getInstance().myData.nickName);
         SchoolName.setText(DataMgr.getInstance().myData.schoolName);
+
+        Glide.with(getContext())
+                .load(R.drawable.user_profile)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .bitmapTransform(new CropCircleTransformation(getContext()))
+                .into(ThumbNail);
     }
 
     private void refreshRecentBook()
