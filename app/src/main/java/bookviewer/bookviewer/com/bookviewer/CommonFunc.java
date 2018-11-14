@@ -2,22 +2,20 @@ package bookviewer.bookviewer.com.bookviewer;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+
+import bookviewer.bookviewer.com.bookviewer.Data.DataMgr;
 
 public class CommonFunc {
     private static CommonFunc _Instance;
@@ -31,47 +29,6 @@ public class CommonFunc {
 
     private CommonFunc()
     {
-//        BookData data_1 = new BookData();
-//        data_1.Buy = true;
-//        data_1.ImgIdx = R.drawable.book_1;
-//        data_1.NameIdx = R.string.book_1;
-//        BookDataList.add(data_1);
-//
-//        BookData data_2 = new BookData();
-//        data_2.Buy = false;
-//        data_2.ImgIdx = R.drawable.book_2;
-//        data_2.NameIdx = R.string.book_2;
-//        BookDataList.add(data_2);
-//
-//        BookData data_3 = new BookData();
-//        data_3.Buy = false;
-//        data_3.ImgIdx = R.drawable.book_3;
-//        data_3.NameIdx = R.string.book_3;
-//        BookDataList.add(data_3);
-//
-//        BookData data_4 = new BookData();
-//        data_4.Buy = false;
-//        data_4.ImgIdx = R.drawable.book_4;
-//        data_4.NameIdx = R.string.book_4;
-//        BookDataList.add(data_4);
-//
-//        BookData data_5 = new BookData();
-//        data_5.Buy = true;
-//        data_5.ImgIdx = R.drawable.book_5;
-//        data_5.NameIdx = R.string.book_5;
-//        BookDataList.add(data_5);
-//
-//        BookData data_6 = new BookData();
-//        data_6.Buy = false;
-//        data_6.ImgIdx = R.drawable.book_6;
-//        data_6.NameIdx = R.string.book_6;
-//        BookDataList.add(data_6);
-//
-//        BookData data_7 = new BookData();
-//        data_7.Buy = true;
-//        data_7.ImgIdx = R.drawable.book_7;
-//        data_7.NameIdx = R.string.book_7;
-//        BookDataList.add(data_7);
     }
     private  ProgressDialog dialog;
 
@@ -250,6 +207,42 @@ public class CommonFunc {
                         index++;
                     }
                 }
+                dialog.dismiss();
+            }
+        });
+    }
+
+    public void ShowBoardWritePopup(Context context, final int BookId)
+    {
+        EditText BoardTitle, BoardDesc;
+        Button WriteYes, WriteNo;
+
+        View v = LayoutInflater.from(context).inflate(R.layout.popup_book_board_write, null, false);
+
+        BoardTitle = v.findViewById(R.id.board_write_title);
+        BoardDesc = v.findViewById(R.id.board_write_desc);
+        WriteYes = v.findViewById(R.id.board_write_yes);
+        WriteNo = v.findViewById(R.id.board_write_no);
+
+
+        final AlertDialog dialog = new AlertDialog.Builder(context).setView(v).create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+
+        WriteYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                DataMgr.getInstance().TempData.addBookBoardData(BookId, BoardTitle.getText().toString(), BoardDesc.getText().toString());
+
+                dialog.dismiss();
+            }
+        });
+        WriteNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 dialog.dismiss();
             }
         });

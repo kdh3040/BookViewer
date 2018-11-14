@@ -46,6 +46,11 @@ public class TempFireBaseData {
         public String report;
         public int likeCount;
         public int bookId;
+
+        public BookReport()
+        {
+
+        }
     }
 
     public Map<String, SchoolData> schoolDataList = new LinkedHashMap<String, SchoolData>();
@@ -126,5 +131,18 @@ public class TempFireBaseData {
             bookReport.likeCount = 0;
             bookReportDataList.add(bookReport);
         }
+    }
+
+    public void addBookBoardData(int BookId, String Title, String Desc)
+    {
+        BookReport bookReport = new BookReport();
+        bookReport.reportId = bookReportDataList.size() + 1;
+        bookReport.nickName = DataMgr.getInstance().myData.nickName;
+        bookReport.schoolName = DataMgr.getInstance().myData.schoolName;
+        bookReport.title = Title;
+        bookReport.report = Desc;
+        bookReport.bookId = BookId;
+        bookReport.likeCount = 0;
+        bookReportDataList.add(bookReport);
     }
 }
