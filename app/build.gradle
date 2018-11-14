@@ -43,5 +43,5 @@ dependencies {
     compile 'jp.wasabeef:glide-transformations:2.0.1'
     compile 'com.ramotion.foldingcell:folding-cell:1.2.2'
     compile 'gun0912.ted:tedpermission:2.2.2'
-
+    compile 'com.github.lzyzsd:circleprogress:1.2.1'
 }
