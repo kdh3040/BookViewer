@@ -5,6 +5,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 
+import bookviewer.bookviewer.com.bookviewer.CommonFunc;
+import bookviewer.bookviewer.com.bookviewer.R;
+
 public class TempFireBaseData {
 
     public class SchoolData{
@@ -65,7 +68,7 @@ public class TempFireBaseData {
         // 임시 파이어베이스 데이터 추가
         SchoolData schoolData = new SchoolData();
         schoolData.schoolCode = "a";
-        schoolData.schoolName = "동네 초등학교";
+        schoolData.schoolName = "구암초등학교";
         schoolData.schoolCurriculumIdList.add(1);
         schoolData.schoolCurriculumIdList.add(2);
         schoolData.schoolCurriculumIdList.add(3);
@@ -85,23 +88,39 @@ public class TempFireBaseData {
                 case 2:
                     schoolCurriculumDataata.schoolCurriculumName = "초등학교 2학년";
                     break;
+                case 3:
+                    schoolCurriculumDataata.schoolCurriculumName = "중학교 1학년";
+                    break;
                 default:
-                    schoolCurriculumDataata.schoolCurriculumName = "미정";
+                    schoolCurriculumDataata.schoolCurriculumName = "중학교 2학년";
                     break;
             }
             schoolCurriculumDataList.put(index, schoolCurriculumDataata);
         }
 
+        // TODO 빼야댐
+        String[] strBookName = {"동백꽃", "해리포터와 마법사의 돌", "톰소여의 모험", "습관의 재발견", "실전 모의고사", "언어의 온도", "보이는 세상",
+                "역사의 역사", "열두 발자국", "한때 소중했던 것들", "죄의 목소리", "고양이 1편", "돌이킬 수 없는 약속", "어디서 살 것인가", "곰돌이 푸", "이웃집 커플" };
+
         for(int index = 1 ; index <= 20 ; index++)
         {
+
+            Random random = new Random();
+            int i = (int)(random.nextInt(16));
+
             BookData bookData = new BookData();
             bookData.bookId = index;
-            bookData.bookName = "책_" + index;
-            bookData.bookAuthor = "작가_" + index;
+            bookData.bookName = strBookName[i];
+            bookData.bookAuthor = CommonFunc.getInstance().randomFullName();
             if(index <= 10)
                 schoolCurriculumDataList.get(1).bookIdList.add(index);
             else if(index <= 20)
                 schoolCurriculumDataList.get(2).bookIdList.add(index);
+            else if(index <= 30)
+                schoolCurriculumDataList.get(3).bookIdList.add(index);
+            else if(index <= 40)
+                schoolCurriculumDataList.get(4).bookIdList.add(index);
+
             bookDataList.put(index, bookData);
         }
 
@@ -124,10 +143,10 @@ public class TempFireBaseData {
         {
             BookReport bookReport = new BookReport();
             bookReport.reportId = index;
-            bookReport.nickName = "독후감쟁이_"+ index;
-            bookReport.schoolName = "동네초등학교";
-            bookReport.title = "책 무지 잼있다.";
-            bookReport.report = "눈에 수 긴지라 이상이 생의 이것이다. 예수는 풀밭에 피가 물방아 힘있다. 몸이 피부가 만천하의 것이다. 원대하고, 이상의 찾아다녀도, 것이 이상이 거친 위하여서. 갑 귀는 일월과 바이며, 이상은 더운지라 피는 청춘의 아니더면, 약동하다. 보이는 이상 꾸며 있을 있으며, 할지니, 끓는다. 전인 부패를 피어나기 그림자는 봄날의 얼마나 보라. 스며들어 그들은 하는 속에서 이상은 들어 피가 열락의 철환하였는가? 예수는 사랑의 끓는 생생하며, 인생에 그것은 목숨이 피어나기 부패뿐이다. 풀이 소담스러운 품으며, 길지 이상의 그들의 하였으며, 영원히 아름답고 쓸쓸하랴?";
+            bookReport.nickName = CommonFunc.getInstance().randomFullName();
+            bookReport.schoolName = CommonFunc.getInstance().randomLastName() + "초등학교";
+            bookReport.title = "감상문 제목";
+            bookReport.report = "사람이 본질적으로 선하다고 믿고 직원에게 투명하고 솔직하게 모든 것을 공개하는 것, 업무와 관련해서 직원이 자기 목소리를 내도록 권장하는 것을 의미했다. 구글의 중요한 문화 중 2가지는 투명성과 목소리였다.  회사의 정보를 투명하게 공개하는 것(회사의 모든 직원들이 현재 무슨 일이 일어나는 지 알게 된다는 것 의미), 직원에게 회사 운영방식을 실제로 얘기해주고 의견을 받는 것을 의미했다. 리더의 입장에서 투명성과 목소리를 유지하는 것이 쉽지 않은 선택이라고 본다. 투명성과 목소리는 리더의 읿장에서 보면 싫은 소리도 듣는다는 것이며, 조직의 어려운 부분(재정 상황 등)을 공개한다는 것이기 때문이다. 그러나 쉽지 않은 만큼 리더들이 용기낼 가치가 있다고 본다. 구성원의 입장에서는 조직의 상황을 잘 모르는 상황에서 오해를 할 수 도 있으며, 공정하지 않다고 판단하거나 음지에서 조직에 해가 되는 목소리들이 많이 나올 수 있기 때문이다.";
             Random test = new Random();
             bookReport.bookId = test.nextInt(7) + 1;
             bookReport.likeCount = 0;

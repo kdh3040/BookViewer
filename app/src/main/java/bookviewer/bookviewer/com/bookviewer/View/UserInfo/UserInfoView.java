@@ -43,7 +43,7 @@ public class UserInfoView extends Fragment {
     }
 
     Context context;
-    public TextView NickName, SchoolName;
+    public TextView NickName, SchoolName, AuthorName;
     public ImageView ThumbNail;
     public ArrayList<RelativeLayout> RecentBook = new ArrayList<>();
     public ArrayList<ImageView> RecentBookImg = new ArrayList<>();

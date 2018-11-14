@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.io.IOException;
+import java.util.Random;
 
 import bookviewer.bookviewer.com.bookviewer.CommonFunc;
 import bookviewer.bookviewer.com.bookviewer.Data.BookData;
@@ -26,6 +27,7 @@ import bookviewer.bookviewer.com.bookviewer.ViewActivity;
 public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder>
 {
     Context AppContext;
+    int mTabCount;
 
     public BookListAdapter(Context context) {
         super();
@@ -64,6 +66,14 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder>
         {
             holder.Thumbnail.clearColorFilter();
             holder.Title.setText(data.bookName);
+            holder.Author.setText(data.bookAuthor);
+
+            // TODO 빼야댐
+            String[] strBookTime = {"~ 2018-11-20", "~ 2018-11-25", "~ 2018-11-27", "~ 2018-12-20", "~ 2018-12-11", "~ 2018-12-5", "~ 2018-12-30" };
+            Random random = new Random();
+            int i = (int)(random.nextInt(7));
+
+            holder.Time.setText(strBookTime[i]);
         }
 
 
