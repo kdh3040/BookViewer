@@ -32,7 +32,7 @@ public class MainViewActivity extends AppCompatActivity {
     private UserInfoView UserInfoFragment = new UserInfoView();
     //private BookViewerView BookViewFragment;// = HomeFragment.getInstance();
 
-    private Toolbar Tobbar;
+    public Toolbar Tobbar;
 
     private BottomNavigationView navigation, navigation_viewer;
 
