@@ -26,56 +26,41 @@
         android:textColor="@android:color/white"
         android:textStyle="bold"/>
 
-    <RelativeLayout
-        android:id="@+id/child_profile"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_below="@+id/parent_mode_back_bg">
-
-        <ImageView
-            android:id="@+id/child_profile_thumnail"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/user_profile"
-            />
-
-        <TextView
-            android:id="@+id/child_profile_nickname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/child_profile_thumnail"
-            android:textSize="20dp"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"
-            android:text="키아오라"/>
-
-        <TextView
-            android:id="@+id/child_profile_schoolname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_below="@+id/child_profile_nickname"
-            android:layout_toRightOf="@+id/child_profile_thumnail"
-            android:textSize="20dp"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"
-            android:text="동네 초등학교"/>
-
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/parent_mode_top_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/parent_mode_back_bg"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="15dp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:text="커리큘럼 진척도"/>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview_curriculumlist"
+        android:id="@+id/curriculum_progress_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/parent_mode_top_title"/>
+
+    <TextView
+        android:id="@+id/parent_mode_mid_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/curriculum_progress_list"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="15dp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:text="독후감"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/book_board_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/child_profile"/>
-    
-    
-    
-    
+        android:layout_below="@+id/parent_mode_mid_title"/>
 
 </RelativeLayout>

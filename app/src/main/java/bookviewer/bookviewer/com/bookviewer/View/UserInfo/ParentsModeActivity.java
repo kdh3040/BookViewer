@@ -6,7 +6,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import bookviewer.bookviewer.com.bookviewer.Data.DataMgr;
 import bookviewer.bookviewer.com.bookviewer.R;
@@ -14,9 +13,9 @@ import bookviewer.bookviewer.com.bookviewer.R;
 public class ParentsModeActivity extends AppCompatActivity {
 
     ImageView BackBtn;
-    TextView ChildName, ChildSchoolName;
-    RecyclerView CurriculumRecyclerView;
-    SimpleCurriculumAdapter SimpleCurriculumAdapter;
+    RecyclerView CurriculumRecyclerView, BookBoardRecyclerView;
+    CurriculumProgressAdapter CurriculumAdapter;
+    ParentsBookBoardAdapter ParentsBookBoardAdapter;
 
 
     @Override
@@ -32,18 +31,22 @@ public class ParentsModeActivity extends AppCompatActivity {
             }
         });
 
-        ChildName = findViewById(R.id.child_profile_nickname);
-        ChildName.setText(DataMgr.getInstance().myData.nickName);
-
-        ChildSchoolName = findViewById(R.id.child_profile_schoolname);
-        ChildSchoolName.setText(DataMgr.getInstance().myData.schoolName);
-
-        CurriculumRecyclerView = (RecyclerView)findViewById(R.id.recyclerview_curriculumlist) ;
+        CurriculumRecyclerView = (RecyclerView)findViewById(R.id.curriculum_progress_list) ;
         CurriculumRecyclerView.setHasFixedSize(true);
-        CurriculumRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        CurriculumRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
 
-        SimpleCurriculumAdapter = new SimpleCurriculumAdapter(ParentsModeActivity.this);
-        CurriculumRecyclerView.setAdapter(SimpleCurriculumAdapter);
+        CurriculumAdapter = new CurriculumProgressAdapter(ParentsModeActivity.this);
+        CurriculumRecyclerView.setAdapter(CurriculumAdapter);
+
+        BookBoardRecyclerView = (RecyclerView)findViewById(R.id.book_board_list) ;
+        BookBoardRecyclerView.setHasFixedSize(true);
+        BookBoardRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        ParentsBookBoardAdapter = new ParentsBookBoardAdapter(ParentsModeActivity.this);
+        BookBoardRecyclerView.setAdapter(ParentsBookBoardAdapter);
+
+
+
+       ////./CurriculumRecyclerView.scrollToPosition(0);
     }
 
 

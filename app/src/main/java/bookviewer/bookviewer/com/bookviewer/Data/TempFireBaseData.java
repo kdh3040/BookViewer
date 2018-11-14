@@ -68,10 +68,12 @@ public class TempFireBaseData {
         schoolData.schoolName = "동네 초등학교";
         schoolData.schoolCurriculumIdList.add(1);
         schoolData.schoolCurriculumIdList.add(2);
+        schoolData.schoolCurriculumIdList.add(3);
+        schoolData.schoolCurriculumIdList.add(4);
         schoolDataList.put(schoolData.schoolCode, schoolData);
 
 
-        for(int index = 1 ; index <= 2 ; ++index)
+        for(int index = 1 ; index <= 10 ; ++index)
         {
             SchoolCurriculumData schoolCurriculumDataata = new SchoolCurriculumData();
             schoolCurriculumDataata.schoolCurriculumId = index;

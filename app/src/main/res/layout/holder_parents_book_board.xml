@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/board_book_img"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/book_1"/>
+
+    <TextView
+        android:id="@+id/board_book_title"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_toRightOf="@+id/board_book_img"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:gravity="center|left"
+        android:text="wow" />
+
+    <TextView
+        android:id="@+id/board_book_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=
+            "미묘한 들어 소담스러운 전인 있는 황금시대다. 고동을 커다란 열락의 방지하는 교향악이다.그들은 "
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:gravity="left"
+        android:layout_below="@+id/board_book_title"
+        android:layout_toRightOf="@+id/board_book_img"/>
+
+</RelativeLayout>
