@@ -47,6 +47,7 @@ tools:context=".View.UserInfo.UserInfoView">
                 android:layout_marginTop="15dp"
                 android:text="키아오라"
                 android:textSize="30dp"
+                android:fontFamily="@font/jua"
                 android:textAlignment="center"
                 android:textColor="@color/black"/>
 
@@ -58,6 +59,7 @@ tools:context=".View.UserInfo.UserInfoView">
                 android:layout_marginTop="10dp"
                 android:text="동네초등학교"
                 android:textSize="20dp"
+                android:fontFamily="@font/jua"
                 android:textAlignment="center"
                 android:textColor="@color/black"/>
 
@@ -227,6 +229,7 @@ tools:context=".View.UserInfo.UserInfoView">
             android:text="학부모 모드"
             android:gravity="center|center"
             android:textColor="@color/black"
+            android:fontFamily="@font/jua"
             android:textSize="20dp"/>
     </LinearLayout>
 

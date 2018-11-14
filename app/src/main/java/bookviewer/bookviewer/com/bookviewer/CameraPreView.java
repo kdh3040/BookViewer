@@ -16,10 +16,12 @@ public class CameraPreView extends SurfaceView implements SurfaceHolder.Callback
     private Camera mCamera;
     private Camera.CameraInfo mCameraInfo;
     private int mDisplayOrientation;
-    private FragmentActivity mActivity;
+    private AppCompatActivity mActivity;
+
+    private boolean bFaceDetectRunning = false;
 
     private  String TAG = "PDFVIEW";
-    public CameraPreView(Context context, FragmentActivity activity, Camera camera) {
+    public CameraPreView(Context context, AppCompatActivity activity, Camera camera) {
         super(context);
         mCamera = camera;
         mActivity = activity;
@@ -36,6 +38,9 @@ public class CameraPreView extends SurfaceView implements SurfaceHolder.Callback
         // The Surface has been created, now tell the camera where to draw the preview.
         try {
 
+            if(bFaceDetectRunning)
+                return;
+
             Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
             Camera.getCameraInfo(Camera.CameraInfo.CAMERA_FACING_FRONT, cameraInfo);
 
@@ -48,14 +53,21 @@ public class CameraPreView extends SurfaceView implements SurfaceHolder.Callback
 
             mCamera.setPreviewDisplay(holder);
             mCamera.startPreview();
-            mCamera.setFaceDetectionListener(new BookViewerView.FaceDetect());
+            mCamera.setFaceDetectionListener(new ViewActivity.FaceDetect());
             mCamera.startFaceDetection();
+            bFaceDetectRunning = true;
         } catch (IOException e) {
             Log.d(TAG, "Error setting camera preview: " + e.getMessage());
         }
     }
 
     public void surfaceDestroyed(SurfaceHolder holder) {
+        if(bFaceDetectRunning)
+        {
+            mCamera.stopFaceDetection();
+            bFaceDetectRunning = false;
+        }
+
         // empty. Take care of releasing the Camera preview in your activity.
     }
 
@@ -82,7 +94,7 @@ public class CameraPreView extends SurfaceView implements SurfaceHolder.Callback
         try {
             mCamera.setPreviewDisplay(mHolder);
             mCamera.startPreview();
-            mCamera.setFaceDetectionListener(new BookViewerView.FaceDetect());
+            mCamera.setFaceDetectionListener(new ViewActivity.FaceDetect());
             mCamera.startFaceDetection();
 
         } catch (Exception e){
