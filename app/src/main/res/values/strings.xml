@@ -9,11 +9,15 @@
     <string name="book_7">보이는 세상</string>
     <string name="long_text">Kotlin is a great fit for developing Android applications, bringing all of the advantages of a modern language to the Android platform without introducing any new restrictions.</string>
     <string name="title_activity_main_view">MainViewActivity</string>
-    <string name="Main_Bottom_Curriculum">커리큘럼</string>
+    <string name="Main_Bottom_Curriculum">추천도서</string>
     <string name="Main_Bottom_Viewer">책보기</string>
     <string name="Main_Bottom_Board">토론장</string>
     <string name="Main_Bottom_UserInfo">내 정보</string>
 
+    <string name="Viewer_Bottom_Home">책보기</string>
+    <string name="Viewer_Bottom_Memo">메모</string>
+    <string name="Viewer_Bottom_Quiz">퀴즈</string>
+    <string name="Viewer_Bottom_Setting">설정</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

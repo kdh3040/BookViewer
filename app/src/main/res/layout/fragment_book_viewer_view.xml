@@ -27,6 +27,27 @@
            app:markerTextAppearance="@style/MarkerCustomTextStyle"
            app:markerTextColor="#ffffff" />
 
+
+        <FrameLayout
+            android:id="@+id/camera_preview"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="invisible"
+            />
+
+        <TextView
+            android:id="@+id/timer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="얼굴 인식이 안됩니다"
+            android:background="@android:color/darker_gray"
+            android:textSize="30dp"
+            android:gravity="center"
+            android:visibility="invisible"
+            android:textColor="@color/black"/>
+
+
 <!--
 
     <com.ramotion.fluidslider.FluidSlider
