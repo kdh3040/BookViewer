@@ -6,15 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ViewActivity">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_margin="15sp"
-        android:backgroundTint="#9500ff"
-        android:src="@drawable/back" />
+
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -27,6 +19,16 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_margin="15sp"
+        android:backgroundTint="#9500ff"
+        android:src="@drawable/back" />
+
     <com.github.barteksc.pdfviewer.PDFView
         android:id="@+id/pdfView"
         android:layout_width="match_parent"
@@ -35,6 +37,33 @@
         app:layout_constraintBottom_toTopOf="@+id/bar1"
         android:background="@android:color/white"
         />
+
+    <TextView
+        android:id="@+id/BookTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ㅁㄴㅇㅁㄴㅇㅁㄴㅇ"
+        android:textSize="15dp"
+        android:padding="10dp"
+        android:fontFamily="@font/jua"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/Page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ㅁㄴㅇㅁㄴㅇㅁㄴㅇ"
+        android:textSize="15dp"
+        android:padding="10dp"
+        android:fontFamily="@font/jua"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
 
     <com.bq.markerseekbar.MarkerSeekBar
         android:id="@+id/bar1"

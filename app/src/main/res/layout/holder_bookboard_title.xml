@@ -29,6 +29,7 @@
                 android:layout_alignParentLeft="true"
                 android:textSize="20dp"
                 android:textStyle="bold"
+                android:fontFamily="@font/jua"
                 android:textColor="@android:color/black"
                 android:gravity="center|left"
                 android:text="wow" />
@@ -41,6 +42,7 @@
                 android:layout_toLeftOf="@+id/report_like"
                 android:textSize="15dp"
                 android:textStyle="bold"
+                android:fontFamily="@font/jua"
                 android:textColor="@android:color/black"
                 android:gravity="center|left"
                 android:text="동네 초등학교" />
@@ -65,6 +67,7 @@
                     android:layout_alignParentRight="true"
                     android:textSize="15dp"
                     android:textStyle="bold"
+                    android:fontFamily="@font/jua"
                     android:textColor="@android:color/black"
                     android:gravity="center|right"
                     android:text="1,000" />
@@ -80,6 +83,7 @@
             android:text="동네 초등학교"
             android:textSize="20dp"
             android:textStyle="bold"
+            android:fontFamily="@font/jua"
             android:textColor="@android:color/black"
             android:gravity="center|left"
             android:layout_below="@+id/report_title"

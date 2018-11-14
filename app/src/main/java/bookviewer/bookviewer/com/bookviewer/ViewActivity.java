@@ -46,7 +46,7 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
     private Camera mCamera;
     public  CameraPreView mPreview;
 
-    TextView timerText;
+    TextView timerText, pageText, pageTitle;
     static int counter = 5;
     static boolean bFace = true;
 
@@ -81,6 +81,9 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
 
         timerText = (TextView)findViewById(R.id.timer);
         timerText.setVisibility(View.INVISIBLE);
+
+        pageText = (TextView)findViewById(R.id.Page);
+        pageTitle = (TextView)findViewById(R.id.BookTitle);
 
         TimerTask timertask = new TimerTask() {
             @Override
@@ -125,6 +128,8 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
         BookPath = intent.getStringExtra("Path");
         BookName = intent.getStringExtra("Title");
 
+        pageTitle.setText(BookName);
+
         TopBar = (Toolbar) findViewById(R.id.toolbar);
         TopBar.setTitle(BookName);
         setSupportActionBar(TopBar);
@@ -163,7 +168,7 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
 
         final int CurrPage = page;
         bar1.setProgress(CurrPage);
-
+        pageText.setText("페이지 " + CurrPage + "/" + pageCount);
         if(counter  <= 0)
         {
             counter = 5;

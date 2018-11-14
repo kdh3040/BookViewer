@@ -33,6 +33,7 @@
             android:layout_height="wrap_content"
             android:textSize="15dp"
             android:text="톰소여의 모험"
+            android:fontFamily="@font/jua"
             android:textColor="@color/black"
             />
         <TextView
@@ -41,6 +42,7 @@
             android:layout_height="wrap_content"
             android:textSize="15dp"
             android:text="작가"
+            android:fontFamily="@font/jua"
             android:textColor="@color/black"
             />
 
@@ -50,6 +52,7 @@
             android:layout_height="wrap_content"
             android:textSize="15dp"
             android:text="2018-11-12"
+            android:fontFamily="@font/jua"
             android:textColor="@color/black"
             />
 
@@ -61,6 +64,7 @@
         android:layout_alignParentRight="true"
         android:background="#1a000000"
         android:text="완료"
+        android:fontFamily="@font/jua"
         android:layout_gravity="center_vertical"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="10dp"

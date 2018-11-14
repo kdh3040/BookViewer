@@ -13,6 +13,7 @@
         android:gravity="center"
         android:textColor="@android:color/white"
         android:textSize="18sp"
+        android:fontFamily="@font/jua"
         android:text="타이틀"/>
 
     <TextView
@@ -23,6 +24,7 @@
         android:padding="30dp"
         android:textColor="@android:color/black"
         android:textSize="16sp"
+        android:fontFamily="@font/jua"
         android:text="팝업 내용"/>
 
     <EditText
@@ -30,6 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="정답을 적어주세요"
+        android:fontFamily="@font/jua"
         />
 
     <Button
@@ -43,6 +46,7 @@
         android:textColor="@android:color/white"
         android:textSize="18sp"
         android:layout_gravity="center"
+        android:fontFamily="@font/jua"
         android:text="확인"/>
 
 </LinearLayout>

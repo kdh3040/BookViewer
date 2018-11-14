@@ -11,6 +11,7 @@
         android:gravity="center"
         android:textColor="@android:color/white"
         android:textSize="18sp"
+        android:fontFamily="@font/jua"
         android:text="독후감 쓰기"/>
 
     <EditText
@@ -18,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@android:color/white"
+        android:fontFamily="@font/jua"
         android:hint="(제목)"/>
 
     <EditText
@@ -27,6 +29,7 @@
         android:background="@android:color/white"
         android:gravity="left"
         android:maxLength="200"
+        android:fontFamily="@font/jua"
         android:hint="(내용)"/>
 
     <LinearLayout
@@ -44,6 +47,7 @@
         android:background="@android:color/holo_blue_bright"
         android:textColor="@android:color/white"
         android:textSize="18sp"
+            android:fontFamily="@font/jua"
         android:text="확인"/>
 
         <Button
@@ -54,7 +58,7 @@
         android:layout_weight="1"
         android:background="@android:color/holo_red_light"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
+        android:textSize="18sp" android:fontFamily="@font/jua"
         android:text="취소"/>
 
     </LinearLayout>

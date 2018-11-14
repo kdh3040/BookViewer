@@ -8,6 +8,8 @@
     tools:context=".BookViewerView">
 
 
+
+
     <com.github.barteksc.pdfviewer.PDFView
         android:id="@+id/pdfView"
         android:layout_width="match_parent"
