@@ -3,6 +3,7 @@ package bookviewer.bookviewer.com.bookviewer.Data;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class TempFireBaseData {
 
@@ -38,9 +39,13 @@ public class TempFireBaseData {
     }
 
     public class BookReport{
-      public String nickName;
-      public String schoolName;
-      public String report;
+        public int reportId;
+        public String nickName;
+        public String schoolName;
+        public String title;
+        public String report;
+        public int likeCount;
+        public int bookId;
     }
 
     public Map<String, SchoolData> schoolDataList = new LinkedHashMap<String, SchoolData>();
@@ -108,13 +113,18 @@ public class TempFireBaseData {
             questionDataList.put(index, questionData);
         }
 
-        BookReport bookReport = new BookReport();
-        bookReport.nickName = "독후감쟁이";
-        bookReport.schoolName = "동네초등학교";
-        bookReport.report = "정말 잼있었다.";
-        bookReportDataList.add(bookReport);
+        for(int index = 1; index < 20; ++index)
+        {
+            BookReport bookReport = new BookReport();
+            bookReport.reportId = index;
+            bookReport.nickName = "독후감쟁이_"+ index;
+            bookReport.schoolName = "동네초등학교";
+            bookReport.title = "책 무지 잼있다.";
+            bookReport.report = "눈에 수 긴지라 이상이 생의 이것이다. 예수는 풀밭에 피가 물방아 힘있다. 몸이 피부가 만천하의 것이다. 원대하고, 이상의 찾아다녀도, 것이 이상이 거친 위하여서. 갑 귀는 일월과 바이며, 이상은 더운지라 피는 청춘의 아니더면, 약동하다. 보이는 이상 꾸며 있을 있으며, 할지니, 끓는다. 전인 부패를 피어나기 그림자는 봄날의 얼마나 보라. 스며들어 그들은 하는 속에서 이상은 들어 피가 열락의 철환하였는가? 예수는 사랑의 끓는 생생하며, 인생에 그것은 목숨이 피어나기 부패뿐이다. 풀이 소담스러운 품으며, 길지 이상의 그들의 하였으며, 영원히 아름답고 쓸쓸하랴?";
+            Random test = new Random();
+            bookReport.bookId = test.nextInt(7) + 1;
+            bookReport.likeCount = 0;
+            bookReportDataList.add(bookReport);
+        }
     }
-
-
-
 }
