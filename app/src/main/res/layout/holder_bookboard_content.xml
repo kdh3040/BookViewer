@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:visibility="gone">
+
+    <!-- content header line -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@android:color/holo_red_light">
+
+        <ImageView
+            android:id="@+id/contents_report_book_thumnail"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/book_1"/>
+
+        <RelativeLayout
+            android:id="@+id/report_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/contents_report_book_thumnail">
+
+            <TextView
+                android:id="@+id/contents_report_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:gravity="center|left"
+                android:text="wow" />
+
+            <TextView
+                android:id="@+id/contents_report_schoolname"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@+id/contents_report_nickname"
+                android:layout_toLeftOf="@+id/contents_report_like"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:gravity="center|left"
+                android:text="동네 초등학교" />
+
+            <LinearLayout
+                android:id="@+id/contents_report_like"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true">
+
+                <ImageView
+                    android:id="@+id/contents_report_like_img"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_toLeftOf="@+id/contents_report_like_count"
+                    android:src="@drawable/report_heart_on"/>
+
+                <TextView
+                    android:id="@+id/contents_report_like_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:gravity="center|right"
+                    android:text="1,000" />
+
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/contents_report_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:text=
+                "미묘한 들어 소담스러운 전인 있는 황금시대다. 고동을 커다란 열락의 방지하는 교향악이다.
+                그들은 이상의 관현악이며, 가는 아름다우냐? 황금시대의 봄바람을 피가 것이다. 되는 물방아
+                청춘 목숨을 가진 자신과 찾아 기쁘며, 보라. 위하여서 있는 행복스럽고 피고 용기가 무엇을
+                열매를 가슴이 것이다.보라, 칼이다. 있는 스며들어 가슴이 길을 역사를 없으면, 얼마나 방황하
+                였으며, 들어 끓는다. 불어 풀밭에 무엇을 아니더면, 천지는 이것이다. 얼음에 거친 천고에 것이
+                다. 심장은 가치를 속에 황금시대다. 있는 새 풍부하게 그들에게 이상을 유소년에게서 것은 청춘의
+                인간의 이것이다미묘한 들어 소담스러운 전인 있는 황금시대다. 고동을 커다란 열락의 방지하는 교향악이다.
+                그들은 이상의 관현악이며, 가는 아름다우냐? 황금시대의 봄바람을 피가 것이다. 되는 물방아
+                청춘 목숨을 가진 자신과 찾아 기쁘며, 보라. 위하여서 있는 행복스럽고 피고 용기가 무엇을
+                열매를 가슴이 것이다.보라, 칼이다. 있는 스며들어 가슴이 길을 역사를 없으면, 얼마나 방황하
+                였으며, 들어 끓는다. 불어 풀밭에 무엇을 아니더면, 천지는 이것이다. 얼음에 거친 천고에 것이
+                다. 심장은 가치를 속에 황금시대다. 있는 새 풍부하게 그들에게 이상을 유소년에게서 것은 청춘의
+                인간의 이것이다미묘한 들어 소담스러운 전인 있는 황금시대다. 고동을 커다란 열락의 방지하는 교향악이다.
+                그들은 이상의 관현악이며, 가는 아름다우냐? 황금시대의 봄바람을 피가 것이다. 되는 물방아
+                청춘 목숨을 가진 자신과 찾아 기쁘며, 보라. 위하여서 있는 행복스럽고 피고 용기가 무엇을
+                열매를 가슴이 것이다.보라, 칼이다. 있는 스며들어 가슴이 길을 역사를 없으면, 얼마나 방황하
+                였으며, 들어 끓는다. 불어 풀밭에 무엇을 아니더면, 천지는 이것이다. 얼음에 거친 천고에 것이
+                다. 심장은 가치를 속에 황금시대다. 있는 새 풍부하게 그들에게 이상을 유소년에게서 것은 청춘의
+                인간의 이것이다"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:gravity="left"
+            android:layout_below="@+id/report_title"
+            android:ellipsize="end"
+            android:lines="14"
+            android:layout_toRightOf="@+id/contents_report_book_thumnail"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- LEFT TITLE PART -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_bright">
+
+        <ImageView
+            android:id="@+id/report_book_thumnail"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/book_1"/>
+
+        <RelativeLayout
+            android:id="@+id/report_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/report_book_thumnail"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/report_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:gravity="center|left"
+                android:text="wow" />
+
+            <TextView
+                android:id="@+id/report_schoolname"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@+id/report_nickname"
+                android:layout_toLeftOf="@+id/report_like"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:gravity="center|left"
+                android:text="동네 초등학교" />
+
+            <LinearLayout
+                android:id="@+id/report_like"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true">
+
+                <ImageView
+                    android:id="@+id/report_like_img"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_toLeftOf="@+id/report_like_count"
+                    android:src="@drawable/report_heart_on"/>
+
+                <TextView
+                    android:id="@+id/report_like_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:gravity="center|right"
+                    android:text="1,000" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/report_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="동네 초등학교"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:gravity="center|left"
+            android:layout_below="@+id/report_title"
+            android:layout_toRightOf="@+id/report_book_thumnail"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

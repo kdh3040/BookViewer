@@ -7,9 +7,11 @@ import android.util.Pair;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 import bookviewer.bookviewer.com.bookviewer.R;
 
@@ -27,11 +29,16 @@ public class DataMgr {
     public TempFireBaseData TempData;
 
     public Map<Integer, BookLocalData> bookLocalDataList = new LinkedHashMap<>();
+    public Map<Integer, BookReportData> bookReportLocalDataList = new LinkedHashMap<>();
+    public Set<String> bookReportLikeDataList = new HashSet<>();
+
+    public ArrayList<BookReportData> bookReportDataList = new ArrayList<>();
     public UserData myData = new UserData();
 
     private DataMgr()
     {
         TempData = new TempFireBaseData();
+        getFirebaseData();
     }
 
     public String getSchoolName(String SchoolCode)
@@ -43,6 +50,35 @@ public class DataMgr {
     public BookLocalData getBookLocalData(int BookId)
     {
         return bookLocalDataList.get(BookId);
+    }
+    public boolean isBookReportLike(int ReportId)
+    {
+        String id = String.valueOf(ReportId);
+        return bookReportLikeDataList.contains(id);
+    }
+
+    public void getFirebaseData()
+    {
+        getBookReportData();
+    }
+
+    public void getBookReportData()
+    {
+        for(int index = 0; index < TempData.bookReportDataList.size() ; ++index)
+        {
+            TempFireBaseData.BookReport TempReportData = TempData.bookReportDataList.get(index);
+            BookReportData reportData = new BookReportData();
+
+            reportData.reportId = TempReportData.reportId;
+            reportData.nickName = TempReportData.nickName;
+            reportData.schoolName = TempReportData.schoolName;
+            reportData.title = TempReportData.title;
+            reportData.report = TempReportData.report;
+            reportData.likeCount = TempReportData.likeCount;
+            reportData.bookId = TempReportData.bookId;
+
+            bookReportDataList.add(reportData);
+        }
     }
 
     public ArrayList<SchoolCurriculumData> getSchoolCurriculumDataList(String SchoolCode)
@@ -99,6 +135,22 @@ public class DataMgr {
         return returnValue;
     }
 
+    public TempFireBaseData.BookData getBookData(int BookId)
+    {
+        return TempData.bookDataList.get(BookId);
+    }
+
+    public TempFireBaseData.BookReport getBookReportData(int ReportId)
+    {
+        for(int index = 0 ; index < TempData.bookReportDataList.size() ; ++index)
+        {
+            if(TempData.bookReportDataList.get(index).reportId == ReportId)
+                return TempData.bookReportDataList.get(index);
+        }
+
+        return null;
+    }
+
     public QuestionData getQuestionData(int QuestionId)
     {
         ArrayList<BookData> returnValue = new ArrayList<>();
@@ -142,6 +194,23 @@ public class DataMgr {
         return returnValue;
     }
 
+    public void clickBookReportLike(Context ViewContext, int ReportId)
+    {
+        if(isBookReportLike(ReportId))
+        {
+            bookReportLikeDataList.remove(String.valueOf(ReportId));
+            getBookReportData(ReportId).likeCount--;
+        }
+        else
+        {
+            bookReportLikeDataList.add(String.valueOf(ReportId));
+            getBookReportData(ReportId).likeCount++;
+        }
+
+
+        saveBookReportLikeLocalData(ViewContext);
+    }
+
 
 
 
@@ -164,7 +233,6 @@ public class DataMgr {
     {
         // 책 정보 로드
         SharedPreferences book_pref = ViewContext.getSharedPreferences("BookData", Context.MODE_PRIVATE);
-        book_pref.edit().clear().apply();
         int index = 1;
         while (true)
         {
@@ -208,6 +276,27 @@ public class DataMgr {
             }
         }
 
+        SharedPreferences report_like_pref = ViewContext.getSharedPreferences("BookReportLikeData", Context.MODE_PRIVATE);
+        bookReportLikeDataList = report_like_pref.getStringSet("BookReportLike", new HashSet<>());
+
+        SharedPreferences report_pref = ViewContext.getSharedPreferences("BookReportData", Context.MODE_PRIVATE);
+
+        index = 1;
+        while (true)
+        {
+            String reportIdStr = getSharedPreferences_String(report_pref, "ReportId_"+index);
+            if(reportIdStr.isEmpty())
+                break;
+
+            BookReportData bookReportLocalData = new BookReportData();
+            bookReportLocalData.reportId = Integer.parseInt(reportIdStr);
+            bookReportLocalData.nickName = getSharedPreferences_String(report_pref, "ReportNickname_"+index);
+            bookReportLocalData.schoolName = getSharedPreferences_String(report_pref, "ReportSchoolname_"+index);
+            bookReportLocalData.title = getSharedPreferences_String(report_pref, "ReportTitle_"+index);
+            bookReportLocalData.report = getSharedPreferences_String(report_pref, "ReportReport_"+index);
+            bookReportLocalData.bookId = getSharedPreferences_Int(report_pref, "ReportBookId_"+index);
+            bookReportLocalDataList.put(bookReportLocalData.reportId, bookReportLocalData);
+        }
 
         // 내정보 로드
         SharedPreferences pref = ViewContext.getSharedPreferences("MyData", Context.MODE_PRIVATE);
@@ -242,6 +331,36 @@ public class DataMgr {
         }
 
         book_editor.commit();
+    }
+
+    public void saveBookReportLikeLocalData(Context ViewContext)
+    {
+        SharedPreferences report_pref = ViewContext.getSharedPreferences("BookReportLikeData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor report_editor = report_pref.edit();
+
+        report_editor.putStringSet("BookReportLike", bookReportLikeDataList);
+
+        report_editor.commit();
+    }
+
+    public void saveBookReportLocalData(Context ViewContext)
+    {
+        SharedPreferences report_pref = ViewContext.getSharedPreferences("BookReportData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor report_editor = report_pref.edit();
+
+        int index = 1;
+        for(Integer key : bookReportLocalDataList.keySet())
+        {
+            BookReportData bookReportLocalData = bookReportLocalDataList.get(key);
+            report_editor.putString("ReportId_"+index, String.valueOf(bookReportLocalData.reportId));
+            report_editor.putString("ReportNickname_"+index, bookReportLocalData.nickName);
+            report_editor.putString("ReportSchoolname_"+index, bookReportLocalData.schoolName);
+            report_editor.putString("ReportTitle_"+index, bookReportLocalData.title);
+            report_editor.putString("ReportReport_"+index, bookReportLocalData.report);
+            report_editor.putInt("ReportBookId_"+index, bookReportLocalData.bookId);
+        }
+
+        report_editor.commit();
     }
 
     private String getSharedPreferences_String(SharedPreferences Pref, String key)
