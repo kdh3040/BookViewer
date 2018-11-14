@@ -61,6 +61,19 @@
         android:fontFamily="@font/jua"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/PageTime"
+        />
+
+    <TextView
+        android:id="@+id/PageTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ㅁㄴㅇㅁㄴㅇㅁㄴㅇ"
+        android:textSize="15dp"
+        android:padding="10dp"
+        android:fontFamily="@font/jua"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />
 
@@ -91,6 +104,7 @@
         android:text="얼굴 인식이 안됩니다"
         android:background="@android:color/darker_gray"
         android:textSize="30dp"
+        android:fontFamily="@font/jua"
         android:gravity="center"
         android:visibility="invisible"
         android:textColor="@color/black"/>

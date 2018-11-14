@@ -127,6 +127,7 @@ public class MainViewActivity extends AppCompatActivity {
 
         TopBar = (Toolbar) findViewById(R.id.toolbar);
         TopBar.setTitle(R.string.Main_Bottom_Curriculum);
+
         setSupportActionBar(TopBar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

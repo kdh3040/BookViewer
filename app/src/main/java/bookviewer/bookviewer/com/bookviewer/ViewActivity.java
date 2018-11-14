@@ -46,7 +46,7 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
     private Camera mCamera;
     public  CameraPreView mPreview;
 
-    TextView timerText, pageText, pageTitle;
+    TextView timerText, pageText, pageTitle, pageTime;
     static int counter = 5;
     static boolean bFace = true;
 
@@ -64,6 +64,7 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
         super.onDestroy();
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +85,8 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
 
         pageText = (TextView)findViewById(R.id.Page);
         pageTitle = (TextView)findViewById(R.id.BookTitle);
+
+        pageTime = (TextView)findViewById(R.id.PageTime);
 
         TimerTask timertask = new TimerTask() {
             @Override
@@ -114,6 +117,8 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
         });
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setVisibility(View.INVISIBLE);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,13 +171,14 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
     @Override
     public void onPageChanged(int page, int pageCount) {
 
-        final int CurrPage = page;
+        final int CurrPage = page + 1;
         bar1.setProgress(CurrPage);
-        pageText.setText("페이지 " + CurrPage + "/" + pageCount);
+        pageText.setText("페이지 " + CurrPage  + "/" + pageCount);
+
         if(counter  <= 0)
         {
             counter = 5;
-            if(page == 4)
+            if(CurrPage == 4)
             {
                 CommonFunc.ShowQuestionPopup_Listener_1 listener = new CommonFunc.ShowQuestionPopup_Listener_1() {
                     @Override
@@ -191,7 +197,7 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
 
                 CommonFunc.getInstance().ShowQuestionPopup_1(getApplicationContext(), listener, "문제 입니다.");
             }
-            else if(page == 8)
+            else if(CurrPage == 8)
             {
                 CommonFunc.ShowQuestionPopup_Listener_2 listener = new CommonFunc.ShowQuestionPopup_Listener_2() {
                     @Override
@@ -267,13 +273,13 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
                 //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(data.bookName + "읽고 있는 중입니다" + String.valueOf(counter) + "초");
 
                 TopBar.setTitle(data.bookName + "  " + String.valueOf(counter) + "초");
-                timerText.setText("읽고 있는 중 " + String.valueOf(counter) + "초 남음");
+                pageTime.setText(" 남은 시간 : " + counter + "초");
                 counter--;
+
             }
             else
             {
                 timerText.setVisibility(View.VISIBLE);
-                timerText.setText("얼굴 인식 안됨");
                 counter = 5;
             }
 

@@ -10,7 +10,14 @@
         <!-- No Title Bar-->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
 
+    <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:fontFamily">@font/jua</item>
+    </style>
+
+    <style name="Widget.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
+    <item name="fontFamily">@font/jua</item>
     </style>
 
     <style name="RejectCheckBox" parent="Theme.AppCompat.Light">
@@ -18,6 +25,11 @@
         <item name="colorControlActivated">@color/baseColor2</item>
     </style>
 
+    <style name="TitleBarTextAppearance" parent="android:TextAppearance">
+        <item name="android:fontFamily">@font/jua</item>
+        <item name="android:textSize">23sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
 
     <style name="MarkerCustomTextStyle" parent="android:TextAppearance.Small">
         <item name="android:fontFamily">monospace</item>
