@@ -28,10 +28,12 @@ public class LoginActivity extends AppCompatActivity {
         if(DataMgr.getInstance().myData.isJoin())
         {
             intent = new Intent(LoginActivity.this, MainViewActivity.class);
+            finish();
         }
         else
         {
             intent = new Intent(LoginActivity.this, SignUpActivity.class);
+            finish();
         }
 
         startActivity(intent);

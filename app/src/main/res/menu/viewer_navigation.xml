@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_BookViewer_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/Viewer_Bottom_Home" />
+
+    <item
+        android:id="@+id/navigation_BookViewer_Memo"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/Viewer_Bottom_Memo" />
+
+    <item
+        android:id="@+id/navigation_BookViewer_Quiz"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="@string/Viewer_Bottom_Quiz" />
+
+    <item
+        android:id="@+id/navigation_BookViewer_Setting"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="@string/Viewer_Bottom_Setting" />
+
+</menu>
