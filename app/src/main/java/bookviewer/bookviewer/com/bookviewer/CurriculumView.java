@@ -17,6 +17,9 @@ import com.ToxicBakery.viewpager.transforms.RotateDownTransformer;
 import com.ToxicBakery.viewpager.transforms.RotateUpTransformer;
 
 import bookviewer.bookviewer.com.bookviewer.Curriculum.Curriculum_first;
+import bookviewer.bookviewer.com.bookviewer.Curriculum.Curriculum_fourth;
+import bookviewer.bookviewer.com.bookviewer.Curriculum.Curriculum_second;
+import bookviewer.bookviewer.com.bookviewer.Curriculum.Curriculum_third;
 import bookviewer.bookviewer.com.bookviewer.Data.DataMgr;
 
 
@@ -91,11 +94,11 @@ private class TabPagerAdapter extends FragmentStatePagerAdapter {
             case 0:
                 return new Curriculum_first();
             case 1:
-                return new Curriculum_first();
+                return new Curriculum_second();
             case 2:
-                return new Curriculum_first();
+                return new Curriculum_third();
             case 3:
-                return new Curriculum_first();
+                return new Curriculum_fourth();
         }
 
         return null;

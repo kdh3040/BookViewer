@@ -48,7 +48,7 @@ public class MainViewActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, CurriculumFragment, "Curriculum").commit();
                     return true;
                 case R.id.navigation_bookView:
-                    navigation.setSelectedItemId(0);
+                    navigation.setSelectedItemId(R.id.navigation_home);
                     Intent intent = new Intent(MainViewActivity.this, ViewActivity.class);
                     intent.putExtra("Title", getString(R.string.book_2));
                     intent.putExtra("Path", "Book_1.pdf");

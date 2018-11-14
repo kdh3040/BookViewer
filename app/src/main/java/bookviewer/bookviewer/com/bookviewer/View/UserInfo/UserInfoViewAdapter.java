@@ -58,6 +58,7 @@ public class UserInfoViewAdapter extends RecyclerView.Adapter<UserInfoViewHolder
         {
             holder.Thumbnail.clearColorFilter();
             holder.Title.setText(data.bookName);
+            holder.Author.setText(data.bookAuthor);
         }
     }
 
