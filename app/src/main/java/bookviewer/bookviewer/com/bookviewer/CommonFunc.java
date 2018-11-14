@@ -107,6 +107,17 @@ public class CommonFunc {
         return Height;
     }
 
+
+    private boolean bLock;
+    public void SetLock(boolean lock)
+    {
+        bLock = lock;
+    }
+    public boolean GetLock()
+    {
+        return bLock;
+    }
+
     public void ShowToast(Context context, String msg, boolean shortView)
     {
         if(shortView)

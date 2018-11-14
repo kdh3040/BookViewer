@@ -41,11 +41,12 @@ public class BookViewerView extends Fragment implements OnPageChangeListener, On
     MarkerSeekBar bar1;
 
     private Camera mCamera;
-    private CameraPreView mPreview;
+    public  CameraPreView mPreview;
 
     TextView timerText;
     static int counter = 5;
     static boolean bFace = true;
+
 
 
     private boolean checkCameraHardware(Context context) {
@@ -126,7 +127,7 @@ public class BookViewerView extends Fragment implements OnPageChangeListener, On
         {
             mCamera = getCameraInstance();
 
-            mPreview = new CameraPreView(context, getActivity(), mCamera);
+            //mPreview = new CameraPreView(context, getActivity(), mCamera);
             FrameLayout preview = (FrameLayout)fragView.findViewById(R.id.camera_preview);
             preview.addView(mPreview);
         }

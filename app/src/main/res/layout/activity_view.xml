@@ -6,67 +6,65 @@
     android:layout_height="match_parent"
     tools:context=".ViewActivity">
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/title"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_margin="15sp"
+        android:backgroundTint="#9500ff"
+        android:src="@drawable/back" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@android:color/holo_blue_dark"
-        tools:context=".ViewActivity">
-
-        <Button
-            android:id="@+id/title_back"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/back"
-            android:layout_marginLeft="10dp"
-            />
-
-    <TextView
-        android:id="@+id/title_text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="asdasdasd"
-        android:textColor="@android:color/white"
-        android:gravity="center"
-        />
-
-        <TextView
-            android:id="@+id/title_page"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="asdasdasd"
-            android:textColor="@android:color/white"
-            android:gravity="right |center_vertical"
-            />
-
-
-    </android.support.constraint.ConstraintLayout>
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     <com.github.barteksc.pdfviewer.PDFView
         android:id="@+id/pdfView"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        app:layout_constraintTop_toBottomOf="@+id/title"/>
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintBottom_toTopOf="@+id/bar1"
+        android:background="@android:color/white"
+        />
 
- <!--   <com.bq.markerseekbar.MarkerSeekBar
+    <com.bq.markerseekbar.MarkerSeekBar
         android:id="@+id/bar1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:max="100"
-        app:markerColor="@color/colorPrimary"
+        app:markerColor="@android:color/holo_blue_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:markerTextAppearance="@style/MarkerCustomTextStyle"
-        app:markerTextColor="#ffffff" />-->
+        app:markerTextColor="#ffffff" />
 
-    <com.ramotion.fluidslider.FluidSlider
-        android:id="@+id/fluidSlider"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="2dp"
+
+    <FrameLayout
+        android:id="@+id/camera_preview"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:size="small"
-        app:duration="@android:integer/config_mediumAnimTime"
-        tools:targetApi="lollipop" />
+        android:visibility="invisible"
+        />
+
+    <TextView
+        android:id="@+id/timer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="얼굴 인식이 안됩니다"
+        android:background="@android:color/darker_gray"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:textColor="@color/black"/>
 
 
 </android.support.constraint.ConstraintLayout>

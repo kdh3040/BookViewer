@@ -1,5 +1,6 @@
 package bookviewer.bookviewer.com.bookviewer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -32,7 +33,7 @@ public class MainViewActivity extends AppCompatActivity {
     private UserInfoView UserInfoFragment = new UserInfoView();
     //private BookViewerView BookViewFragment;// = HomeFragment.getInstance();
 
-    public Toolbar Tobbar;
+    public Toolbar TopBar;
 
     private BottomNavigationView navigation, navigation_viewer;
 
@@ -43,22 +44,28 @@ public class MainViewActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    Tobbar.setTitle(R.string.Main_Bottom_Curriculum);
+                    TopBar.setTitle(R.string.Main_Bottom_Curriculum);
                     getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, CurriculumFragment, "Curriculum").commit();
                     return true;
                 case R.id.navigation_bookView:
-                    ArrayList<Integer> recentBookList = DataMgr.getInstance().getRecentBookLocalData();
+                    navigation.setSelectedItemId(0);
+                    Intent intent = new Intent(MainViewActivity.this, ViewActivity.class);
+                    intent.putExtra("Title", getString(R.string.book_2));
+                    intent.putExtra("Path", "Book_1.pdf");
+                    startActivity(intent);
+
+             /*       ArrayList<Integer> recentBookList = DataMgr.getInstance().getRecentBookLocalData();
                     BookData data = DataMgr.getInstance().myData.getBookData(recentBookList.get(0));
                     Tobbar.setTitle(data.bookName);
 
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, BookViewFragment, "BookViewer").commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, BookViewFragment, "BookViewer").commit();*/
                     return true;
                 case R.id.navigation_bookBoard:
-                    Tobbar.setTitle(R.string.Main_Bottom_Board);
+                    TopBar.setTitle(R.string.Main_Bottom_Board);
                     getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, BookBoardFragment, "BookBoard").commit();
                     return true;
                 case R.id.navigation_userInfo:
-                    Tobbar.setTitle(R.string.Main_Bottom_UserInfo);
+                    TopBar.setTitle(R.string.Main_Bottom_UserInfo);
                     getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, UserInfoFragment, "UserInfo").commit();
                     return true;
 
@@ -118,12 +125,10 @@ public class MainViewActivity extends AppCompatActivity {
 
         mFragmentMng = getSupportFragmentManager();
 
-        Tobbar = (Toolbar) findViewById(R.id.toolbar);
-        Tobbar.setTitle(R.string.Main_Bottom_Curriculum);
-        setSupportActionBar(Tobbar);
+        TopBar = (Toolbar) findViewById(R.id.toolbar);
+        TopBar.setTitle(R.string.Main_Bottom_Curriculum);
+        setSupportActionBar(TopBar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
 
         if (CurriculumFragment == null)
             CurriculumFragment = new CurriculumView();
