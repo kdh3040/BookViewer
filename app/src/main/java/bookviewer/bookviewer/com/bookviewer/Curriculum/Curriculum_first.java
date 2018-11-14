@@ -2,6 +2,7 @@ package bookviewer.bookviewer.com.bookviewer.Curriculum;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -35,6 +36,8 @@ public class Curriculum_first extends Fragment {
         BookRecyclerView = (RecyclerView)fragView.findViewById(R.id.recyclerview_booklist);
         BookRecyclerView.setHasFixedSize(true);
         BookRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
+        BookRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+
 
         BookListViewAdapter = new BookListAdapter(getContext());
         BookRecyclerView.setAdapter(BookListViewAdapter);

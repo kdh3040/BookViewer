@@ -49,7 +49,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder>
         //holder.Thumbnail.setLayoutParams(new RelativeLayout.LayoutParams(CommonFunc.getInstance().GetDisplayWidth() /3, (CommonFunc.getInstance().GetDisplayWidth() / 3)));
         //holder.Thumbnail.setImageResource(localData.ImgIdx);
 
-        holder.layout.setLayoutParams(new LinearLayout.LayoutParams(CommonFunc.getInstance().GetDisplayWidth(), (CommonFunc.getInstance().GetDisplayHeight() / 5)));
+        holder.layout.setLayoutParams(new LinearLayout.LayoutParams(CommonFunc.getInstance().GetDisplayWidth(), (CommonFunc.getInstance().GetDisplayHeight() / 7)));
 
         Glide.with(AppContext)
                 .load(localData.ImgIdx)
@@ -65,6 +65,23 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListViewHolder>
             holder.Thumbnail.clearColorFilter();
             holder.Title.setText(data.bookName);
         }
+
+        Glide.with(AppContext)
+                .load(R.drawable.book_good)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                //.bitmapTransform(new CropCircleTransformation(AppContext))
+                .into(holder.Clear);
+
+        if(position % 2 == 0)
+            holder.Clear.setColorFilter(Color.parseColor("#555555"), PorterDuff.Mode.MULTIPLY);
+        else
+        {
+            holder.Clear.clearColorFilter();
+            holder.Progress.setProgress(100);
+        }
+
+
+
 
 
 /*

@@ -12,15 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-
-        android:background="@android:color/holo_blue_dark"
+        android:background="@color/title_bar"
         app:tabTextAppearance="@style/tab_text"
 
         android:elevation="5dp"
         android:translationZ="5dp"
         app:tabIndicatorColor="@android:color/holo_orange_light"
-        app:tabSelectedTextColor="@android:color/holo_orange_light"
-        app:tabTextColor="@android:color/darker_gray" />
+        app:tabSelectedTextColor="@android:color/black"
+        app:tabTextColor="@android:color/white" />
     <!--app:tabBackground="@color/tabBackground"-->
     <!--app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"-->
 
