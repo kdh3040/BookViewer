@@ -112,13 +112,13 @@ public class TempFireBaseData {
             bookData.bookId = index;
             bookData.bookName = strBookName[i];
             bookData.bookAuthor = CommonFunc.getInstance().randomFullName();
-            if(index <= 10)
+            if(index <= 5)
                 schoolCurriculumDataList.get(1).bookIdList.add(index);
-            else if(index <= 20)
+            else if(index <= 10)
                 schoolCurriculumDataList.get(2).bookIdList.add(index);
-            else if(index <= 30)
+            else if(index <= 15)
                 schoolCurriculumDataList.get(3).bookIdList.add(index);
-            else if(index <= 40)
+            else if(index <= 20)
                 schoolCurriculumDataList.get(4).bookIdList.add(index);
 
             bookDataList.put(index, bookData);
