@@ -57,6 +57,7 @@ public class CurriculumView extends Fragment {
             viewPager.setAdapter(new TabPagerAdapter(getFragmentManager(),tabLayout.getTabCount()));
             viewPager.setPageTransformer(true, new RotateDownTransformer());
             viewPager.setCurrentItem(0);
+            viewPager.setOffscreenPageLimit(4);
             viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
             tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                 @Override

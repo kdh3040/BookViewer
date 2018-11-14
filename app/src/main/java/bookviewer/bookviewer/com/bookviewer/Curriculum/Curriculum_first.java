@@ -40,6 +40,7 @@ public class Curriculum_first extends Fragment {
 
 
         BookListViewAdapter = new BookListAdapter(getContext());
+        BookListViewAdapter.setHasStableIds(true);
         BookRecyclerView.setAdapter(BookListViewAdapter);
 
         return fragView;

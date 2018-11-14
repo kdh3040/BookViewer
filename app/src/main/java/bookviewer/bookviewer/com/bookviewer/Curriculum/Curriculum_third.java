@@ -37,6 +37,7 @@ public class Curriculum_third extends Fragment {
         BookRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
 
         BookListViewAdapter = new BookListAdapter(getContext());
+        BookListViewAdapter.setHasStableIds(true);
         BookRecyclerView.setAdapter(BookListViewAdapter);
 
         return fragView;
