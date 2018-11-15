@@ -9,11 +9,12 @@
         android:id="@+id/question_title"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/popup_title_bg_color"
+        android:background="@color/title_bar"
         android:gravity="center"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         android:fontFamily="@font/jua"
+        android:textStyle="bold"
         android:text="타이틀"/>
 
     <TextView
