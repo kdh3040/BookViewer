@@ -11,7 +11,7 @@ import bookviewer.bookviewer.com.bookviewer.R;
 public class BookBoardViewHolder extends RecyclerView.ViewHolder{
     public LinearLayout layout;
     public ImageView Thumbnail;
-    public TextView Title, Author, Time, Page;
+    public TextView Title, Author, Time;
 
     public BookBoardViewHolder(View itemView) {
         super(itemView);
@@ -20,7 +20,6 @@ public class BookBoardViewHolder extends RecyclerView.ViewHolder{
         Title = itemView.findViewById(R.id.Book_Title);
         Author = itemView.findViewById(R.id.Book_Author);
         Time = itemView.findViewById(R.id.Book_Time);
-        Page = itemView.findViewById(R.id.Book_Page);
         //BackGround = itemView.findViewById(R.id.Book_Back);
 
 

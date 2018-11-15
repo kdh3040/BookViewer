@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     folding-cell:additionalFlipsCount="0"
     folding-cell:animationDuration="500"
-    folding-cell:cameraHeight="10">
+    folding-cell:cameraHeight="10"
+    folding-cell:backSideColor="@color/book_board_open_back">
 
     <!-- TITLE (FOLDED) LAYOUT (MUST BE AT LEAST 2x times SMALLER than content layout above) -->
     <include layout="@layout/holder_bookboard_content" />

@@ -52,13 +52,15 @@ public class BookBoardViewAdapter extends ArrayAdapter<TempFireBaseData.BookRepo
             viewHolder.TitleBookThumnail = cell.findViewById(R.id.report_book_thumnail);
             viewHolder.TitleReportNickname = cell.findViewById(R.id.report_nickname);
             viewHolder.TitleReportSchoolname = cell.findViewById(R.id.report_schoolname);
-            viewHolder.TitleReportTitle = cell.findViewById(R.id.report_desc);
+            viewHolder.TitleReportTitle = cell.findViewById(R.id.report_title_str);
+            viewHolder.TitleReportDesc = cell.findViewById(R.id.report_desc);
             viewHolder.TitleLike = cell.findViewById(R.id.report_like);
             viewHolder.TitleLikeCount = cell.findViewById(R.id.report_like_count);
             viewHolder.TitleLikeImg = cell.findViewById(R.id.report_like_img);
             viewHolder.ContentsBookThumnail = cell.findViewById(R.id.contents_report_book_thumnail);
             viewHolder.ContentsReportNickname = cell.findViewById(R.id.contents_report_nickname);
             viewHolder.ContentsReportSchoolname = cell.findViewById(R.id.contents_report_schoolname);
+            viewHolder.ContentsReportTitle = cell.findViewById(R.id.contents_report_title);
             viewHolder.ContentsReport = cell.findViewById(R.id.contents_report_desc);
             viewHolder.ContentsLike = cell.findViewById(R.id.contents_report_like);
             viewHolder.ContentsLikeCount = cell.findViewById(R.id.contents_report_like_count);
@@ -94,6 +96,7 @@ public class BookBoardViewAdapter extends ArrayAdapter<TempFireBaseData.BookRepo
         viewHolder.TitleReportNickname.setText(item.nickName);
         viewHolder.TitleReportSchoolname.setText(item.schoolName);
         viewHolder.TitleReportTitle.setText(item.title);
+        viewHolder.TitleReportDesc.setText(item.report);
         viewHolder.TitleLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,6 +117,7 @@ public class BookBoardViewAdapter extends ArrayAdapter<TempFireBaseData.BookRepo
 
         viewHolder.ContentsReportNickname.setText(item.nickName);
         viewHolder.ContentsReportSchoolname.setText(item.schoolName);
+        viewHolder.ContentsReportTitle.setText(item.title);
         viewHolder.ContentsReport.setText(item.report);
         viewHolder.ContentsLike.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,6 +158,7 @@ public class BookBoardViewAdapter extends ArrayAdapter<TempFireBaseData.BookRepo
         TextView TitleReportNickname;
         TextView TitleReportSchoolname;
         TextView TitleReportTitle;
+        TextView TitleReportDesc;
         LinearLayout TitleLike;
         TextView TitleLikeCount;
         ImageView TitleLikeImg;
@@ -161,6 +166,7 @@ public class BookBoardViewAdapter extends ArrayAdapter<TempFireBaseData.BookRepo
         ImageView ContentsBookThumnail;
         TextView ContentsReportNickname;
         TextView ContentsReportSchoolname;
+        TextView ContentsReportTitle;
         TextView ContentsReport;
         LinearLayout ContentsLike;
         TextView ContentsLikeCount;
