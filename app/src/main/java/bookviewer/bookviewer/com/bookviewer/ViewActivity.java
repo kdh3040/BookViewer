@@ -59,7 +59,7 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
     TextView timerText, pageText, pageTitle, pageTime, pageFinger;
     static int counter = 3;
     static boolean bFace = true;
-    static boolean bFingerPrint = true;
+    boolean bFingerPrint = false;
 
     public Toolbar TopBar;
     private Timer timer;
@@ -102,7 +102,7 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
         timerText.setVisibility(View.INVISIBLE);
 
         pageFinger = (TextView) findViewById(R.id.FingerPrint);
-        pageFinger.setVisibility(View.INVISIBLE);
+        pageFinger.setVisibility(View.VISIBLE);
 
         pageText = (TextView) findViewById(R.id.Page);
         pageTitle = (TextView) findViewById(R.id.BookTitle);
@@ -200,7 +200,7 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
     @Override
     public void onPageChanged(int page, int pageCount) {
 
-        mFingerPrintAuthHelper.startAuth();
+        //mFingerPrintAuthHelper.startAuth();
 
         bar1.setProgress(page);
         final int CurrPage = page + 1;
@@ -285,31 +285,26 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
         switch (errorCode) {    //Parse the error code for recoverable/non recoverable error.
             case AuthErrorCodes.CANNOT_RECOGNIZE_ERROR:
                 //Cannot recognize the fingerprint scanned.
-                int aaa = 0;
-                //timerText.setVisibility(View.VISIBLE);
-                //timerText.setText("등록된 지문이 아닙니다");
+
                 pageFinger.setVisibility(View.VISIBLE);
                 pageFinger.setText("등록된 지문이 아닙니다");
                 bFingerPrint = false;
-                mFingerPrintAuthHelper.startAuth();
+
+                    //pageFinger.setVisibility(View.VISIBLE);
+                  //  pageFinger.setText("등록된 지문이 아닙니다");
+                //    bFingerPrint = false;
+                   // CheckFingerPrint();
+
                 break;
             case AuthErrorCodes.NON_RECOVERABLE_ERROR:
                 //This is not recoverable error. Try other options for user authentication. like pin, password.
-               // bFingerPrint = false;
-                pageFinger.setVisibility(View.VISIBLE);
-                pageFinger.setText("올바른 위치에 지문 올려주세요");
-                //pageFinger.setVisibility(View.INVISIBLE);
-                //bFingerPrint = true;
-                mFingerPrintAuthHelper.startAuth();
-                 aaa = 0;
+              //  pageFinger.setVisibility(View.VISIBLE);
+                //CheckFingerPrint();
                 break;
             case AuthErrorCodes.RECOVERABLE_ERROR:
-                //Any recoverable error. Display message to the user.
                 pageFinger.setVisibility(View.VISIBLE);
                 pageFinger.setText("올바른 위치에 지문 올려주세요");
-                bFingerPrint = false;
-                mFingerPrintAuthHelper.startAuth();
-                 aaa = 0;
+                CheckFingerPrint();
                 break;
         }
     }
@@ -328,6 +323,16 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
         }
     }
 
+    public void CheckFingerPrint()
+    {
+        try {
+            Thread.sleep(5000);
+            mFingerPrintAuthHelper.startAuth();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
     private boolean checkCameraHardware(Context context) {
         if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
             // this device has a camera
@@ -340,7 +345,8 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
 
     final Handler handlerFinger = new Handler() {
         public void handleMessage(Message msg) {
-            //mFingerPrintAuthHelper.startAuth();
+            if(bFingerPrint == false)
+                mFingerPrintAuthHelper.startAuth();
         }
     };
 
