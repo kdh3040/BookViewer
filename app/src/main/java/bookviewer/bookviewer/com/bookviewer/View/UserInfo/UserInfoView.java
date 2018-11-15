@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
         import android.support.v4.app.Fragment;
-        import android.support.v7.widget.GridLayoutManager;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
         import android.support.v7.widget.RecyclerView;
         import android.view.LayoutInflater;
         import android.view.View;
@@ -56,6 +58,13 @@ public class UserInfoView extends Fragment {
         UserReadBookRecyclerView = (RecyclerView)fragView.findViewById(R.id.recyclerview_User_readBookList);
         UserReadBookRecyclerView.setHasFixedSize(true);
         UserReadBookRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
+
+        DividerItemDecoration divider = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+        divider.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.custom_divider));
+        UserReadBookRecyclerView.addItemDecoration(divider);
+
+
+        //UserReadBookRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
 
         UserReadBookListViewAdapter = new UserInfoViewAdapter(getContext());
         UserReadBookListViewAdapter.setHasStableIds(true);
