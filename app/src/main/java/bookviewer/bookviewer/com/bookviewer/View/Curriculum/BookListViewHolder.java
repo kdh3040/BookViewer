@@ -1,5 +1,6 @@
 package bookviewer.bookviewer.com.bookviewer.View.Curriculum;
 
+import android.support.constraint.ConstraintLayout;
 import android.view.View;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
@@ -10,7 +11,7 @@ import android.widget.TextView;
 import bookviewer.bookviewer.com.bookviewer.R;
 
 public class BookListViewHolder extends RecyclerView.ViewHolder{
-    public LinearLayout layout;
+    public ConstraintLayout layout;
     public ImageView Thumbnail;
     public TextView Title, Author, Time;
     public ImageView Clear;
