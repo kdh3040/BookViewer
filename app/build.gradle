@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "bookviewer.bookviewer.com.bookviewer"
-        minSdkVersion 19
+        minSdkVersion 23
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -44,4 +44,5 @@ dependencies {
     compile 'com.ramotion.foldingcell:folding-cell:1.2.2'
     compile 'gun0912.ted:tedpermission:2.2.2'
     compile 'com.github.lzyzsd:circleprogress:1.2.1'
+    compile 'com.multidots:fingerprint-auth:1.0.1'
 }

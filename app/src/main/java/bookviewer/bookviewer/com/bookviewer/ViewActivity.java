@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
+import android.hardware.fingerprint.FingerprintManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -28,18 +29,26 @@ import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
 import com.github.barteksc.pdfviewer.listener.OnPageScrollListener;
 import com.github.barteksc.pdfviewer.util.FitPolicy;
 
+import com.multidots.fingerprintauth.AuthErrorCodes;
+import com.multidots.fingerprintauth.FingerPrintAuthCallback;
+import com.multidots.fingerprintauth.FingerPrintAuthHelper;
+import com.multidots.fingerprintauth.FingerPrintUtils;
 import com.ramotion.fluidslider.FluidSlider;
 
+import java.security.KeyStore;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
 
 import bookviewer.bookviewer.com.bookviewer.Data.BookData;
 import bookviewer.bookviewer.com.bookviewer.Data.DataMgr;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 
-public class ViewActivity extends AppCompatActivity implements OnPageChangeListener, OnLoadCompleteListener, OnPageScrollListener {
+public class ViewActivity extends AppCompatActivity implements OnPageChangeListener, OnLoadCompleteListener, OnPageScrollListener, FingerPrintAuthCallback {
     private String BookPath, BookName;
     private PDFView pdfView;
 
@@ -47,9 +56,10 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
     private Camera mCamera;
     public CameraPreView mPreview;
 
-    TextView timerText, pageText, pageTitle, pageTime;
+    TextView timerText, pageText, pageTitle, pageTime, pageFinger;
     static int counter = 3;
     static boolean bFace = true;
+    static boolean bFingerPrint = true;
 
     public Toolbar TopBar;
     private Timer timer;
@@ -57,14 +67,16 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
     private FloatingActionButton fab;
     private Context mContext;
 
+
     @Override
     public void onDestroy() {
         timer.cancel();
         timer.purge();
         timer = null;
+        mFingerPrintAuthHelper.stopAuth();
         super.onDestroy();
     }
-
+    FingerPrintAuthHelper mFingerPrintAuthHelper;
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +84,10 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
         setContentView(R.layout.activity_view);
 
         mContext = ViewActivity.this;
+
+        mFingerPrintAuthHelper = FingerPrintAuthHelper.getHelper(this, this);
+
+
 
         if (checkCameraHardware(getApplicationContext())) {
             mCamera = getCameraInstance();
@@ -84,6 +100,9 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
 
         timerText = (TextView) findViewById(R.id.timer);
         timerText.setVisibility(View.INVISIBLE);
+
+        pageFinger = (TextView) findViewById(R.id.FingerPrint);
+        pageFinger.setVisibility(View.INVISIBLE);
 
         pageText = (TextView) findViewById(R.id.Page);
         pageTitle = (TextView) findViewById(R.id.BookTitle);
@@ -100,6 +119,17 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
 
         timer = new Timer();
         timer.schedule(timertask, 0, 1000);
+
+        TimerTask timerFingerTask = new TimerTask() {
+            @Override
+            public void run() {
+                Message msg = handlerFinger.obtainMessage();
+                handlerFinger.sendMessage(msg);
+            }
+        };
+
+        timer = new Timer();
+        timer.schedule(timerFingerTask, 0, 5000);
 
 
         bar1 = (MarkerSeekBar) findViewById(R.id.bar1);
@@ -124,10 +154,7 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TopBar.isShown()) {
-                    TopBar.setVisibility(View.GONE);
-                } else
-                    TopBar.setVisibility(View.VISIBLE);
+                FingerPrintUtils.openSecuritySettings(ViewActivity.this);
             }
         });
 
@@ -172,6 +199,8 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
 
     @Override
     public void onPageChanged(int page, int pageCount) {
+
+        mFingerPrintAuthHelper.startAuth();
 
         bar1.setProgress(page);
         final int CurrPage = page + 1;
@@ -227,6 +256,64 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
         CommonFunc.getInstance().HideProgressDialog();
     }
 
+    @Override
+    public void onNoFingerPrintHardwareFound() {
+        int aaa = 0;
+
+    }
+
+    @Override
+    public void onNoFingerPrintRegistered() {
+        int aaa = 0;
+    }
+
+    @Override
+    public void onBelowMarshmallow() {
+        int aaa = 0;
+    }
+
+    @Override
+    public void onAuthSuccess(FingerprintManager.CryptoObject cryptoObject) {
+        int aaa = 0;
+        pageFinger.setVisibility(View.INVISIBLE);
+        bFingerPrint = true;
+    }
+
+    @Override
+    public void onAuthFailed(int errorCode, String errorMessage) {
+
+        switch (errorCode) {    //Parse the error code for recoverable/non recoverable error.
+            case AuthErrorCodes.CANNOT_RECOGNIZE_ERROR:
+                //Cannot recognize the fingerprint scanned.
+                int aaa = 0;
+                //timerText.setVisibility(View.VISIBLE);
+                //timerText.setText("등록된 지문이 아닙니다");
+                pageFinger.setVisibility(View.VISIBLE);
+                pageFinger.setText("등록된 지문이 아닙니다");
+                bFingerPrint = false;
+                mFingerPrintAuthHelper.startAuth();
+                break;
+            case AuthErrorCodes.NON_RECOVERABLE_ERROR:
+                //This is not recoverable error. Try other options for user authentication. like pin, password.
+               // bFingerPrint = false;
+                pageFinger.setVisibility(View.VISIBLE);
+                pageFinger.setText("올바른 위치에 지문 올려주세요");
+                //pageFinger.setVisibility(View.INVISIBLE);
+                //bFingerPrint = true;
+                mFingerPrintAuthHelper.startAuth();
+                 aaa = 0;
+                break;
+            case AuthErrorCodes.RECOVERABLE_ERROR:
+                //Any recoverable error. Display message to the user.
+                pageFinger.setVisibility(View.VISIBLE);
+                pageFinger.setText("올바른 위치에 지문 올려주세요");
+                bFingerPrint = false;
+                mFingerPrintAuthHelper.startAuth();
+                 aaa = 0;
+                break;
+        }
+    }
+
     static class FaceDetect implements Camera.FaceDetectionListener {
         @Override
         public void onFaceDetection(Camera.Face[] faces, Camera camera) {
@@ -251,10 +338,17 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
         }
     }
 
+    final Handler handlerFinger = new Handler() {
+        public void handleMessage(Message msg) {
+            //mFingerPrintAuthHelper.startAuth();
+        }
+    };
+
+
     final Handler handler = new Handler() {
         public void handleMessage(Message msg) {
 
-            if (bFace) {
+            if (bFace && bFingerPrint) {
                 timerText.setVisibility(View.INVISIBLE);
 
                 ArrayList<Integer> recentBookList = DataMgr.getInstance().getRecentBookLocalData();
@@ -266,8 +360,11 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
                 pageTime.setText(" 남은 시간 : " + counter + "초");
                 counter--;
 
-            } else {
+            } else if(bFace == false){
                 timerText.setVisibility(View.VISIBLE);
+                counter = 5;
+            }else if(bFingerPrint == false){
+                pageFinger.setVisibility(View.VISIBLE);
                 counter = 5;
             }
 

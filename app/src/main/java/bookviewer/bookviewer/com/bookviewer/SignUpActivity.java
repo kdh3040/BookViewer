@@ -91,9 +91,9 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();  // Always call the superclass method first
-        Intent intent = new Intent(SignUpActivity.this, MainViewActivity.class);
+    /*    Intent intent = new Intent(SignUpActivity.this, MainViewActivity.class);
         startActivity(intent);
-        finish();
+        finish();*/
     }
 
     @Override

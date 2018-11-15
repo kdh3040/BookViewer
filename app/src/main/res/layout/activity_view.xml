@@ -108,5 +108,17 @@
         android:visibility="invisible"
         android:textColor="@color/black"/>
 
+    <TextView
+        android:id="@+id/FingerPrint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="지문 인식이 안됩니다"
+        android:background="@android:color/darker_gray"
+        android:textSize="30dp"
+        android:fontFamily="@font/jua"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:textColor="@color/black"/>
+
 
 </android.support.constraint.ConstraintLayout>
