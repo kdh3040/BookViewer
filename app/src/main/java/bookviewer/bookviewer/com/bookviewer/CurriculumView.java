@@ -95,11 +95,11 @@ private class TabPagerAdapter extends FragmentStatePagerAdapter {
             case 0:
                 return new Curriculum_first();
             case 1:
-                return new Curriculum_second();
+                return new Curriculum_first();
             case 2:
-                return new Curriculum_third();
+                return new Curriculum_first();
             case 3:
-                return new Curriculum_fourth();
+                return new Curriculum_first();
         }
 
         return null;
