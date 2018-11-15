@@ -1,39 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:id="@+id/parent_mode_back_bg"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@android:color/holo_blue_light"/>
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/title_bar"
+        android:elevation="4dp"
+        app:titleTextAppearance="@style/TitleBarTextAppearance"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-
-    <ImageView
-        android:id="@+id/parent_mode_back"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
-        android:src="@drawable/back" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="학부모 모드"
-        android:gravity="center"
-        android:textSize="25dp"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/parent_mode_top_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/parent_mode_back_bg"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:textSize="15dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_margin="10dp"
+        android:textSize="20dp"
         android:textColor="@android:color/black"
         android:textStyle="bold"
         android:text="커리큘럼 진척도"/>
@@ -50,9 +38,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/curriculum_progress_list"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:textSize="15dp"
+        android:layout_margin="10dp"
+        android:textSize="20dp"
         android:textColor="@android:color/black"
         android:textStyle="bold"
         android:text="독후감"/>
@@ -61,6 +48,7 @@
         android:id="@+id/book_board_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/parent_mode_mid_title"/>
+        android:layout_below="@+id/parent_mode_mid_title"
+        android:background="@color/title_bar"/>
 
 </RelativeLayout>

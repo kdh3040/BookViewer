@@ -19,6 +19,8 @@
     <string name="Viewer_Bottom_Quiz">퀴즈</string>
     <string name="Viewer_Bottom_Setting">설정</string>
 
+    <string name="Parents_Mode_Title">학부모 모드</string>
+
     <string name="accessibility_service_description">accessibility_service_description</string>
     <string name="accessibility_service_label">accessibility_service_label</string>
     

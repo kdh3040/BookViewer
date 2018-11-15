@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import java.util.Random;
+
 import bookviewer.bookviewer.com.bookviewer.CommonFunc;
 import bookviewer.bookviewer.com.bookviewer.Data.DataMgr;
 import bookviewer.bookviewer.com.bookviewer.Data.SchoolCurriculumData;
@@ -30,11 +32,12 @@ public class CurriculumProgressAdapter extends RecyclerView.Adapter<CurriculumPr
 
     @Override
     public void onBindViewHolder(CurriculumProgressHolder holder, final int position) {
-        holder.Layout.setLayoutParams(new LinearLayout.LayoutParams(CommonFunc.getInstance().GetDisplayWidth() / 3, (CommonFunc.getInstance().GetDisplayWidth() / 3)));
+        holder.Layout.setLayoutParams(new LinearLayout.LayoutParams(CommonFunc.getInstance().GetDisplayWidth() / 4, (CommonFunc.getInstance().GetDisplayWidth() / 3)));
 
         SchoolCurriculumData curriculumData = DataMgr.getInstance().myData.schoolCurriculumDataList.get(position);
         holder.CurriculumName.setText(curriculumData.schoolCurriculumName);
-        holder.Progress.setProgress(33);
+        Random test = new Random();
+        holder.Progress.setProgress(test.nextInt(90) + 10);
     }
 
     @Override
