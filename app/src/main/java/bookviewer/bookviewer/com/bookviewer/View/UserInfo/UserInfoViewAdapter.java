@@ -4,11 +4,13 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -45,7 +47,16 @@ public class UserInfoViewAdapter extends RecyclerView.Adapter<UserInfoViewHolder
         BookLocalData localData = DataMgr.getInstance().getBookLocalData(recentBookList.get(position));
         BookData data = DataMgr.getInstance().myData.getBookData(recentBookList.get(position));
 
-        holder.layout.setLayoutParams(new LinearLayout.LayoutParams(CommonFunc.getInstance().GetDisplayWidth(), (CommonFunc.getInstance().GetDisplayHeight() / 7)));
+        holder.layout.setLayoutParams(new ConstraintLayout.LayoutParams(CommonFunc.getInstance().GetDisplayWidth(), (CommonFunc.getInstance().GetDisplayHeight() / 6)));
+
+
+       /* LinearLayout.LayoutParams lpForIcon = new LinearLayout.LayoutParams((int) (CommonFunc.getInstance().GetDisplayWidth() * 0.1), (int) (CommonFunc.getInstance().GetDisplayHeight() / 7));
+        holder.Thumbnail.setLayoutParams(lpForIcon);
+
+        LinearLayout.LayoutParams lpForDesc = new LinearLayout.LayoutParams((int) (CommonFunc.getInstance().GetDisplayWidth() * 0.8), (int) (CommonFunc.getInstance().GetDisplayHeight() / 7));
+        holder.layout_desc.setLayoutParams(lpForDesc);*/
+
+
 
         Glide.with(AppContext)
                 .load(localData.ImgIdx)
@@ -70,6 +81,9 @@ public class UserInfoViewAdapter extends RecyclerView.Adapter<UserInfoViewHolder
             holder.Time.setText(strBookTime[i]);
         }
 
+        /*LinearLayout.LayoutParams lpForClear = new LinearLayout.LayoutParams((int) (CommonFunc.getInstance().GetDisplayWidth() * 0.1), (int) (CommonFunc.getInstance().GetDisplayHeight() / 7));
+        holder.Clear.setLayoutParams(lpForClear);
+*/
         Glide.with(AppContext)
                 .load(R.drawable.book_good)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/Book_Layout"
     android:layout_width="match_parent"
@@ -17,14 +17,16 @@
         android:layout_weight="1"
         app:srcCompat="@drawable/book_1" />
 
-    <LinearLayout
+<!--    <android.support.constraint.ConstraintLayout
+        android:id="@+id/Book_Desc"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_toRightOf="@id/Book_Thumbnail"
         android:layout_marginLeft="2dp"
         android:layout_weight="8"
-        android:layout_gravity="center_vertical"
-        android:orientation="vertical">
+        android:gravity="center"
+        app:layout_constraintLeft_toRightOf="@+id/Book_Thumbnail"
+        android:orientation="vertical">-->
 
         <TextView
             android:id="@+id/Book_Title"
@@ -34,8 +36,12 @@
             android:text="톰소여의 모험"
             android:fontFamily="@font/jua"
             android:textColor="@color/black"
+            android:gravity="center"
+            app:layout_constraintLeft_toRightOf="@+id/Book_Thumbnail"
             android:layout_marginBottom="3dp"
+            android:layout_marginLeft="5dp"
             />
+
         <TextView
             android:id="@+id/Book_Author"
             android:layout_width="wrap_content"
@@ -44,6 +50,8 @@
             android:text="작가"
             android:fontFamily="@font/jua"
             android:textColor="@color/black"
+            app:layout_constraintLeft_toLeftOf="@+id/Book_Title"
+            app:layout_constraintTop_toBottomOf="@+id/Book_Title"
             android:layout_marginBottom="3dp"
             />
 
@@ -55,24 +63,30 @@
             android:text="완료하세요"
             android:fontFamily="@font/jua"
             android:textColor="@color/black"
+            app:layout_constraintLeft_toLeftOf="@+id/Book_Title"
+            app:layout_constraintTop_toBottomOf="@+id/Book_Author"
             android:layout_marginBottom="3dp"
             />
 
         <ProgressBar
             android:id="@+id/Book_Progress"
-            android:layout_width="match_parent"
-            android:layout_height="15dp"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
             android:progress="30"
+            app:layout_constraintLeft_toLeftOf="@+id/Book_Title"
+            app:layout_constraintTop_toBottomOf="@+id/Book_Time"
             style="@android:style/Widget.ProgressBar.Horizontal" />
 
-    </LinearLayout>
+    <!--</android.support.constraint.ConstraintLayout>-->
 
     <ImageView
         android:id="@+id/Book_Good"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:src="@drawable/book_good"
-        android:layout_gravity="center_vertical"
+        android:foregroundGravity="center"
+        app:layout_constraintRight_toRightOf="parent"
+
         android:layout_weight="1"/>
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

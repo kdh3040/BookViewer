@@ -134,6 +134,8 @@ public class MainViewActivity extends AppCompatActivity {
         if (CurriculumFragment == null)
             CurriculumFragment = new CurriculumView();
 
+        //getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, UserInfoFragment, "UserInfo").commit();
+
         getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, CurriculumFragment, "Curriculum").commit();
 
 

@@ -1,5 +1,6 @@
 package bookviewer.bookviewer.com.bookviewer.View.UserInfo;
 
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,7 +11,8 @@ import android.widget.TextView;
 import bookviewer.bookviewer.com.bookviewer.R;
 
 public class UserInfoViewHolder extends RecyclerView.ViewHolder {
-    public LinearLayout layout;
+    public ConstraintLayout layout;
+    //public LinearLayout layout_desc;
     public ImageView Thumbnail;
     public TextView Title, Author, Time;
     public ImageView Clear;
@@ -18,6 +20,7 @@ public class UserInfoViewHolder extends RecyclerView.ViewHolder {
     public UserInfoViewHolder(View itemView) {
         super(itemView);
         layout = itemView.findViewById(R.id.Book_Layout);
+        //layout_desc = itemView.findViewById(R.id.Book_Desc);
         Thumbnail = itemView.findViewById(R.id.Book_Thumbnail);
         Title = itemView.findViewById(R.id.Book_Title);
         Author = itemView.findViewById(R.id.Book_Author);
