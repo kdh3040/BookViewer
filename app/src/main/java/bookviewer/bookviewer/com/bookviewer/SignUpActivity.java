@@ -43,6 +43,7 @@ public class SignUpActivity extends AppCompatActivity {
             intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "message string");
             startActivityForResult(intent, 1);
         }else{
+            mDPM.removeActiveAdmin(comp);
             //mDPM.lockNow();
             //InitPermission();
         }
