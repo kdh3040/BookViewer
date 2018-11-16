@@ -17,6 +17,7 @@ import android.view.accessibility.AccessibilityManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -25,8 +26,11 @@ import bookviewer.bookviewer.com.bookviewer.Receiver.MyDeviceAdminReceiver;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    private EditText mNickName, mCode;
-    private Button CheckBtn;
+    private EditText mNickName, mCode, mChildCode;
+    private TextView mModeChangeText;
+    private boolean mChildMode = true;
+    private ConstraintLayout mChildModeLayout, mParentsModeLayout;
+    private Button mSignUPBtn, mLoginBtn;
     DevicePolicyManager mDPM;
     private static ActivityManager am;
 
@@ -101,7 +105,17 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        mNickName = (EditText) findViewById(R.id.SignUp_EditText_NickName);
+        mNickName = (EditText) findViewById(R.id.nickname_str);
+        mCode = findViewById(R.id.schoolcode_str);
+        mChildCode = findViewById(R.id.child_code_str);
+        mModeChangeText = findViewById(R.id.mode_change);
+        mChildMode = true;
+        mChildModeLayout = findViewById(R.id.student_mode);
+        mParentsModeLayout = findViewById(R.id.parents_mode);
+        mSignUPBtn = findViewById(R.id.SignUp_Button);
+        mLoginBtn = findViewById(R.id.Login_Button);
+
+
         final InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         ConstraintLayout ll = (ConstraintLayout) findViewById(R.id.linearLayout);
         ll.setOnClickListener(new View.OnClickListener() {
@@ -109,21 +123,12 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //imm.hideSoftInputFromWindow(mMemo.getWindowToken(), 0);
                 imm.hideSoftInputFromWindow(mNickName.getWindowToken(), 0);
-            }
-        });
-
-        mCode = (EditText) findViewById(R.id.SignUp_EditText_Code);
-        ll = (ConstraintLayout) findViewById(R.id.linearLayout);
-        ll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //imm.hideSoftInputFromWindow(mMemo.getWindowToken(), 0);
                 imm.hideSoftInputFromWindow(mCode.getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(mChildCode.getWindowToken(), 0);
             }
         });
 
-        CheckBtn = (Button) findViewById(R.id.SignUp_Button);
-        CheckBtn.setOnClickListener(new View.OnClickListener() {
+        mSignUPBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -136,9 +141,6 @@ public class SignUpActivity extends AppCompatActivity {
 
                 if(strCode.equals(""))
                 {
-
-                    // strNickName = CommonFunc.getInstance().RemoveEmptyString(strNickName);
-
                     Intent intent = new Intent(SignUpActivity.this, MainViewActivity.class);
                     startActivity(intent);
                     finish();
@@ -147,8 +149,62 @@ public class SignUpActivity extends AppCompatActivity {
                 {
                     SetPermission();
                 }
-
             }
         });
+
+        mLoginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // TODO 학부모 모드 진입
+
+                String strNickName = mNickName.getText().toString();
+                String strCode = mCode.getText().toString();
+
+                // TODO 임시 현재 학교의 추천코드는 a 뿐임
+                DataMgr.getInstance().myData.init("a", strNickName);
+                DataMgr.getInstance().saveMyData(SignUpActivity.this);
+
+                if(strCode.equals(""))
+                {
+                    Intent intent = new Intent(SignUpActivity.this, MainViewActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                else
+                {
+                    SetPermission();
+                }
+            }
+        });
+
+        mModeChangeText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mChildMode = !mChildMode;
+                refreshModeChange();
+            }
+        });
+
+
+        refreshModeChange();
+    }
+
+    private void refreshModeChange()
+    {
+        if(mChildMode)
+        {
+            mChildModeLayout.setVisibility(View.VISIBLE);
+            mParentsModeLayout.setVisibility(View.INVISIBLE);
+
+            mModeChangeText.setText("학부모 이신가요?");
+        }
+        else
+        {
+            mChildModeLayout.setVisibility(View.INVISIBLE);
+            mParentsModeLayout.setVisibility(View.VISIBLE);
+
+            mModeChangeText.setText("학생 이신가요?");
+        }
     }
 }

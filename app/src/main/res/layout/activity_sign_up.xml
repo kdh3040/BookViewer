@@ -1,112 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:id="@+id/linearLayout"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:gravity="center_horizontal"
-tools:context="bookviewer.bookviewer.com.bookviewer.SignUpActivity">
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    tools:context="bookviewer.bookviewer.com.bookviewer.SignUpActivity">
 
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/student_mode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:visibility="invisible">
 
-<TextView
-    android:id="@+id/SignUp_TextView_Info"
-    android:layout_width="wrap_content"
-    android:layout_height="0dp"
-    android:layout_marginTop="10dp"
-    android:text="간단한 기본정보를 입력해주세요 :)"
-    android:textSize="18sp"
-    app:layout_constraintBottom_toTopOf="@+id/SignUp_TextView_NickName"
-    app:layout_constraintHorizontal_bias="0.5"
-     />
+        <TextView
+            android:id="@+id/nickname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/student_mode"
+            app:layout_constraintEnd_toStartOf="@id/nickname_str"
+            app:layout_constraintTop_toTopOf="@id/nickname_str"
+            app:layout_constraintBottom_toBottomOf="@id/nickname_str"
+            app:layout_constraintWidth_percent="0.18"
+            android:textSize="18sp"
+            android:fontFamily="@font/jua"
+            android:text="닉네임"/>
 
-<TextView
-    android:id="@+id/SignUp_TextView_NickName"
-    android:layout_width="wrap_content"
-    android:layout_height="40dp"
-    android:layout_marginLeft="16dp"
-    android:gravity="center_vertical"
-    android:text="닉네임"
-    android:textColor="@android:color/holo_blue_dark"
-    android:textSize="18sp"
-    android:textStyle="bold"
-    app:layout_constraintBottom_toBottomOf="@id/SignUp_EditText_NickName"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintTop_toTopOf="@id/SignUp_EditText_NickName" />
+        <EditText
+            android:id="@+id/nickname_str"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/nickname"
+            app:layout_constraintEnd_toEndOf="@id/student_mode"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/jua"
+            android:hint="(8자이하)" />
 
-<EditText
-    android:id="@+id/SignUp_EditText_NickName"
-    android:layout_width="0dp"
-    android:layout_height="0dp"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="32dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp"
-    android:background="@android:color/holo_blue_dark"
-    android:ems="10"
-    android:hint="( 최대 8자)"
-    android:inputType="textPersonName"
-    android:maxLength="8"
-    android:paddingLeft="10dp"
-    app:layout_constraintBottom_toTopOf="@+id/SignUp_TextView_Code"
-    app:layout_constraintHorizontal_bias="0.5"
-    app:layout_constraintLeft_toRightOf="@+id/SignUp_TextView_NickName"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/SignUp_TextView_Info" />
+        <TextView
+            android:id="@+id/schoolcode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/student_mode"
+            app:layout_constraintEnd_toStartOf="@id/schoolcode_str"
+            app:layout_constraintTop_toTopOf="@id/schoolcode_str"
+            app:layout_constraintBottom_toBottomOf="@id/schoolcode_str"
+            app:layout_constraintTop_toBottomOf="@id/nickname"
+            app:layout_constraintWidth_percent="0.18"
+            android:textSize="18sp"
+            android:fontFamily="@font/jua"
+            android:text="코드"/>
 
+        <EditText
+            android:id="@+id/schoolcode_str"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/schoolcode"
+            app:layout_constraintEnd_toEndOf="@id/student_mode"
+            app:layout_constraintTop_toBottomOf="@id/nickname_str"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/jua"
+            android:hint="(8자이하)" />
+
+        <Button
+            android:id="@+id/SignUp_Button"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:background="@android:color/holo_blue_bright"
+            android:text="회원 가입"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:fontFamily="@font/jua"
+            android:layout_marginTop="15dp"
+            app:layout_constraintTop_toBottomOf="@+id/schoolcode_str"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@id/student_mode"
+            app:layout_constraintEnd_toEndOf="@id/student_mode"
+            />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/parents_mode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <TextView
+            android:id="@+id/child_code"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/parents_mode"
+            app:layout_constraintEnd_toStartOf="@id/child_code_str"
+            app:layout_constraintTop_toTopOf="@id/child_code_str"
+            app:layout_constraintBottom_toBottomOf="@id/child_code_str"
+            app:layout_constraintWidth_percent="0.18"
+            android:textSize="18sp"
+            android:fontFamily="@font/jua"
+            android:text="자녀 코드"/>
+
+        <EditText
+            android:id="@+id/child_code_str"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/child_code"
+            app:layout_constraintEnd_toEndOf="@id/parents_mode"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/jua"
+            android:hint="(8자이하)" />
+
+        <Button
+            android:id="@+id/Login_Button"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:background="@android:color/holo_blue_bright"
+            android:text="로그인"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:fontFamily="@font/jua"
+            android:layout_marginTop="15dp"
+            app:layout_constraintTop_toBottomOf="@+id/child_code_str"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@id/parents_mode"
+            app:layout_constraintEnd_toEndOf="@id/parents_mode"
+            />
+
+    </android.support.constraint.ConstraintLayout>
 
 
     <TextView
-        android:id="@+id/SignUp_TextView_Code"
+        android:id="@+id/mode_change"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginLeft="16dp"
-        android:gravity="center_vertical"
-        android:text="코드"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/SignUp_EditText_Code"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@id/SignUp_EditText_Code" />
-
-
-    <EditText
-        android:id="@+id/SignUp_EditText_Code"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@android:color/holo_blue_dark"
-        android:ems="10"
-        android:hint="( 최대 8자)"
-        android:inputType="textPersonName"
-        android:maxLength="8"
-        android:paddingLeft="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/SignUp_Button"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintLeft_toRightOf="@+id/SignUp_TextView_NickName"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SignUp_EditText_NickName" />
-
-
-<Button
-    android:id="@+id/SignUp_Button"
-    android:layout_width="wrap_content"
-    android:layout_height="40dp"
-    android:layout_marginBottom="10dp"
-    android:layout_marginTop="16dp"
-    android:background="@android:color/black"
-    android:text="회원 가입"
-    android:textColor="@color/white"
-    android:textSize="18sp"
-    android:textStyle="bold"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.5"
-    app:layout_constraintStart_toStartOf="parent" />
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="20dp"
+        android:text="학부모 이신가요?"
+        android:textSize="20sp"
+        android:fontFamily="@font/jua"
+        />
 
 
 </android.support.constraint.ConstraintLayout>
