@@ -248,11 +248,15 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
     public void onNoFingerPrintHardwareFound() {
         int aaa = 0;
 
+        pageFinger.setVisibility(View.INVISIBLE);
+        bFingerPrint = true;
     }
 
     @Override
     public void onNoFingerPrintRegistered() {
         int aaa = 0;
+        pageFinger.setVisibility(View.INVISIBLE);
+        bFingerPrint = true;
     }
 
     @Override

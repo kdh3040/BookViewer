@@ -16,6 +16,8 @@ import android.view.View;
 import android.view.accessibility.AccessibilityManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -24,41 +26,64 @@ import java.util.List;
 import bookviewer.bookviewer.com.bookviewer.Data.DataMgr;
 import bookviewer.bookviewer.com.bookviewer.Receiver.MyDeviceAdminReceiver;
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
     private EditText mNickName, mCode, mChildCode;
     private TextView mModeChangeText;
     private boolean mChildMode = true;
     private ConstraintLayout mChildModeLayout, mParentsModeLayout;
     private Button mSignUPBtn, mLoginBtn;
+
+    private CheckBox check_1, check_2;
+
     DevicePolicyManager mDPM;
     private static ActivityManager am;
 
     private void SetPermission()
     {
-//        am = (ActivityManager)getApplicationContext().getSystemService(ACTIVITY_SERVICE);
-//        final ComponentName comp = new ComponentName(this, MyDeviceAdminReceiver.class);
-//        mDPM = (DevicePolicyManager) this
-//                .getSystemService(Context.DEVICE_POLICY_SERVICE);
-//
-//        if( !mDPM.isAdminActive(comp) ){
-//            Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
-//            intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, comp);
-//            intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "message string");
-//            startActivityForResult(intent, 1);
-//        }else{
-//            mDPM.removeActiveAdmin(comp);
-//            //mDPM.lockNow();
-//            //InitPermission();
-//        }
-//
-//        if(!checkAccessibilityPermissions()) {
-//            setAccessibilityPermissions();
-//        }
-//        else
-//        {
-//
-//        }
+        am = (ActivityManager)getApplicationContext().getSystemService(ACTIVITY_SERVICE);
+        final ComponentName comp = new ComponentName(this, MyDeviceAdminReceiver.class);
+        mDPM = (DevicePolicyManager) this
+                .getSystemService(Context.DEVICE_POLICY_SERVICE);
+
+        if( !mDPM.isAdminActive(comp) ){
+            Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+            intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, comp);
+            intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "message string");
+            startActivityForResult(intent, 1);
+        }else{
+            mDPM.removeActiveAdmin(comp);
+            //mDPM.lockNow();
+            //InitPermission();
+        }
+    }
+
+    private boolean GetPermission()
+    {
+        boolean bRet = false;
+        mDPM = (DevicePolicyManager) this
+                .getSystemService(Context.DEVICE_POLICY_SERVICE);
+        final ComponentName comp = new ComponentName(this, MyDeviceAdminReceiver.class);
+
+        if( !mDPM.isAdminActive(comp) ){
+            bRet = false;
+            check_1.setChecked(false);
+        }else{
+            bRet = true;
+            check_1.setChecked(true);
+        }
+
+        return bRet;
+    }
+    private void SetAccess()
+    {
+        if(!checkAccessibilityPermissions()) {
+            setAccessibilityPermissions();
+        }
+        else
+        {
+
+        }
     }
 
     public boolean checkAccessibilityPermissions() {
@@ -101,6 +126,23 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        // 체크박스를 클릭해서 상태가 바꾸었을 경우 호출되는 콜백 메서드
+
+        String result = ""; // 문자열 초기화는 빈문자열로 하자
+
+        if(check_1.isChecked())
+        {
+            SetPermission();
+        }
+      /*  if(check_2.isChecked())
+        {
+           SetAccess();
+        }*/
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
@@ -114,6 +156,11 @@ public class SignUpActivity extends AppCompatActivity {
         mParentsModeLayout = findViewById(R.id.parents_mode);
         mSignUPBtn = findViewById(R.id.SignUp_Button);
         mLoginBtn = findViewById(R.id.Login_Button);
+
+        check_1 = findViewById(R.id.checkBox1);
+        check_1.setOnCheckedChangeListener(this);
+        check_2 = findViewById(R.id.checkBox2);
+        check_2.setOnCheckedChangeListener(this);
 
 
         final InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -132,16 +179,35 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String strNickName = mNickName.getText().toString();
-                String strCode = mCode.getText().toString();
 
-                // TODO 임시 현재 학교의 추천코드는 a 뿐임
-                // TODO 파베에서 유저 인덱스를 받아야함
-                DataMgr.getInstance().myData.init(1,"a", strNickName);
-                DataMgr.getInstance().initMyData(DataMgr.getInstance().myData.userData.userIdx);
-                DataMgr.getInstance().saveLocalData(SignUpActivity.this);
+                boolean bCheck = GetPermission();
+                if(bCheck == false)
+                {
+                    CommonFunc.getInstance().ShowDefaultPopup(SignUpActivity.this, "관리자 권한 설정이 필요합니다");
+                    SetPermission();
+                }
+           /*     if(check_2.isChecked() == false)
+                {
+                    CommonFunc.getInstance().ShowDefaultPopup(SignUpActivity.this, "카메라 권한 설정이 필요합니다");
+                    SetAccess();
+                }*/
 
-                if(strCode.equals(""))
+                //if(check_1.isChecked() && check_2.isChecked())
+                else
+                {
+                    String strNickName = mNickName.getText().toString();
+                    String strCode = mCode.getText().toString();
+
+                    // TODO 임시 현재 학교의 추천코드는 a 뿐임
+                    DataMgr.getInstance().myData.init("a", strNickName);
+                    DataMgr.getInstance().saveMyData(SignUpActivity.this);
+
+
+                    Intent intent = new Intent(SignUpActivity.this, MainViewActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            /*    if(strCode.equals(""))
                 {
                     Intent intent = new Intent(SignUpActivity.this, MainViewActivity.class);
                     startActivity(intent);
@@ -150,7 +216,7 @@ public class SignUpActivity extends AppCompatActivity {
                 else
                 {
                     SetPermission();
-                }
+                }*/
             }
         });
 
@@ -164,10 +230,8 @@ public class SignUpActivity extends AppCompatActivity {
                 String strCode = mCode.getText().toString();
 
                 // TODO 임시 현재 학교의 추천코드는 a 뿐임
-                // TODO 파베에서 유저 인덱스를 받아야함
-                DataMgr.getInstance().myData.init(1,"a", strNickName);
-                DataMgr.getInstance().initMyData(DataMgr.getInstance().myData.userData.userIdx);
-                DataMgr.getInstance().saveLocalData(SignUpActivity.this);
+                DataMgr.getInstance().myData.init("a", strNickName);
+                DataMgr.getInstance().saveMyData(SignUpActivity.this);
 
                 if(strCode.equals(""))
                 {

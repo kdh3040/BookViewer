@@ -43,7 +43,7 @@
 
         <receiver
             android:name=".Receiver.MyDeviceAdminReceiver"
-            android:label="sample_device_admin"
+            android:label="뷰어 권한 설정"
             android:permission="android.permission.BIND_DEVICE_ADMIN">
             <meta-data
                 android:name="android.app.device_admin"
