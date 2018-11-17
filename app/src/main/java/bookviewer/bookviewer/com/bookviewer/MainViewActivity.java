@@ -11,11 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
-import bookviewer.bookviewer.com.bookviewer.Data.BookData;
-import bookviewer.bookviewer.com.bookviewer.Data.BookLocalData;
-import bookviewer.bookviewer.com.bookviewer.Data.DataMgr;
 import bookviewer.bookviewer.com.bookviewer.View.BookBoard.BookBoardView;
 import bookviewer.bookviewer.com.bookviewer.View.Curriculum.BookListAdapter;
 import bookviewer.bookviewer.com.bookviewer.View.UserInfo.UserInfoView;

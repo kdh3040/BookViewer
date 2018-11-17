@@ -15,6 +15,7 @@ import com.ramotion.foldingcell.FoldingCell;
 
 import java.util.ArrayList;
 
+import bookviewer.bookviewer.com.bookviewer.Data.BookBoardData;
 import bookviewer.bookviewer.com.bookviewer.Data.DataMgr;
 import bookviewer.bookviewer.com.bookviewer.Data.TempFireBaseData;
 import bookviewer.bookviewer.com.bookviewer.R;
@@ -43,7 +44,7 @@ public class BookBoardView extends Fragment {
         fragView = inflater.inflate(R.layout.fragment_book_board_view, container, false);
         ListView theListView = fragView.findViewById(R.id.board_list_view);
 
-        final ArrayList<TempFireBaseData.BookReport> items = DataMgr.getInstance().TempData.bookReportDataList;
+        final ArrayList<BookBoardData> items = DataMgr.getInstance().bookBoardDataList;
         final BookBoardViewAdapter adapter = new BookBoardViewAdapter(this.getContext(), items);
 
         // set elements to adapter

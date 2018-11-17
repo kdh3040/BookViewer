@@ -1,8 +1,6 @@
 package bookviewer.bookviewer.com.bookviewer;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,13 +10,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -33,20 +28,13 @@ import com.multidots.fingerprintauth.AuthErrorCodes;
 import com.multidots.fingerprintauth.FingerPrintAuthCallback;
 import com.multidots.fingerprintauth.FingerPrintAuthHelper;
 import com.multidots.fingerprintauth.FingerPrintUtils;
-import com.ramotion.fluidslider.FluidSlider;
 
-import java.security.KeyStore;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-
 import bookviewer.bookviewer.com.bookviewer.Data.BookData;
 import bookviewer.bookviewer.com.bookviewer.Data.DataMgr;
-import kotlin.Unit;
-import kotlin.jvm.functions.Function0;
 
 public class ViewActivity extends AppCompatActivity implements OnPageChangeListener, OnLoadCompleteListener, OnPageScrollListener, FingerPrintAuthCallback {
     private String BookPath, BookName;
@@ -357,8 +345,8 @@ public class ViewActivity extends AppCompatActivity implements OnPageChangeListe
             if (bFace && bFingerPrint) {
                 timerText.setVisibility(View.INVISIBLE);
 
-                ArrayList<Integer> recentBookList = DataMgr.getInstance().getRecentBookLocalData();
-                BookData data = DataMgr.getInstance().myData.getBookData(recentBookList.get(0));
+                ArrayList<BookData> recentBookList = DataMgr.getInstance().myData.getRecentReadBookData();
+                BookData data = recentBookList.get(0);
 
                 //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(data.bookName + "읽고 있는 중입니다" + String.valueOf(counter) + "초");
 

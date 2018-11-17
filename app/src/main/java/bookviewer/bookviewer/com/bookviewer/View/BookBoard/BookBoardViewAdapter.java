@@ -1,11 +1,7 @@
 package bookviewer.bookviewer.com.bookviewer.View.BookBoard;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,24 +14,20 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ramotion.foldingcell.FoldingCell;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 
-import bookviewer.bookviewer.com.bookviewer.CommonFunc;
+import bookviewer.bookviewer.com.bookviewer.Data.BookBoardData;
 import bookviewer.bookviewer.com.bookviewer.Data.BookData;
-import bookviewer.bookviewer.com.bookviewer.Data.BookLocalData;
 import bookviewer.bookviewer.com.bookviewer.Data.DataMgr;
 import bookviewer.bookviewer.com.bookviewer.Data.TempFireBaseData;
 import bookviewer.bookviewer.com.bookviewer.R;
 
-public class BookBoardViewAdapter extends ArrayAdapter<TempFireBaseData.BookReport> {
+public class BookBoardViewAdapter extends ArrayAdapter<BookBoardData> {
 
     private HashSet<Integer> unfoldedIndexes = new HashSet<>();
     Context AppContext;
-    public BookBoardViewAdapter(Context context, ArrayList<TempFireBaseData.BookReport> objects) {
+    public BookBoardViewAdapter(Context context, ArrayList<BookBoardData> objects) {
         super(context, 0, objects);
         AppContext = context;
     }
@@ -76,19 +68,20 @@ public class BookBoardViewAdapter extends ArrayAdapter<TempFireBaseData.BookRepo
             viewHolder = (ViewHolder) cell.getTag();
         }
 
-        final TempFireBaseData.BookReport item = getItem(position);
+        final BookBoardData item = getItem(position);
         int bookId = item.bookId;
-        TempFireBaseData.BookData bookData = DataMgr.getInstance().getBookData(bookId);
-        BookLocalData bookLocalData = DataMgr.getInstance().getBookLocalData(bookId);
+
+        // TODO 고민 책정보를 파베에서 받아와야 하낭?
+        BookData bookData = DataMgr.getInstance().loadBookData(bookId);
 
         Glide.with(AppContext)
-                .load(bookLocalData.ImgIdx)
+                .load(bookData.ImgIdx)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 //.bitmapTransform(new CropCircleTransformation(AppContext))
                 .into(viewHolder.TitleBookThumnail);
 
         Glide.with(AppContext)
-                .load(bookLocalData.ImgIdx)
+                .load(bookData.ImgIdx)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 //.bitmapTransform(new CropCircleTransformation(AppContext))
                 .into(viewHolder.ContentsBookThumnail);
@@ -100,12 +93,12 @@ public class BookBoardViewAdapter extends ArrayAdapter<TempFireBaseData.BookRepo
         viewHolder.TitleLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DataMgr.getInstance().clickBookReportLike(view.getContext(), item.reportId);
+                DataMgr.getInstance().clickBookReportLike(view.getContext(), item.boardId);
                 notifyDataSetChanged();
             }
         });
 
-        int likeHeartImgIdx = DataMgr.getInstance().isBookReportLike(item.reportId) ? R.drawable.report_heart_on : R.drawable.report_heart_off;
+        int likeHeartImgIdx = DataMgr.getInstance().myData.isBookBoardLike(item.boardId) ? R.drawable.report_heart_on : R.drawable.report_heart_off;
 
         Glide.with(AppContext)
                 .load(likeHeartImgIdx)
@@ -122,7 +115,7 @@ public class BookBoardViewAdapter extends ArrayAdapter<TempFireBaseData.BookRepo
         viewHolder.ContentsLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DataMgr.getInstance().clickBookReportLike(view.getContext(), item.reportId);
+                DataMgr.getInstance().clickBookReportLike(view.getContext(), item.boardId);
                 notifyDataSetChanged();
             }
         });

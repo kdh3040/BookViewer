@@ -36,29 +36,29 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void SetPermission()
     {
-        am = (ActivityManager)getApplicationContext().getSystemService(ACTIVITY_SERVICE);
-        final ComponentName comp = new ComponentName(this, MyDeviceAdminReceiver.class);
-        mDPM = (DevicePolicyManager) this
-                .getSystemService(Context.DEVICE_POLICY_SERVICE);
-
-        if( !mDPM.isAdminActive(comp) ){
-            Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
-            intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, comp);
-            intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "message string");
-            startActivityForResult(intent, 1);
-        }else{
-            mDPM.removeActiveAdmin(comp);
-            //mDPM.lockNow();
-            //InitPermission();
-        }
-
-        if(!checkAccessibilityPermissions()) {
-            setAccessibilityPermissions();
-        }
-        else
-        {
-
-        }
+//        am = (ActivityManager)getApplicationContext().getSystemService(ACTIVITY_SERVICE);
+//        final ComponentName comp = new ComponentName(this, MyDeviceAdminReceiver.class);
+//        mDPM = (DevicePolicyManager) this
+//                .getSystemService(Context.DEVICE_POLICY_SERVICE);
+//
+//        if( !mDPM.isAdminActive(comp) ){
+//            Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+//            intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, comp);
+//            intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "message string");
+//            startActivityForResult(intent, 1);
+//        }else{
+//            mDPM.removeActiveAdmin(comp);
+//            //mDPM.lockNow();
+//            //InitPermission();
+//        }
+//
+//        if(!checkAccessibilityPermissions()) {
+//            setAccessibilityPermissions();
+//        }
+//        else
+//        {
+//
+//        }
     }
 
     public boolean checkAccessibilityPermissions() {
@@ -136,8 +136,10 @@ public class SignUpActivity extends AppCompatActivity {
                 String strCode = mCode.getText().toString();
 
                 // TODO 임시 현재 학교의 추천코드는 a 뿐임
-                DataMgr.getInstance().myData.init("a", strNickName);
-                DataMgr.getInstance().saveMyData(SignUpActivity.this);
+                // TODO 파베에서 유저 인덱스를 받아야함
+                DataMgr.getInstance().myData.init(1,"a", strNickName);
+                DataMgr.getInstance().initMyData(DataMgr.getInstance().myData.userData.userIdx);
+                DataMgr.getInstance().saveLocalData(SignUpActivity.this);
 
                 if(strCode.equals(""))
                 {
@@ -162,8 +164,10 @@ public class SignUpActivity extends AppCompatActivity {
                 String strCode = mCode.getText().toString();
 
                 // TODO 임시 현재 학교의 추천코드는 a 뿐임
-                DataMgr.getInstance().myData.init("a", strNickName);
-                DataMgr.getInstance().saveMyData(SignUpActivity.this);
+                // TODO 파베에서 유저 인덱스를 받아야함
+                DataMgr.getInstance().myData.init(1,"a", strNickName);
+                DataMgr.getInstance().initMyData(DataMgr.getInstance().myData.userData.userIdx);
+                DataMgr.getInstance().saveLocalData(SignUpActivity.this);
 
                 if(strCode.equals(""))
                 {

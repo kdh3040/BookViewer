@@ -59,11 +59,11 @@ public class LoginActivity extends AppCompatActivity {
         PermissionListener permissionlistener = new PermissionListener() {
             @Override
             public void onPermissionGranted() {
-
-
                 DataMgr.getInstance().loadLocalData(LoginActivity.this);
                 if(DataMgr.getInstance().myData.isJoin())
                 {
+                    DataMgr.getInstance().initMyData(DataMgr.getInstance().myData.userData.userIdx);
+                    DataMgr.getInstance().loadLocalAllData(LoginActivity.this);
                     intent = new Intent(LoginActivity.this, MainViewActivity.class);
                     finish();
                 }
@@ -79,6 +79,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onPermissionDenied(List<String> deniedPermissions) {
                 DataMgr.getInstance().loadLocalData(LoginActivity.this);
+                DataMgr.getInstance().initMyData(DataMgr.getInstance().myData.userData.userIdx);
+                DataMgr.getInstance().loadLocalAllData(LoginActivity.this);
                 intent = new Intent(LoginActivity.this, MainViewActivity.class);
                 finish();
             }

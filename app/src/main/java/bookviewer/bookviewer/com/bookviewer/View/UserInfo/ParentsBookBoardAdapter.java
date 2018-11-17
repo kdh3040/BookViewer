@@ -5,15 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import bookviewer.bookviewer.com.bookviewer.CommonFunc;
-import bookviewer.bookviewer.com.bookviewer.Data.BookLocalData;
+import bookviewer.bookviewer.com.bookviewer.Data.BookBoardData;
+import bookviewer.bookviewer.com.bookviewer.Data.BookData;
 import bookviewer.bookviewer.com.bookviewer.Data.DataMgr;
-import bookviewer.bookviewer.com.bookviewer.Data.SchoolCurriculumData;
 import bookviewer.bookviewer.com.bookviewer.Data.TempFireBaseData;
 import bookviewer.bookviewer.com.bookviewer.R;
 
@@ -36,23 +34,22 @@ public class ParentsBookBoardAdapter extends RecyclerView.Adapter<ParentsBookBoa
     @Override
     public void onBindViewHolder(ParentsBookBoardHolder holder, final int position) {
 
-        TempFireBaseData.BookReport data =  DataMgr.getInstance().TempData.bookReportDataList.get(position);
-        int bookId = data.bookId;
-        TempFireBaseData.BookData bookData = DataMgr.getInstance().getBookData(bookId);
-        BookLocalData bookLocalData = DataMgr.getInstance().getBookLocalData(bookId);
+        BookBoardData boardData =  DataMgr.getInstance().bookBoardDataList.get(position);
+        int bookId = boardData.bookId;
+        BookData bookData = DataMgr.getInstance().loadBookData(bookId);
 
         Glide.with(AppContext)
-                .load(bookLocalData.ImgIdx)
+                .load(bookData.ImgIdx)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 //.bitmapTransform(new CropCircleTransformation(AppContext))
                 .into(holder.BookBoardImg);
 
-        holder.Title.setText(data.title);
-        holder.Desc.setText(data.report);
+        holder.Title.setText(boardData.title);
+        holder.Desc.setText(boardData.report);
     }
 
     @Override
     public int getItemCount() {
-        return DataMgr.getInstance().TempData.bookReportDataList.size();
+        return DataMgr.getInstance().bookBoardDataList.size();
     }
 }

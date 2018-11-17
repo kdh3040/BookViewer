@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -66,9 +65,8 @@ public class BookViewerView extends Fragment implements OnPageChangeListener, On
             {
                 timerText.setVisibility(View.INVISIBLE);
 
-                ArrayList<Integer> recentBookList = DataMgr.getInstance().getRecentBookLocalData();
-                BookData data = DataMgr.getInstance().myData.getBookData(recentBookList.get(0));
-
+                ArrayList<BookData> recentBookList = DataMgr.getInstance().myData.getRecentReadBookData();
+                BookData data = recentBookList.get(0);
                 //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(data.bookName + "읽고 있는 중입니다" + String.valueOf(counter) + "초");
 
                 ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(data.bookName + "  " + String.valueOf(counter) + "초");
