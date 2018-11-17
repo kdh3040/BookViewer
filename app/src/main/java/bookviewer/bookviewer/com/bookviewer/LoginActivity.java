@@ -62,6 +62,9 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 DataMgr.getInstance().loadLocalData(LoginActivity.this);
+          /*    intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                finish();*/
+
                 if(DataMgr.getInstance().myData.isJoin())
                 {
                     intent = new Intent(LoginActivity.this, MainViewActivity.class);
@@ -87,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
         TedPermission.with(this)
                 .setPermissionListener(permissionlistener)
                 .setDeniedMessage("권한 설정이 거부되었습니다")
-                .setPermissions(Manifest.permission.CAMERA)
+                .setPermissions(Manifest.permission.CAMERA, Manifest.permission.USE_FINGERPRINT)
                 .check();
 
     }

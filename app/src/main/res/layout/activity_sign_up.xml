@@ -22,7 +22,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:visibility="invisible">
+        android:visibility="visible">
+<!--
+        <TextView
+            android:id="@+id/nickname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/student_mode"
+            app:layout_constraintEnd_toStartOf="@id/nickname_str"
+            app:layout_constraintTop_toTopOf="@id/nickname_str"
+            app:layout_constraintBottom_toBottomOf="@id/nickname_str"
+            app:layout_constraintWidth_percent="0.18"
+            android:textSize="18sp"
+            android:fontFamily="@font/jua"
+            android:textColor="@drawable/back"
+            android:text="닉네임"/>-->
 
         <TextView
             android:id="@+id/nickname"
@@ -72,6 +86,27 @@
             android:fontFamily="@font/jua"
             android:hint="(8자이하)" />
 
+        <CheckBox
+            android:id="@+id/checkBox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            app:layout_constraintStart_toStartOf="@id/schoolcode"
+            app:layout_constraintTop_toBottomOf="@id/schoolcode"
+            android:text="권한 설정" />
+
+
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            app:layout_constraintStart_toStartOf="@id/schoolcode"
+            app:layout_constraintEnd_toEndOf="@id/schoolcode"
+            app:layout_constraintTop_toBottomOf="@id/checkBox1"
+            android:text="딸기"
+            android:visibility="invisible"/>
+
         <Button
             android:id="@+id/SignUp_Button"
             android:layout_width="200dp"
@@ -82,7 +117,7 @@
             android:textSize="20sp"
             android:fontFamily="@font/jua"
             android:layout_marginTop="15dp"
-            app:layout_constraintTop_toBottomOf="@+id/schoolcode_str"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox2"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="@id/student_mode"
             app:layout_constraintEnd_toEndOf="@id/student_mode"
@@ -101,6 +136,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginLeft="20dp"
+        android:visibility="invisible"
         android:layout_marginRight="20dp">
 
         <TextView
