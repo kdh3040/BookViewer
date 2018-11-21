@@ -26,7 +26,7 @@ public class DataMgr {
         return _Instance;
     }
 
-    private TempFireBaseData TempData;
+    public TempFireBaseData TempData;
 
     public ArrayList<BookBoardData> bookBoardDataList = new ArrayList<>();
     public MyData myData = new MyData();
@@ -35,7 +35,6 @@ public class DataMgr {
     {
         TempData = new TempFireBaseData();
     }
-
 
     public void initMyData(int UserId)
     {
@@ -115,7 +114,7 @@ public class DataMgr {
         loadLocalBookBoardLikeData(ViewContext);
     }
 
-    public void loadLocalData(Context ViewContext)
+    public int loadLocalUserData(Context ViewContext)
     {
         // 책 정보 로드
         SharedPreferences pref = ViewContext.getSharedPreferences("LocalData", Context.MODE_PRIVATE);
@@ -126,11 +125,15 @@ public class DataMgr {
             String nickName = getSharedPreferences_String(pref, "Nickname");
             String schoolCode = getSharedPreferences_String(pref, "Schoolcode");
 
-            myData.init(userIdx, nickName, schoolCode);
+            // TODO 임시 파베 데이터 추가
+            TempData.addUserData(userIdx, nickName, schoolCode);
+            return userIdx;
         }
+
+        return 0;
     }
 
-    public void saveLocalData(Context ViewContext)
+    public void saveLocalUserData(Context ViewContext)
     {
         SharedPreferences pref = ViewContext.getSharedPreferences("LocalData", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();

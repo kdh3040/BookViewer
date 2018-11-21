@@ -59,14 +59,16 @@ public class LoginActivity extends AppCompatActivity {
         PermissionListener permissionlistener = new PermissionListener() {
             @Override
             public void onPermissionGranted() {
-                DataMgr.getInstance().loadLocalData(LoginActivity.this);
+                int userIdx = DataMgr.getInstance().loadLocalUserData(LoginActivity.this);
+
           /*    intent = new Intent(LoginActivity.this, SignUpActivity.class);
                 finish();*/
 
-                if(DataMgr.getInstance().myData.isJoin())
+                if(userIdx != 0)
                 {
-                    DataMgr.getInstance().initMyData(DataMgr.getInstance().myData.userData.userIdx);
+                    DataMgr.getInstance().initMyData(userIdx);
                     DataMgr.getInstance().loadLocalAllData(LoginActivity.this);
+
                     intent = new Intent(LoginActivity.this, MainViewActivity.class);
                     finish();
                 }
@@ -81,9 +83,11 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onPermissionDenied(List<String> deniedPermissions) {
-                DataMgr.getInstance().loadLocalData(LoginActivity.this);
-                DataMgr.getInstance().initMyData(DataMgr.getInstance().myData.userData.userIdx);
+                // TODO userIdx 가 0이면 어쩌지??
+                int userIdx = DataMgr.getInstance().loadLocalUserData(LoginActivity.this);
+                DataMgr.getInstance().initMyData(userIdx);
                 DataMgr.getInstance().loadLocalAllData(LoginActivity.this);
+
                 intent = new Intent(LoginActivity.this, MainViewActivity.class);
                 finish();
             }

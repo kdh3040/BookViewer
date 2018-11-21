@@ -17,14 +17,11 @@ public class TempFireBaseData {
     public Map<Integer, QuestionData> questionDataList = new LinkedHashMap<>();
     public ArrayList<BookBoardData> bookBoardDataList = new ArrayList<>();
 
+    private int userIdx = 0;
+    private int bookBoardIdx = 0;
+
     public TempFireBaseData()
     {
-        // 임시 파이어베이스 데이터 추가
-        UserData userData = new UserData();
-        userData.userIdx = 1;
-        userData.schoolCode = "a";
-        userData.nickName = "qwwee";
-        userDataList.put(1, userData);
 
         SchoolData schoolData = new SchoolData();
         schoolData.schoolCode = "a";
@@ -191,5 +188,28 @@ public class TempFireBaseData {
         }
 
         return null;
+    }
+
+    public int getNextUserIdx()
+    {
+        return ++userIdx;
+    }
+
+    public int getNextBookBoardIdx()
+    {
+        return ++bookBoardIdx;
+    }
+
+    public void addUserData(int UserIdx, String NickName, String SchoolCode)
+    {
+        if(userDataList.containsKey(UserIdx))
+            return;
+
+        // 임시 파이어베이스 데이터 추가
+        UserData userData = new UserData();
+        userData.userIdx = UserIdx;
+        userData.schoolCode = "a";
+        userData.nickName = NickName;
+        userDataList.put(UserIdx, userData);
     }
 }
