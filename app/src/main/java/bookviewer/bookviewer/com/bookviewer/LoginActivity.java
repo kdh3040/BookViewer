@@ -81,9 +81,9 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onPermissionDenied(List<String> deniedPermissions) {
-                DataMgr.getInstance().loadLocalData(LoginActivity.this);
+              /*  DataMgr.getInstance().loadLocalData(LoginActivity.this);
                 intent = new Intent(LoginActivity.this, MainViewActivity.class);
-                finish();
+                finish();*/
             }
         };
 
