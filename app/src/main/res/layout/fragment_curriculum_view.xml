@@ -15,8 +15,7 @@
         android:background="@color/title_bar"
         app:tabTextAppearance="@style/tab_text"
 
-        android:elevation="5dp"
-        android:translationZ="5dp"
+        android:elevation="0dp"
         app:tabIndicatorColor="@android:color/holo_orange_light"
         app:tabSelectedTextColor="@android:color/black"
         app:tabTextColor="@android:color/white" />

@@ -2,8 +2,8 @@ package bookviewer.bookviewer.com.bookviewer.Data;
 
 import java.util.ArrayList;
 
-public class SchoolCurriculumData{
-    public int schoolCurriculumId;
-    public String schoolCurriculumName;
+public class CurriculumData {
+    public int curriculumId;  // key
+    public String curriculumName;
     public ArrayList<Integer> bookIdList = new ArrayList<>();
 }

@@ -7,6 +7,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
@@ -199,9 +200,11 @@ public class SignUpActivity extends AppCompatActivity implements CompoundButton.
                     String strCode = mCode.getText().toString();
 
                     // TODO 임시 현재 학교의 추천코드는 a 뿐임
-                    DataMgr.getInstance().myData.init("a", strNickName);
-                    DataMgr.getInstance().saveMyData(SignUpActivity.this);
-
+                    int userIdx = DataMgr.getInstance().TempData.getNextUserIdx();
+                    DataMgr.getInstance().TempData.addUserData(userIdx, strNickName, strCode);
+                    DataMgr.getInstance().initMyData(userIdx);
+                    DataMgr.getInstance().loadLocalAllData(SignUpActivity.this);
+                    DataMgr.getInstance().saveLocalUserData(SignUpActivity.this);
 
                     Intent intent = new Intent(SignUpActivity.this, MainViewActivity.class);
                     startActivity(intent);
@@ -230,8 +233,9 @@ public class SignUpActivity extends AppCompatActivity implements CompoundButton.
                 String strCode = mCode.getText().toString();
 
                 // TODO 임시 현재 학교의 추천코드는 a 뿐임
-                DataMgr.getInstance().myData.init("a", strNickName);
-                DataMgr.getInstance().saveMyData(SignUpActivity.this);
+                int userIdx = DataMgr.getInstance().loadLocalUserData(SignUpActivity.this);
+                DataMgr.getInstance().initMyData(userIdx);
+                DataMgr.getInstance().loadLocalAllData(SignUpActivity.this);
 
                 if(strCode.equals(""))
                 {

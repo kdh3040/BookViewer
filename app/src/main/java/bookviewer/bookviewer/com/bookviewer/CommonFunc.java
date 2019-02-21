@@ -248,7 +248,7 @@ public class CommonFunc {
             @Override
             public void onClick(View view) {
 
-                DataMgr.getInstance().TempData.addBookBoardData(BookId, BoardTitle.getText().toString(), BoardDesc.getText().toString());
+                //DataMgr.getInstance().TempData.addBookBoardData(BookId, BoardTitle.getText().toString(), BoardDesc.getText().toString());
 
                 dialog.dismiss();
             }

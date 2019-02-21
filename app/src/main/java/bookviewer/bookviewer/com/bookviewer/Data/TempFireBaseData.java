@@ -10,92 +10,49 @@ import bookviewer.bookviewer.com.bookviewer.R;
 
 public class TempFireBaseData {
 
-    public class SchoolData{
-        public String schoolCode; // key
-        public String schoolName;
-        public ArrayList<Integer> schoolCurriculumIdList = new ArrayList<>();
-    }
+    public Map<Integer, UserData> userDataList = new LinkedHashMap<>();
+    public Map<String, SchoolData> schoolDataList = new LinkedHashMap<>();
+    public Map<Integer, CurriculumData> curriculumDataList = new LinkedHashMap<>();
+    public Map<Integer, BookData> bookDataList = new LinkedHashMap<>();
+    public Map<Integer, QuestionData> questionDataList = new LinkedHashMap<>();
+    public ArrayList<BookBoardData> bookBoardDataList = new ArrayList<>();
 
-    public class SchoolCurriculumData{
-        public int schoolCurriculumId;
-        public String schoolCurriculumName;
-        public ArrayList<Integer> bookIdList = new ArrayList<>();
-    }
-
-    public class BookData{
-        public int bookId;
-        public String bookName;
-        public String bookAuthor;
-        public ArrayList<Integer> questionIdList = new ArrayList<>();
-    }
-
-    public class QuestionData{
-        public int questionId;
-        public int showPageCount;
-        public String questionDesc;
-
-        public Boolean multipleChoiceQuestion = false;
-
-        public String correctStr;
-        public int correctCount;
-        public ArrayList<String> exampleStr = new ArrayList<String>();
-    }
-
-    public class BookReport{
-        public int reportId;
-        public String nickName;
-        public String schoolName;
-        public String title;
-        public String report;
-        public int likeCount;
-        public int bookId;
-
-        public BookReport()
-        {
-
-        }
-    }
-
-    public Map<String, SchoolData> schoolDataList = new LinkedHashMap<String, SchoolData>();
-    public Map<Integer, SchoolCurriculumData> schoolCurriculumDataList = new LinkedHashMap<Integer, SchoolCurriculumData>();
-    public Map<Integer, BookData> bookDataList = new LinkedHashMap<Integer, BookData>();
-    public Map<Integer, QuestionData> questionDataList = new LinkedHashMap<Integer, QuestionData>();
-    public ArrayList<BookReport> bookReportDataList = new ArrayList<>();
-
+    private int userIdx = 0;
+    private int bookBoardIdx = 0;
 
     public TempFireBaseData()
     {
-        // 임시 파이어베이스 데이터 추가
+
         SchoolData schoolData = new SchoolData();
         schoolData.schoolCode = "a";
         schoolData.schoolName = "구암초등학교";
-        schoolData.schoolCurriculumIdList.add(1);
-        schoolData.schoolCurriculumIdList.add(2);
-        schoolData.schoolCurriculumIdList.add(3);
-        schoolData.schoolCurriculumIdList.add(4);
+        schoolData.curriculumIdList.add(1);
+        schoolData.curriculumIdList.add(2);
+        schoolData.curriculumIdList.add(3);
+        schoolData.curriculumIdList.add(4);
         schoolDataList.put(schoolData.schoolCode, schoolData);
 
 
         for(int index = 1 ; index <= 10 ; ++index)
         {
-            SchoolCurriculumData schoolCurriculumDataata = new SchoolCurriculumData();
-            schoolCurriculumDataata.schoolCurriculumId = index;
+            CurriculumData curriculumDataata = new CurriculumData();
+            curriculumDataata.curriculumId = index;
             switch (index)
             {
                 case 1:
-                    schoolCurriculumDataata.schoolCurriculumName = "초등학교 1학년";
+                    curriculumDataata.curriculumName = "초등학교 1학년";
                     break;
                 case 2:
-                    schoolCurriculumDataata.schoolCurriculumName = "초등학교 2학년";
+                    curriculumDataata.curriculumName = "초등학교 2학년";
                     break;
                 case 3:
-                    schoolCurriculumDataata.schoolCurriculumName = "중학교 1학년";
+                    curriculumDataata.curriculumName = "중학교 1학년";
                     break;
                 default:
-                    schoolCurriculumDataata.schoolCurriculumName = "중학교 2학년";
+                    curriculumDataata.curriculumName = "중학교 2학년";
                     break;
             }
-            schoolCurriculumDataList.put(index, schoolCurriculumDataata);
+            curriculumDataList.put(index, curriculumDataata);
         }
 
         // TODO 빼야댐
@@ -114,16 +71,15 @@ public class TempFireBaseData {
             bookData.bookAuthor = CommonFunc.getInstance().randomFullName();
             if(index <= 10)
             {
-                schoolCurriculumDataList.get(1).bookIdList.add(index);
-                schoolCurriculumDataList.get(2).bookIdList.add(index);
+                curriculumDataList.get(1).bookIdList.add(index);
+                curriculumDataList.get(2).bookIdList.add(index);
             }
 
             else if(index <= 20)
             {
-                schoolCurriculumDataList.get(3).bookIdList.add(index);
-                schoolCurriculumDataList.get(4).bookIdList.add(index);
+                curriculumDataList.get(3).bookIdList.add(index);
+                curriculumDataList.get(4).bookIdList.add(index);
             }
-
 
             bookDataList.put(index, bookData);
         }
@@ -156,29 +112,104 @@ public class TempFireBaseData {
 
         for(int index = 1; index < 20; ++index)
         {
-            BookReport bookReport = new BookReport();
-            bookReport.reportId = index;
-            bookReport.nickName = CommonFunc.getInstance().randomFullName();
-            bookReport.schoolName = CommonFunc.getInstance().randomLastName() + "초등학교";
-            bookReport.title = "감상문 제목";
-            bookReport.report = strReport[random.nextInt(7)];
+            BookBoardData bookBoardData = new BookBoardData();
+
+            bookBoardData.boardId = index;
+            bookBoardData.nickName = CommonFunc.getInstance().randomFullName();
+            bookBoardData.schoolName = CommonFunc.getInstance().randomLastName() + "초등학교";
+            bookBoardData.title = "감상문 제목";
+            bookBoardData.report = strReport[random.nextInt(7)];
             Random test = new Random();
-            bookReport.bookId = test.nextInt(7) + 1;
-            bookReport.likeCount = 0;
-            bookReportDataList.add(bookReport);
+            bookBoardData.bookId = test.nextInt(7) + 1;
+            bookBoardData.likeCount = 0;
+            bookBoardDataList.add(bookBoardData);
         }
     }
 
     public void addBookBoardData(int BookId, String Title, String Desc)
     {
-        BookReport bookReport = new BookReport();
-        bookReport.reportId = bookReportDataList.size() + 1;
-        bookReport.nickName = DataMgr.getInstance().myData.nickName;
-        bookReport.schoolName = DataMgr.getInstance().myData.schoolName;
-        bookReport.title = Title;
-        bookReport.report = Desc;
-        bookReport.bookId = BookId;
-        bookReport.likeCount = 0;
-        bookReportDataList.add(bookReport);
+        BookBoardData bookBoardData = new BookBoardData();
+        bookBoardData.boardId = bookBoardDataList.size() + 1;
+        bookBoardData.nickName = DataMgr.getInstance().myData.getUserNickname();
+        bookBoardData.schoolName = DataMgr.getInstance().myData.getSchoolname();
+        bookBoardData.title = Title;
+        bookBoardData.report = Desc;
+        bookBoardData.bookId = BookId;
+        bookBoardData.likeCount = 0;
+        bookBoardDataList.add(bookBoardData);
+    }
+
+    public ArrayList<CurriculumData> getCurriculumData(ArrayList<Integer> list)
+    {
+        ArrayList<CurriculumData> returnList = new ArrayList<CurriculumData>();
+        for (int index = 0 ; index < list.size() ; ++index)
+        {
+            returnList.add(curriculumDataList.get(list.get(index)));
+        }
+
+        return returnList;
+    }
+
+    public BookData getBookData(int id)
+    {
+        return bookDataList.get(id);
+    }
+
+    public Map<Integer, BookData> getBookData(ArrayList<Integer> list)
+    {
+        Map<Integer, BookData> returnList = new LinkedHashMap<>();
+
+        for(int index = 0 ; index < list.size() ; ++index)
+        {
+            returnList.put(list.get(index), bookDataList.get(list.get(index)));
+        }
+
+        return returnList;
+    }
+
+    public Map<Integer, QuestionData> getQuestionData(ArrayList<Integer> list)
+    {
+        Map<Integer, QuestionData> returnList = new LinkedHashMap<>();
+
+        for(int index = 0 ; index < list.size() ; ++index)
+        {
+            returnList.put(list.get(index), questionDataList.get(list.get(index)));
+        }
+
+        return returnList;
+    }
+
+    public BookBoardData getBookBoardData(int BoardId)
+    {
+        for(int index = 0 ; index < bookBoardDataList.size() ; ++index)
+        {
+            if(bookBoardDataList.get(index).boardId == BoardId)
+                return bookBoardDataList.get(index);
+        }
+
+        return null;
+    }
+
+    public int getNextUserIdx()
+    {
+        return ++userIdx;
+    }
+
+    public int getNextBookBoardIdx()
+    {
+        return ++bookBoardIdx;
+    }
+
+    public void addUserData(int UserIdx, String NickName, String SchoolCode)
+    {
+        if(userDataList.containsKey(UserIdx))
+            return;
+
+        // 임시 파이어베이스 데이터 추가
+        UserData userData = new UserData();
+        userData.userIdx = UserIdx;
+        userData.schoolCode = "a";
+        userData.nickName = NickName;
+        userDataList.put(UserIdx, userData);
     }
 }

@@ -1,8 +1,8 @@
 package bookviewer.bookviewer.com.bookviewer.Data;
 
-public class BookReportData
+public class BookBoardData
 {
-    public int reportId;
+    public int boardId; // key
     public String nickName;
     public String schoolName;
     public String title;

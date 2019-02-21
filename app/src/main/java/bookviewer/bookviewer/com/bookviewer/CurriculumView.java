@@ -46,9 +46,9 @@ public class CurriculumView extends Fragment {
 
             tabLayout = fragView.findViewById(R.id.tabLayout);
 
-            for(int i = 0; i < DataMgr.getInstance().myData.schoolCurriculumDataList.size(); i++)
+            for(int i = 0; i < DataMgr.getInstance().myData.curriculumData.size(); i++)
             {
-                tabLayout.addTab(tabLayout.newTab().setText(DataMgr.getInstance().myData.schoolCurriculumDataList.get(i).schoolCurriculumName));
+                tabLayout.addTab(tabLayout.newTab().setText(DataMgr.getInstance().myData.curriculumData.get(i).curriculumName));
             }
 
             viewPager = (ViewPager)fragView.findViewById(R.id.vp);

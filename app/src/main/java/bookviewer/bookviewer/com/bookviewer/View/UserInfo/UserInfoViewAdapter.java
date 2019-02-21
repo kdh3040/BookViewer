@@ -9,8 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -20,7 +18,6 @@ import java.util.Random;
 
 import bookviewer.bookviewer.com.bookviewer.CommonFunc;
 import bookviewer.bookviewer.com.bookviewer.Data.BookData;
-import bookviewer.bookviewer.com.bookviewer.Data.BookLocalData;
 import bookviewer.bookviewer.com.bookviewer.Data.DataMgr;
 import bookviewer.bookviewer.com.bookviewer.R;
 
@@ -43,9 +40,8 @@ public class UserInfoViewAdapter extends RecyclerView.Adapter<UserInfoViewHolder
     @Override
     public void onBindViewHolder(@NonNull UserInfoViewHolder holder, int position) {
 
-        ArrayList<Integer> recentBookList = DataMgr.getInstance().getRecentBookLocalData();
-        BookLocalData localData = DataMgr.getInstance().getBookLocalData(recentBookList.get(position));
-        BookData data = DataMgr.getInstance().myData.getBookData(recentBookList.get(position));
+        ArrayList<BookData> recentBookList = DataMgr.getInstance().myData.getRecentReadBookData();
+        BookData data = recentBookList.get(position);
 
         holder.layout.setLayoutParams(new ConstraintLayout.LayoutParams(CommonFunc.getInstance().GetDisplayWidth(), (CommonFunc.getInstance().GetDisplayHeight() / 6)));
 
@@ -59,13 +55,13 @@ public class UserInfoViewAdapter extends RecyclerView.Adapter<UserInfoViewHolder
 
 
         Glide.with(AppContext)
-                .load(localData.ImgIdx)
+                .load(data.ImgIdx)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 //.bitmapTransform(new CropCircleTransformation(AppContext))
                 .into(holder.Thumbnail);
 
 
-        if(localData == null)
+        if(data == null)
             holder.Thumbnail.setColorFilter(Color.parseColor("#555555"), PorterDuff.Mode.MULTIPLY);
         else
         {

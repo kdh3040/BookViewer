@@ -12,17 +12,12 @@ import android.support.v7.widget.GridLayoutManager;
         import android.view.View;
         import android.view.ViewGroup;
         import android.widget.ImageView;
-        import android.widget.RelativeLayout;
-        import android.widget.TextView;
+import android.widget.TextView;
 
         import com.bumptech.glide.Glide;
         import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-        import java.util.ArrayList;
-
-        import bookviewer.bookviewer.com.bookviewer.Data.BookData;
-        import bookviewer.bookviewer.com.bookviewer.Data.BookLocalData;
-        import bookviewer.bookviewer.com.bookviewer.Data.DataMgr;
+import bookviewer.bookviewer.com.bookviewer.Data.DataMgr;
 import bookviewer.bookviewer.com.bookviewer.R;
         import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
@@ -91,8 +86,8 @@ public class UserInfoView extends Fragment {
 
     private void refreshUserInfo()
     {
-        NickName.setText(DataMgr.getInstance().myData.nickName);
-        SchoolName.setText(DataMgr.getInstance().myData.schoolName);
+        NickName.setText(DataMgr.getInstance().myData.getUserNickname());
+        SchoolName.setText(DataMgr.getInstance().myData.getSchoolname());
 
         Glide.with(getContext())
                 .load(R.drawable.user_profile)
