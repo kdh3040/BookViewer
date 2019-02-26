@@ -180,15 +180,10 @@ public class DataMgr {
 
                 data.recentReadTime = temp_index;
                 Random test = new Random();
-                switch (test.nextInt(7) + 1)
+                switch (test.nextInt(2) + 1)
                 {
                     case 1: data.ImgIdx = R.drawable.book_1; break;
                     case 2: data.ImgIdx = R.drawable.book_2; break;
-                    case 3: data.ImgIdx = R.drawable.book_3; break;
-                    case 4: data.ImgIdx = R.drawable.book_4; break;
-                    case 5: data.ImgIdx = R.drawable.book_5; break;
-                    case 6: data.ImgIdx = R.drawable.book_6; break;
-                    case 7: data.ImgIdx = R.drawable.book_7; break;
                     default: data.ImgIdx = R.drawable.book_1; break;
                 }
             }

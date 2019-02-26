@@ -1,12 +1,7 @@
 <resources>
     <string name="app_name">BookViewer</string>
-    <string name="book_1">동백꽃</string>
-    <string name="book_2">톰소여의 모험</string>
-    <string name="book_3">해리포터와 마법사의 돌</string>
-    <string name="book_4">습관의 재발견</string>
-    <string name="book_5">모의고사</string>
-    <string name="book_6">언어의 온도</string>
-    <string name="book_7">보이는 세상</string>
+    <string name="book_1">프로테스탄티즘의 윤리와 자본주의 정신</string>
+    <string name="book_2">H팩터의 심리학</string>
     <string name="long_text">Kotlin is a great fit for developing Android applications, bringing all of the advantages of a modern language to the Android platform without introducing any new restrictions.</string>
     <string name="title_activity_main_view">MainViewActivity</string>
     <string name="Main_Bottom_Curriculum">추천도서</string>
