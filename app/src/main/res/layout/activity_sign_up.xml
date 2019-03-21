@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:gravity="center_horizontal"
-    tools:context="bookviewer.bookviewer.com.bookviewer.SignUpActivity">
+    tools:context="ttuktak.bookviewer.com.bookviewer.SignUpActivity">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/student_mode"

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="bookviewer.bookviewer.com.bookviewer">
+    package="ttuktak.bookviewer.com.bookviewer">
 
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
@@ -26,23 +26,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".ViewActivity" />
-        <activity android:name=".View.UserInfo.ParentsModeActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name="ttuktak.bookviewer.com.bookviewer.MainActivity" />
+        <activity android:name="ttuktak.bookviewer.com.bookviewer.ViewActivity" />
+        <activity android:name="ttuktak.bookviewer.com.bookviewer.View.UserInfo.ParentsModeActivity" />
+        <activity android:name="ttuktak.bookviewer.com.bookviewer.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpActivity" />
+        <activity android:name="ttuktak.bookviewer.com.bookviewer.SignUpActivity" />
         <activity
-            android:name=".MainViewActivity"
+            android:name="ttuktak.bookviewer.com.bookviewer.MainViewActivity"
             android:label="@string/title_activity_main_view" />
 
         <receiver
-            android:name=".Receiver.MyDeviceAdminReceiver"
+            android:name="ttuktak.bookviewer.com.bookviewer.Receiver.MyDeviceAdminReceiver"
             android:label="뷰어 권한 설정"
             android:permission="android.permission.BIND_DEVICE_ADMIN">
             <meta-data
@@ -56,7 +56,7 @@
 
 
         <service
-            android:name=".Service.AccessibilityService"
+            android:name="ttuktak.bookviewer.com.bookviewer.Service.AccessibilityService"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
